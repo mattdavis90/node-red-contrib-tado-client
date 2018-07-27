@@ -1,0 +1,172 @@
+<script type="text/x-red" data-template-name="tado-config">
+    <div class="form-row">
+        <label for="node-config-input-username"><i class="fa fa-user"></i> <span data-i18n="node-red:common.label.username"></span></label>
+        <input type="text" id="node-config-input-username">
+    </div>
+    <div class="form-row">
+        <label for="node-config-input-password"><i class="fa fa-lock"></i> <span data-i18n="node-red:common.label.password"></span></label>
+        <input type="password" id="node-config-input-password">
+    </div>
+    <div class="form-row">
+        <label for="node-config-input-name"><i class="fa fa-tag"></i> <span data-i18n="node-red:common.label.name"></span></label>
+        <input type="text" id="node-config-input-name" data-i18n="[placeholder]node-red:common.label.name">
+    </div>
+</script>
+
+<script type="text/javascript">
+    RED.nodes.registerType('tado-config', {
+        category: 'config',
+        color: "rgb(218, 196, 180)",
+        defaults: {
+            name: {value: ""},
+        },
+        credentials: {
+            username: {type: "text"},
+            password: {type: "password"}
+        },
+        label: function() {
+            return this.name || "Tado Config";
+        }
+    });
+</script>
+
+<script type="text/x-red" data-template-name="tado">
+    <div class="form-row">
+        <label for="node-input-configName"><i class="fa fa-server"></i> <span data-i18n="tado.label.config-name"></span></label>
+        <input type="text" id="node-input-configName">
+    </div>
+    <div class="form-row">
+        <label for="node-input-apiCall"><i class="fa fa-bolt"></i> <span data-i18n="tado.label.api-call"></span></label>
+        <select id="node-input-apiCall" style="width:60%; margin-right:5px;">
+            <option value="getMe" data-i18n="tado.option.get-me"></option>
+            <option value="getHome" data-i18n="tado.option.get-home"></option>
+            <option value="getWeather" data-i18n="tado.option.get-weather"></option>
+            <option value="getDevices" data-i18n="tado.option.get-devices"></option>
+            <option value="getInstallations" data-i18n="tado.option.get-installations"></option>
+            <option value="getUsers" data-i18n="tado.option.get-users"></option>
+            <option value="getMobileDevices" data-i18n="tado.option.get-mobile-devices"></option>
+            <option value="getMobileDevice" data-i18n="tado.option.get-mobile-device"></option>
+            <option value="getMobileDeviceSettings" data-i18n="tado.option.get-mobile-device-settings"></option>
+            <option value="getZones" data-i18n="tado.option.get-zones"></option>
+            <option value="getZoneState" data-i18n="tado.option.get-zone-state"></option>
+            <option value="getZoneCapabilities" data-i18n="tado.option.get-zone-capabilities"></option>
+            <option value="getZoneOverlay" data-i18n="tado.option.get-zone-overlay"></option>
+            <option value="clearZoneOverlay" data-i18n="tado.option.clear-zone-overlay"></option>
+            <option value="setZoneOverlay" data-i18n="tado.option.set-zone-overlay"></option>
+            <option value="identifyDevice" data-i18n="tado.option.identify-device"></option>
+        </select>
+    </div>
+    <div class="form-row" id="tadoHomeId">
+        <label for="node-input-homeId"><i class="fa fa-home"></i> <span data-i18n="tado.label.home-id"></span></label>
+        <input type="text" id="node-input-homeId">
+    </div>
+    <div class="form-row" id="tadoDeviceId">
+        <label for="node-input-deviceId"><i class="fa fa-mobile"></i> <span data-i18n="tado.label.device-id"></span></label>
+        <input type="text" id="node-input-deviceId">
+    </div>
+    <div class="form-row" id="tadoZoneId">
+        <label for="node-input-zoneId"><i class="fa fa-th"></i> <span data-i18n="tado.label.zone-id"></span></label>
+        <input type="text" id="node-input-zoneId">
+    </div>
+    <div class="form-row" id="tadoPower">
+        <label for="node-input-power"><i class="fa fa-power-off"></i> <span data-i18n="tado.label.power"></span></label>
+        <input type="text" id="node-input-power">
+    </div>
+    <div class="form-row" id="tadoTemperature">
+        <label for="node-input-temperature"><i class="fa fa-thermometer-half"></i> <span data-i18n="tado.label.temperature"></span></label>
+        <input type="text" id="node-input-temperature">
+    </div>
+    <div class="form-row" id="tadoTerminationType">
+        <label for="node-input-terminationType"><i class="fa fa-ban"></i> <span data-i18n="tado.label.termination-type"></span></label>
+        <select id="node-input-terminationType" style="width:60%; margin-right:5px;">
+            <option value="manual" data-i18n="tado.option.manual"></option>
+            <option value="auto" data-i18n="tado.option.auto"></option>
+            <option value="timer" data-i18n="tado.option.timer"></option>
+        </select>
+    </div>
+    <div class="form-row" id="tadoTerminationTimeout">
+        <label for="node-input-terminationTimeout"><i class="fa fa-history"></i> <span data-i18n="tado.label.termination-timeout"></span></label>
+        <input type="text" id="node-input-terminationTimeout">
+    </div>
+    <div class="form-row">
+        <label for="node-config-input-name"><i class="fa fa-tag"></i> <span data-i18n="node-red:common.label.name"></span></label>
+        <input type="text" id="node-config-input-name" data-i18n="[placeholder]node-red:common.label.name">
+    </div>
+</script>
+
+<script type="text/x-red" data-help-name="tado">
+    <p>A Tado Web API node.</p>
+
+    <h3>Inputs</h3>
+    <dl class="message-properties">
+        <dt class="optional">apiCall <span class="property-type">string</span></dt>
+        <dd> the API call to be made</dd>
+
+        <dt class="optional">homeId <span class="property-type">string</span></dt>
+        <dd> the home ID to target</dd>
+
+        <dt class="optional">deviceId <span class="property-type">string</span></dt>
+        <dd> the device ID to target</dd>
+
+        <dt class="optional">zoneId <span class="property-type">string</span></dt>
+        <dd> the zone ID to target</dd>
+
+        <dt class="optional">power <span class="property-type">string</span></dt>
+        <dd> turn the heating system on or off</dd>
+
+        <dt class="optional">temperature <span class="property-type">string</span></dt>
+        <dd> the target temperature</dd>
+
+        <dt class="optional">terminationType <span class="property-type">string</span></dt>
+        <dd> the mode of terminating the overlay</dd>
+
+        <dt class="optional">terminationTimeout <span class="property-type">string</span></dt>
+        <dd> the timeout in seconds to clear the overaly</dd>
+    </dl>
+
+    <h3>Outputs</h3>
+    <dl class="message-properties">
+        <dt>topic <span class="property-type">object</span></dt>
+        <dd> the API call</dd>
+        <dt>payload <span class="property-type">object</span></dt>
+        <dd> the response from Tado</dd>
+    </dl>
+
+    <h3>Details</h3>
+    <p>Incoming messages trigger the API call. If the incoming message contains any of the optional fields then that node property is overwritten.</p>
+    <p><code>msg.topic</code> indicates the API call that generated the response. <code>msg.payload</code> is the response from Tado</p>
+    <p>For more information about the API responses see <a href="https://github.com/mattdavis90/node-tado-client">node-tado-client</a></p>
+
+    <h3>References</h3>
+    <ul>
+        <li><a href="http://blog.scphillips.com/posts/2017/01/the-tado-api-v2/">SCPhillips Blog</a></li>
+    </ul>
+</script>
+
+<script type="text/javascript">
+    RED.nodes.registerType('tado', {
+        category: 'heating',
+        color: "rgb(255, 255, 255)",
+        defaults: {
+            configName: {type: "tado-config", required: true},
+            apiCall: {value: "getMe"},
+            homeId: {value: ""},
+            deviceId: {value: ""},
+            zoneId: {value: ""},
+            power: {value: ""},
+            temperature: {value: ""},
+            terminationType: {value: "manual"},
+            terminationTimeout: {value: 900, validate: RED.validators.number()},
+            name: {value: ""}
+        },
+        inputs: 1,
+        outputs: 1,
+        icon: "tado.png",
+        label: function() {
+            return this.name || "Tado";
+        },
+        labelStyle: function() {
+            return this.name ? "node_label_italic" : ""; 
+        },
+    });
+</script>

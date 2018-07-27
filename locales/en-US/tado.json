@@ -1,0 +1,36 @@
+{
+    "tado": {
+        "label": {
+            "config-name": "Tado Config",
+            "api-call": "API Call",
+            "home-id": "Home ID",
+            "device-id": "Device ID",
+            "zone-id": "Zone ID",
+            "power": "Heating On/Off",
+            "temperature": "Temperature (C)",
+            "termination-type": "Type of Termination",
+            "termination-timeout": "Termination Timeout (secs)"
+        },
+        "option": {
+            "get-me": "Get the current user",
+            "get-home": "Get the home info.",
+            "get-weather": "Get the weather",
+            "get-devices": "Get all devices",
+            "get-installations": "Get all installations",
+            "get-users": "Get all users",
+            "get-mobile-devices": "Get all mobile devices",
+            "get-mobile-device": "Get a mobile device",
+            "get-mobile-device-settings": "Get a mobile device's settings",
+            "get-zones": "Get all zones",
+            "get-zone-state": "Get a zone's state",
+            "get-zone-capabilities": "Get a zone's capabilities",
+            "get-zone-overlay": "Get a zone's overlay",
+            "clear-zone-overlay": "Clear a zone's overlay",
+            "set-zone-overlay": "Set a zone's overlay",
+            "identify-device": "Identify a device",
+            "manual": "Manual termination",
+            "auto": "Tado schedule termination",
+            "timer": "Timer based termination"
+        }
+    }
+}

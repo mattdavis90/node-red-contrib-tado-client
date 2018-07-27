@@ -1,0 +1,28 @@
+{
+  "name": "red-contrib-tado-client",
+  "version": "0.1.0",
+  "description": "Tado web API client node for Node Red",
+  "dependencies": {
+    "node-tado-client": "^0.1.1"
+  },
+  "devDependencies": {},
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mattdavis90/node-red-contrib-tado-client.git"
+  },
+  "keywords": [
+    "tado"
+  ],
+  "node-red": {
+    "nodes": {
+      "tado": "tado.js"
+    }
+  },
+  "author": "Matt Davis <mattdavis90@googlemail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mattdavis90/node-red-contrib-tado-client/issues"
+  },
+  "homepage": "https://github.com/mattdavis90/node-red-contrib-tado-client#readme"
+}
