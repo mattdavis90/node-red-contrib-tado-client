@@ -12,6 +12,7 @@
     "url": "git+https://github.com/mattdavis90/node-red-contrib-tado-client.git"
   },
   "keywords": [
+    "node-red",
     "tado"
   ],
   "node-red": {
