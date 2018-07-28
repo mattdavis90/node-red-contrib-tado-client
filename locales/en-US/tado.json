@@ -30,7 +30,9 @@
             "identify-device": "Identify a device",
             "manual": "Manual termination",
             "auto": "Tado schedule termination",
-            "timer": "Timer based termination"
+            "timer": "Timer based termination",
+            "on": "Heating On",
+            "off": "Heating Off"
         }
     }
 }
