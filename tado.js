@@ -36,6 +36,7 @@ module.exports = function(RED) {
         this.temperature = n.temperature;
         this.terminationType = n.terminationType;
         this.terminationTimeout = n.terminationTimeout;
+        this.name = n.name;
 
         this.configName = n.configName;
         this.tadoConfig = RED.nodes.getNode(this.configName);
