@@ -1,5 +1,3 @@
-var _ = require('lodash');
-
 module.exports = function(RED) {
     "use strict";
     var Tado = require('node-tado-client');
