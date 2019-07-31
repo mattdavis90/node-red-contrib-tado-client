@@ -54,6 +54,7 @@
             <option value="clearZoneOverlay" data-i18n="tado.option.clear-zone-overlay"></option>
             <option value="setZoneOverlay" data-i18n="tado.option.set-zone-overlay"></option>
             <option value="identifyDevice" data-i18n="tado.option.identify-device"></option>
+            <option value="getZoneDayReport" data-i18n="tado.option.get-zone-day-report"></option>
         </select>
     </div>
     <div class="form-row" id="tadoHomeId">
@@ -67,6 +68,10 @@
     <div class="form-row" id="tadoZoneId">
         <label for="node-input-zoneId"><i class="fa fa-th"></i> <span data-i18n="tado.label.zone-id"></span></label>
         <input type="text" id="node-input-zoneId" data-i18n="[placeholder]tado.label.zone-id">
+    </div>
+    <div class="form-row" id="tadoReportDate">
+        <label for="node-input-tadoReportDate"><i class="fa fa-th"></i> <span data-i18n="tado.label.reportDate"></span></label>
+        <input type="text" id="node-input-tadoReportDate" data-i18n="[placeholder]tado.label.reportDate">
     </div>
     <div id="tadoOverlayForm">
         <div class="form-row" id="tadoPower">
@@ -164,7 +169,8 @@
             temperature: {value: "18"},
             terminationType: {value: "manual"},
             terminationTimeout: {value: 900, validate: RED.validators.number()},
-            name: {value: ""}
+            name: {value: ""},
+            reportDate: {value: ""}
         },
         inputs: 1,
         outputs: 1,
@@ -184,6 +190,7 @@
                         $('#tadoZoneId').hide();
                         $('#tadoDeviceId').hide();
                         $('#tadoOverlayForm').hide();
+                        $('#tadoReportDate').hide();
                         break;
                     case "getHome":
                     case "getWeather":
@@ -196,6 +203,7 @@
                         $('#tadoZoneId').hide();
                         $('#tadoDeviceId').hide();
                         $('#tadoOverlayForm').hide();
+                        $('#tadoReportDate').hide();
                         break;
                     case "getMobileDevice":
                     case "getMobileDeviceSettings":
@@ -203,6 +211,7 @@
                         $('#tadoZoneId').hide();
                         $('#tadoDeviceId').show();
                         $('#tadoOverlayForm').hide();
+                        $('#tadoReportDate').hide();
                         break;
                     case "getZoneState":
                     case "getZoneCapabilities":
@@ -212,18 +221,28 @@
                         $('#tadoZoneId').show();
                         $('#tadoDeviceId').hide();
                         $('#tadoOverlayForm').hide();
+                        $('#tadoReportDate').hide();
                         break;
                     case "setZoneOverlay":
                         $('#tadoHomeId').show();
                         $('#tadoZoneId').show();
                         $('#tadoDeviceId').hide();
                         $('#tadoOverlayForm').show();
+                        $('#tadoReportDate').hide();
                         break;
                     case "identifyDevice":
                         $('#tadoHomeId').hide();
                         $('#tadoZoneId').hide();
                         $('#tadoDeviceId').show();
                         $('#tadoOverlayForm').hide();
+                        $('#tadoReportDate').hide();
+                        break;
+                    case "getZoneDayReport":
+                        $('#tadoHomeId').show();
+                        $('#tadoZoneId').show();
+                        $('#tadoDeviceId').hide();
+                        $('#tadoOverlayForm').hide();
+                        $('#tadoReportDate').show();
                         break;
                 }
             });

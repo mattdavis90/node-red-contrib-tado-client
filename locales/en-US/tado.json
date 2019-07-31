@@ -9,7 +9,8 @@
             "power": "Heating On/Off",
             "temperature": "Temperature (C)",
             "termination-type": "Type of Termination",
-            "termination-timeout": "Termination Timeout (secs)"
+            "termination-timeout": "Termination Timeout (secs)",
+            "reportDate": "Report Date"
         },
         "option": {
             "get-me": "Get the current user",
@@ -32,7 +33,8 @@
             "auto": "Tado schedule termination",
             "timer": "Timer based termination",
             "on": "Heating On",
-            "off": "Heating Off"
+            "off": "Heating Off",
+	    "get-zone-day-report": "Get a zone's day report."
         }
     }
 }
