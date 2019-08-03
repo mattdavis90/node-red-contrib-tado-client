@@ -10,7 +10,7 @@
             "temperature": "Temperature (C)",
             "termination-type": "Type of Termination",
             "termination-timeout": "Termination Timeout (secs)",
-            "reportDate": "Report Date"
+            "reportDate": "Report Date (yyyy-mm-dd)"
         },
         "option": {
             "get-me": "Get the current user",
