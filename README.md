@@ -27,6 +27,7 @@ trigger the API. If the message on the input contains any of the following field
 * zoneId
 * deviceId
 * power
+* reportDate 
 * temperature
 * terminationType
 * terminationTimeout

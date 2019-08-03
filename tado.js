@@ -35,6 +35,7 @@ module.exports = function(RED) {
         this.terminationType = n.terminationType;
         this.terminationTimeout = n.terminationTimeout;
         this.name = n.name;
+	this.reportDate = n.reportDate;
 
         this.configName = n.configName;
         this.tadoConfig = RED.nodes.getNode(this.configName);
@@ -56,6 +57,7 @@ module.exports = function(RED) {
                         var temperature = msg.hasOwnProperty("temperature") ? msg.temperature : node.temperature;
                         var terminationType = msg.hasOwnProperty("terminationType") ? msg.terminationType : node.terminationType;
                         var terminationTimeout = msg.hasOwnProperty("terminationTimout") ? msg.terminationTimout : node.terminationTimeout;
+                        var reportDate = msg.hasOwnProperty("reportDate") ? msg.reportDate : node.reportDate;
 
                         var new_msg = {
                             topic: apiCall,
@@ -250,6 +252,19 @@ module.exports = function(RED) {
                                 });
 
                                 break;
+                            case "getZoneDayReport":
+                                tado.getZoneDayReport(homeId, zoneId, reportDate).then(function(resp) {
+                                    node.status({ fill: "green", shape: "dot", text: apiCall });
+                                    new_msg.payload = resp;
+                                    new_msg.zoneId = zoneId;
+                                    node.send(new_msg);
+                                }).catch(function(err) {
+                                    node.status({ fill: "red", shape: "ring", text: "errored" });
+                                    node.error(err);
+                                });
+
+                                break;
+
                         }
                     });
                 })
