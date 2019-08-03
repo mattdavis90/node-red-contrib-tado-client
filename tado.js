@@ -56,7 +56,7 @@ module.exports = function(RED) {
                         var power = msg.hasOwnProperty("power") ? msg.power : node.power;
                         var temperature = msg.hasOwnProperty("temperature") ? msg.temperature : node.temperature;
                         var terminationType = msg.hasOwnProperty("terminationType") ? msg.terminationType : node.terminationType;
-                        var terminationTimeout = msg.hasOwnProperty("terminationTimout") ? msg.terminationTimout : node.terminationTimeout;
+                        var terminationTimeout = msg.hasOwnProperty("terminationTimeout") ? msg.terminationTimeout : node.terminationTimeout;
                         var reportDate = msg.hasOwnProperty("reportDate") ? msg.reportDate : node.reportDate;
 
                         var new_msg = {
