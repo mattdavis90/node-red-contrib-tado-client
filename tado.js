@@ -35,7 +35,7 @@ module.exports = function(RED) {
         this.terminationType = n.terminationType;
         this.terminationTimeout = n.terminationTimeout;
         this.name = n.name;
-	this.reportDate = n.reportDate;
+        this.reportDate = n.reportDate;
 
         this.configName = n.configName;
         this.tadoConfig = RED.nodes.getNode(this.configName);
@@ -59,17 +59,14 @@ module.exports = function(RED) {
                         var terminationTimeout = msg.hasOwnProperty("terminationTimeout") ? msg.terminationTimeout : node.terminationTimeout;
                         var reportDate = msg.hasOwnProperty("reportDate") ? msg.reportDate : node.reportDate;
 
-                        var new_msg = {
-                            topic: apiCall,
-                            payload: ""
-                        };
+                        msg.topic = apiCall;
 
                         switch(apiCall) {
                             case "getMe":
                                 tado.getMe().then(function(resp) {
                                     node.status({ fill: "green", shape: "dot", text: apiCall });
-                                    new_msg.payload = resp;
-                                    node.send(new_msg);
+                                    msg.payload = resp;
+                                    node.send(msg);
                                 }).catch(function(err) {
                                     node.status({ fill: "red", shape: "ring", text: "errored" });
                                     node.error(err);
@@ -79,8 +76,8 @@ module.exports = function(RED) {
                             case "getHome":
                                 tado.getHome(homeId).then(function(resp) {
                                     node.status({ fill: "green", shape: "dot", text: apiCall });
-                                    new_msg.payload = resp;
-                                    node.send(new_msg);
+                                    msg.payload = resp;
+                                    node.send(msg);
                                 }).catch(function(err) {
                                     node.status({ fill: "red", shape: "ring", text: "errored" });
                                     node.error(err);
@@ -90,8 +87,8 @@ module.exports = function(RED) {
                             case "getWeather":
                                 tado.getWeather(homeId).then(function(resp) {
                                     node.status({ fill: "green", shape: "dot", text: apiCall });
-                                    new_msg.payload = resp;
-                                    node.send(new_msg);
+                                    msg.payload = resp;
+                                    node.send(msg);
                                 }).catch(function(err) {
                                     node.status({ fill: "red", shape: "ring", text: "errored" });
                                     node.error(err);
@@ -101,8 +98,8 @@ module.exports = function(RED) {
                             case "getDevices":
                                 tado.getDevices(homeId).then(function(resp) {
                                     node.status({ fill: "green", shape: "dot", text: apiCall });
-                                    new_msg.payload = resp;
-                                    node.send(new_msg);
+                                    msg.payload = resp;
+                                    node.send(msg);
                                 }).catch(function(err) {
                                     node.status({ fill: "red", shape: "ring", text: "errored" });
                                     node.error(err);
@@ -112,8 +109,8 @@ module.exports = function(RED) {
                             case "getInstallations":
                                 tado.getInstallations(homeId).then(function(resp) {
                                     node.status({ fill: "green", shape: "dot", text: apiCall });
-                                    new_msg.payload = resp;
-                                    node.send(new_msg);
+                                    msg.payload = resp;
+                                    node.send(msg);
                                 }).catch(function(err) {
                                     node.status({ fill: "red", shape: "ring", text: "errored" });
                                     node.error(err);
@@ -123,8 +120,8 @@ module.exports = function(RED) {
                             case "getUsers":
                                 tado.getUsers(homeId).then(function(resp) {
                                     node.status({ fill: "green", shape: "dot", text: apiCall });
-                                    new_msg.payload = resp;
-                                    node.send(new_msg);
+                                    msg.payload = resp;
+                                    node.send(msg);
                                 }).catch(function(err) {
                                     node.status({ fill: "red", shape: "ring", text: "errored" });
                                     node.error(err);
@@ -134,8 +131,8 @@ module.exports = function(RED) {
                             case "getMobileDevices":
                                 tado.getMobileDevices(homeId).then(function(resp) {
                                     node.status({ fill: "green", shape: "dot", text: apiCall });
-                                    new_msg.payload = resp;
-                                    node.send(new_msg);
+                                    msg.payload = resp;
+                                    node.send(msg);
                                 }).catch(function(err) {
                                     node.status({ fill: "red", shape: "ring", text: "errored" });
                                     node.error(err);
@@ -145,8 +142,8 @@ module.exports = function(RED) {
                             case "getMobileDevice":
                                 tado.getMobileDevice(homeId, deviceId).then(function(resp) {
                                     node.status({ fill: "green", shape: "dot", text: apiCall });
-                                    new_msg.payload = resp;
-                                    node.send(new_msg);
+                                    msg.payload = resp;
+                                    node.send(msg);
                                 }).catch(function(err) {
                                     node.status({ fill: "red", shape: "ring", text: "errored" });
                                     node.error(err);
@@ -156,8 +153,8 @@ module.exports = function(RED) {
                             case "getMobileDeviceSettings":
                                 tado.getMobileDeviceSettings(homeId, deviceId).then(function(resp) {
                                     node.status({ fill: "green", shape: "dot", text: apiCall });
-                                    new_msg.payload = resp;
-                                    node.send(new_msg);
+                                    msg.payload = resp;
+                                    node.send(msg);
                                 }).catch(function(err) {
                                     node.status({ fill: "red", shape: "ring", text: "errored" });
                                     node.error(err);
@@ -167,8 +164,8 @@ module.exports = function(RED) {
                             case "getZones":
                                 tado.getZones(homeId).then(function(resp) {
                                     node.status({ fill: "green", shape: "dot", text: apiCall });
-                                    new_msg.payload = resp;
-                                    node.send(new_msg);
+                                    msg.payload = resp;
+                                    node.send(msg);
                                 }).catch(function(err) {
                                     node.status({ fill: "red", shape: "ring", text: "errored" });
                                     node.error(err);
@@ -178,8 +175,8 @@ module.exports = function(RED) {
                             case "getZoneState":
                                 tado.getZoneState(homeId, zoneId).then(function(resp) {
                                     node.status({ fill: "green", shape: "dot", text: apiCall });
-                                    new_msg.payload = resp;
-                                    node.send(new_msg);
+                                    msg.payload = resp;
+                                    node.send(msg);
                                 }).catch(function(err) {
                                     node.status({ fill: "red", shape: "ring", text: "errored" });
                                     node.error(err);
@@ -189,8 +186,8 @@ module.exports = function(RED) {
                             case "getZoneCapabilities":
                                 tado.getZoneCapabilities(homeId, zoneId).then(function(resp) {
                                     node.status({ fill: "green", shape: "dot", text: apiCall });
-                                    new_msg.payload = resp;
-                                    node.send(new_msg);
+                                    msg.payload = resp;
+                                    node.send(msg);
                                 }).catch(function(err) {
                                     node.status({ fill: "red", shape: "ring", text: "errored" });
                                     node.error(err);
@@ -200,13 +197,13 @@ module.exports = function(RED) {
                             case "getZoneOverlay":
                                 tado.getZoneOverlay(homeId, zoneId).then(function(resp) {
                                     node.status({ fill: "green", shape: "dot", text: apiCall });
-                                    new_msg.payload = resp;
-                                    node.send(new_msg);
+                                    msg.payload = resp;
+                                    node.send(msg);
                                 }).catch(function(err) {
                                     if (err.response.status === 404) {
                                         node.status({ fill: "green", shape: "dot", text: apiCall });
-                                        new_msg.payload = {};
-                                        node.send(new_msg);
+                                        msg.payload = {};
+                                        node.send(msg);
                                     } else {
                                         node.status({ fill: "red", shape: "ring", text: "errored" });
                                         node.error(err);
@@ -217,8 +214,8 @@ module.exports = function(RED) {
                             case "clearZoneOverlay":
                                 tado.clearZoneOverlay(homeId, zoneId).then(function(resp) {
                                     node.status({ fill: "green", shape: "dot", text: apiCall });
-                                    new_msg.payload = resp;
-                                    node.send(new_msg);
+                                    msg.payload = resp;
+                                    node.send(msg);
                                 }).catch(function(err) {
                                     node.status({ fill: "red", shape: "ring", text: "errored" });
                                     node.error(err);
@@ -233,8 +230,8 @@ module.exports = function(RED) {
 
                                 tado.setZoneOverlay(homeId, zoneId, power, temperature, termination).then(function(resp) {
                                     node.status({ fill: "green", shape: "dot", text: apiCall });
-                                    new_msg.payload = resp;
-                                    node.send(new_msg);
+                                    msg.payload = resp;
+                                    node.send(msg);
                                 }).catch(function(err) {
                                     node.status({ fill: "red", shape: "ring", text: "errored" });
                                     node.error(err);
@@ -244,8 +241,8 @@ module.exports = function(RED) {
                             case "identifyDevice":
                                 tado.identifyDevice(deviceId).then(function(resp) {
                                     node.status({ fill: "green", shape: "dot", text: apiCall });
-                                    new_msg.payload = resp;
-                                    node.send(new_msg);
+                                    msg.payload = resp;
+                                    node.send(msg);
                                 }).catch(function(err) {
                                     node.status({ fill: "red", shape: "ring", text: "errored" });
                                     node.error(err);
@@ -255,9 +252,9 @@ module.exports = function(RED) {
                             case "getZoneDayReport":
                                 tado.getZoneDayReport(homeId, zoneId, reportDate).then(function(resp) {
                                     node.status({ fill: "green", shape: "dot", text: apiCall });
-                                    new_msg.payload = resp;
-                                    new_msg.zoneId = zoneId;
-                                    node.send(new_msg);
+                                    msg.payload = resp;
+                                    msg.zoneId = zoneId;
+                                    node.send(msg);
                                 }).catch(function(err) {
                                     node.status({ fill: "red", shape: "ring", text: "errored" });
                                     node.error(err);
