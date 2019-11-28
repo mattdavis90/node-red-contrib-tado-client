@@ -42,6 +42,7 @@
             <option value="getHome" data-i18n="tado.option.get-home"></option>
             <option value="getWeather" data-i18n="tado.option.get-weather"></option>
             <option value="getDevices" data-i18n="tado.option.get-devices"></option>
+            <option value="getDeviceTemperatureOffset" data-i18n="tado.option.get-device-temperature-offset"></option>
             <option value="getInstallations" data-i18n="tado.option.get-installations"></option>
             <option value="getUsers" data-i18n="tado.option.get-users"></option>
             <option value="getMobileDevices" data-i18n="tado.option.get-mobile-devices"></option>
@@ -53,6 +54,7 @@
             <option value="getZoneOverlay" data-i18n="tado.option.get-zone-overlay"></option>
             <option value="clearZoneOverlay" data-i18n="tado.option.clear-zone-overlay"></option>
             <option value="setZoneOverlay" data-i18n="tado.option.set-zone-overlay"></option>
+            <option value="setDeviceTemperatureOffset" data-i18n="tado.option.set-device-temperature-offset"></option>
             <option value="identifyDevice" data-i18n="tado.option.identify-device"></option>
             <option value="getZoneDayReport" data-i18n="tado.option.get-zone-day-report"></option>
         </select>
@@ -234,6 +236,8 @@
                         $('#tadoReportDate').hide();
                         break;
                     case "identifyDevice":
+                    case "getDeviceTemperatureOffset":
+                    case "setDeviceTemperatureOffset":
                         $('#tadoHomeId').hide();
                         $('#tadoZoneId').hide();
                         $('#tadoDeviceId').show();
