@@ -106,6 +106,17 @@ module.exports = function(RED) {
                                 });
 
                                 break;
+                            case "getDeviceTemperatureOffset":
+                                tado.getDeviceTemperatureOffset(deviceId).then(function(resp) {
+                                    node.status({ fill: "green", shape: "dot", text: apiCall });
+                                    msg.payload = resp;
+                                    node.send(msg);
+                                }).catch(function(err) {
+                                    node.status({ fill: "red", shape: "ring", text: "errored" });
+                                    node.error(err);
+                                });
+
+                                break;
                             case "getInstallations":
                                 tado.getInstallations(homeId).then(function(resp) {
                                     node.status({ fill: "green", shape: "dot", text: apiCall });
@@ -229,6 +240,17 @@ module.exports = function(RED) {
                                 }
 
                                 tado.setZoneOverlay(homeId, zoneId, power, temperature, termination).then(function(resp) {
+                                    node.status({ fill: "green", shape: "dot", text: apiCall });
+                                    msg.payload = resp;
+                                    node.send(msg);
+                                }).catch(function(err) {
+                                    node.status({ fill: "red", shape: "ring", text: "errored" });
+                                    node.error(err);
+                                });
+
+                                break;
+                            case "setDeviceTemperatureOffset":
+                                tado.setDeviceTemperatureOffset(deviceId, temperature).then(function(resp) {
                                     node.status({ fill: "green", shape: "dot", text: apiCall });
                                     msg.payload = resp;
                                     node.send(msg);
