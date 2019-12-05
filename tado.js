@@ -36,6 +36,7 @@ module.exports = function(RED) {
         this.terminationTimeout = n.terminationTimeout;
         this.name = n.name;
         this.reportDate = n.reportDate;
+        this.presence = n.presence;
 
         this.configName = n.configName;
         this.tadoConfig = RED.nodes.getNode(this.configName);
@@ -58,6 +59,7 @@ module.exports = function(RED) {
                         var terminationType = msg.hasOwnProperty("terminationType") ? msg.terminationType : node.terminationType;
                         var terminationTimeout = msg.hasOwnProperty("terminationTimeout") ? msg.terminationTimeout : node.terminationTimeout;
                         var reportDate = msg.hasOwnProperty("reportDate") ? msg.reportDate : node.reportDate;
+                        var presence = msg.hasOwnProperty("presence") ? msg.presence : node.presence;
 
                         msg.topic = apiCall;
 
@@ -276,6 +278,17 @@ module.exports = function(RED) {
                                     node.status({ fill: "green", shape: "dot", text: apiCall });
                                     msg.payload = resp;
                                     msg.zoneId = zoneId;
+                                    node.send(msg);
+                                }).catch(function(err) {
+                                    node.status({ fill: "red", shape: "ring", text: "errored" });
+                                    node.error(err);
+                                });
+
+                                break;
+                            case "setPresence":
+                                tado.setPresence(homeId, presence).then(function(resp) {
+                                    node.status({ fill: "green", shape: "dot", text: apiCall });
+                                    msg.payload = resp;
                                     node.send(msg);
                                 }).catch(function(err) {
                                     node.status({ fill: "red", shape: "ring", text: "errored" });
