@@ -58,6 +58,7 @@
             <option value="identifyDevice" data-i18n="tado.option.identify-device"></option>
             <option value="getZoneDayReport" data-i18n="tado.option.get-zone-day-report"></option>
             <option value="setPresence" data-i18n="tado.option.set-presence"></option>
+            <option value="updatePresence" data-i18n="tado.option.update-presence"></option>
         </select>
     </div>
     <div class="form-row" id="tadoHomeId">
@@ -277,6 +278,14 @@
                         $('#tadoOverlayForm').hide();
                         $('#tadoReportDate').hide();
                         $('#tadoPresence').show();
+                        break;
+                    case "updatePresence":
+                        $('#tadoHomeId').show();
+                        $('#tadoZoneId').hide();
+                        $('#tadoDeviceId').hide();
+                        $('#tadoOverlayForm').hide();
+                        $('#tadoReportDate').hide();
+                        $('#tadoPresence').hide();
                         break;
                 }
             });

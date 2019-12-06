@@ -38,6 +38,7 @@
             "on": "Heating On",
             "off": "Heating Off",
             "set-presence": "Set presence",
+            "update-presence": "Update presence",
             "home": "Home",
             "away": "Away",
 	    "get-zone-day-report": "Get a zone's day report."
