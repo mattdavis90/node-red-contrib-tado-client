@@ -31,6 +31,7 @@ trigger the API. If the message on the input contains any of the following field
 * temperature
 * terminationType
 * terminationTimeout
+* presence
 
 The response from the Tado API is represented in ```msg.payload``` and the generating API call is ```msg.topic```.
 

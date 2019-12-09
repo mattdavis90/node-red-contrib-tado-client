@@ -57,6 +57,8 @@
             <option value="setDeviceTemperatureOffset" data-i18n="tado.option.set-device-temperature-offset"></option>
             <option value="identifyDevice" data-i18n="tado.option.identify-device"></option>
             <option value="getZoneDayReport" data-i18n="tado.option.get-zone-day-report"></option>
+            <option value="setPresence" data-i18n="tado.option.set-presence"></option>
+            <option value="updatePresence" data-i18n="tado.option.update-presence"></option>
         </select>
     </div>
     <div class="form-row" id="tadoHomeId">
@@ -102,6 +104,13 @@
             </div>
         </div>
     </div>
+    <div class="form-row" id="tadoPresence">
+        <label for="node-input-presence"><i class="fa fa-map-marker"></i> <span data-i18n="tado.label.presence"></span></label>
+        <select id="node-input-presence" style="width:60%; margin-right:5px;">
+            <option value="HOME" data-i18n="tado.option.home"></option>
+            <option value="AWAY" data-i18n="tado.option.away"></option>
+        </select>
+    </div>
     <div class="form-row">
         <label for="node-input-name"><i class="fa fa-tag"></i> <span data-i18n="node-red:common.label.name"></span></label>
         <input type="text" id="node-input-name" data-i18n="[placeholder]node-red:common.label.name">
@@ -139,6 +148,9 @@
 
         <dt class="optional">terminationTimeout <span class="property-type">string</span></dt>
         <dd> the timeout in seconds to clear the overaly</dd>
+
+        <dt class="optional">presence <span class="property-type">string</span></dt>
+        <dd> either <code>"HOME"</code> or <code>"AWAY"</code></dd>
     </dl>
 
     <h3>Outputs</h3>
@@ -175,7 +187,8 @@
             terminationType: {value: "manual"},
             terminationTimeout: {value: 900, validate: RED.validators.number()},
             name: {value: ""},
-            reportDate: {value: ""}
+            reportDate: {value: ""},
+            presence: {value: "HOME"},
         },
         inputs: 1,
         outputs: 1,
@@ -196,6 +209,7 @@
                         $('#tadoDeviceId').hide();
                         $('#tadoOverlayForm').hide();
                         $('#tadoReportDate').hide();
+                        $('#tadoPresence').hide();
                         break;
                     case "getHome":
                     case "getWeather":
@@ -209,6 +223,7 @@
                         $('#tadoDeviceId').hide();
                         $('#tadoOverlayForm').hide();
                         $('#tadoReportDate').hide();
+                        $('#tadoPresence').hide();
                         break;
                     case "getMobileDevice":
                     case "getMobileDeviceSettings":
@@ -217,6 +232,7 @@
                         $('#tadoDeviceId').show();
                         $('#tadoOverlayForm').hide();
                         $('#tadoReportDate').hide();
+                        $('#tadoPresence').hide();
                         break;
                     case "getZoneState":
                     case "getZoneCapabilities":
@@ -227,6 +243,7 @@
                         $('#tadoDeviceId').hide();
                         $('#tadoOverlayForm').hide();
                         $('#tadoReportDate').hide();
+                        $('#tadoPresence').hide();
                         break;
                     case "setZoneOverlay":
                         $('#tadoHomeId').show();
@@ -234,6 +251,7 @@
                         $('#tadoDeviceId').hide();
                         $('#tadoOverlayForm').show();
                         $('#tadoReportDate').hide();
+                        $('#tadoPresence').hide();
                         break;
                     case "identifyDevice":
                     case "getDeviceTemperatureOffset":
@@ -243,6 +261,7 @@
                         $('#tadoDeviceId').show();
                         $('#tadoOverlayForm').hide();
                         $('#tadoReportDate').hide();
+                        $('#tadoPresence').hide();
                         break;
                     case "getZoneDayReport":
                         $('#tadoHomeId').show();
@@ -250,6 +269,23 @@
                         $('#tadoDeviceId').hide();
                         $('#tadoOverlayForm').hide();
                         $('#tadoReportDate').show();
+                        $('#tadoPresence').hide();
+                        break;
+                    case "setPresence":
+                        $('#tadoHomeId').show();
+                        $('#tadoZoneId').hide();
+                        $('#tadoDeviceId').hide();
+                        $('#tadoOverlayForm').hide();
+                        $('#tadoReportDate').hide();
+                        $('#tadoPresence').show();
+                        break;
+                    case "updatePresence":
+                        $('#tadoHomeId').show();
+                        $('#tadoZoneId').hide();
+                        $('#tadoDeviceId').hide();
+                        $('#tadoOverlayForm').hide();
+                        $('#tadoReportDate').hide();
+                        $('#tadoPresence').hide();
                         break;
                 }
             });

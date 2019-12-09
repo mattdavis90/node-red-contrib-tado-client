@@ -10,7 +10,8 @@
             "temperature": "Temperature (C)",
             "termination-type": "Type of Termination",
             "termination-timeout": "Termination Timeout (secs)",
-            "reportDate": "Report Date (yyyy-mm-dd)"
+            "reportDate": "Report Date (yyyy-mm-dd)",
+            "presence": "Presence"
         },
         "option": {
             "get-me": "Get the current user",
@@ -36,6 +37,10 @@
             "timer": "Timer based termination",
             "on": "Heating On",
             "off": "Heating Off",
+            "set-presence": "Set presence",
+            "update-presence": "Update presence",
+            "home": "Home",
+            "away": "Away",
 	    "get-zone-day-report": "Get a zone's day report."
         }
     }
