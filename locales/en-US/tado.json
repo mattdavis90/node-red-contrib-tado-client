@@ -10,6 +10,7 @@
             "temperature": "Temperature (C)",
             "termination-type": "Type of Termination",
             "termination-timeout": "Termination Timeout (secs)",
+            "temperature-offset": "Termination Offset (C)",
             "reportDate": "Report Date (yyyy-mm-dd)",
             "presence": "Presence"
         },

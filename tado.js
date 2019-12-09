@@ -37,6 +37,7 @@ module.exports = function(RED) {
         this.name = n.name;
         this.reportDate = n.reportDate;
         this.presence = n.presence;
+        this.temperatureOffset = n.temperatureOffset;
 
         this.configName = n.configName;
         this.tadoConfig = RED.nodes.getNode(this.configName);
@@ -60,6 +61,7 @@ module.exports = function(RED) {
                         var terminationTimeout = msg.hasOwnProperty("terminationTimeout") ? msg.terminationTimeout : node.terminationTimeout;
                         var reportDate = msg.hasOwnProperty("reportDate") ? msg.reportDate : node.reportDate;
                         var presence = msg.hasOwnProperty("presence") ? msg.presence : node.presence;
+                        var temperatureOffset = msg.hasOwnProperty("temperatureOffset") ? msg.temperatureOffset : node.temperatureOffset;
 
                         msg.topic = apiCall;
 
@@ -252,7 +254,7 @@ module.exports = function(RED) {
 
                                 break;
                             case "setDeviceTemperatureOffset":
-                                tado.setDeviceTemperatureOffset(deviceId, temperature).then(function(resp) {
+                                tado.setDeviceTemperatureOffset(deviceId, temperatureOffset).then(function(resp) {
                                     node.status({ fill: "green", shape: "dot", text: apiCall });
                                     msg.payload = resp;
                                     node.send(msg);
