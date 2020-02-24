@@ -25,6 +25,7 @@
             "get-mobile-devices": "Get all mobile devices",
             "get-mobile-device": "Get a mobile device",
             "get-mobile-device-settings": "Get a mobile device's settings",
+            "get-state": "Get a home's state",
             "get-zones": "Get all zones",
             "get-zone-state": "Get a zone's state",
             "get-zone-capabilities": "Get a zone's capabilities",
