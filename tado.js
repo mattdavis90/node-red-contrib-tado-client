@@ -38,6 +38,7 @@ module.exports = function(RED) {
         this.reportDate = n.reportDate;
         this.presence = n.presence;
         this.temperatureOffset = n.temperatureOffset;
+        this.geoTracking = n.geoTracking;
 
         this.configName = n.configName;
         this.tadoConfig = RED.nodes.getNode(this.configName);
@@ -62,6 +63,7 @@ module.exports = function(RED) {
                         var reportDate = msg.hasOwnProperty("reportDate") ? msg.reportDate : node.reportDate;
                         var presence = msg.hasOwnProperty("presence") ? msg.presence : node.presence;
                         var temperatureOffset = msg.hasOwnProperty("temperatureOffset") ? msg.temperatureOffset : node.temperatureOffset;
+                        var geoTracking = msg.hasOwnProperty("geoTracking") ? msg.geoTracking : node.geoTracking;
 
                         msg.topic = apiCall;
 
@@ -167,6 +169,19 @@ module.exports = function(RED) {
                                 break;
                             case "getMobileDeviceSettings":
                                 tado.getMobileDeviceSettings(homeId, deviceId).then(function(resp) {
+                                    node.status({ fill: "green", shape: "dot", text: apiCall });
+                                    msg.payload = resp;
+                                    node.send(msg);
+                                }).catch(function(err) {
+                                    node.status({ fill: "red", shape: "ring", text: "errored" });
+                                    node.error(err);
+                                });
+
+                                break;
+                            case "setGeoTracking":
+                                geoTracking = (geoTracking === true || geoTracking == "true") ? true : false;
+
+                                tado.setGeoTracking(homeId, deviceId, geoTracking).then(function(resp) {
                                     node.status({ fill: "green", shape: "dot", text: apiCall });
                                     msg.payload = resp;
                                     node.send(msg);

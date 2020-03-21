@@ -48,6 +48,7 @@
             <option value="getMobileDevices" data-i18n="tado.option.get-mobile-devices"></option>
             <option value="getMobileDevice" data-i18n="tado.option.get-mobile-device"></option>
             <option value="getMobileDeviceSettings" data-i18n="tado.option.get-mobile-device-settings"></option>
+            <option value="setGeoTracking" data-i18n="tado.option.set-geo-tracking"></option>
             <option value="getZones" data-i18n="tado.option.get-zones"></option>
             <option value="getZoneState" data-i18n="tado.option.get-zone-state"></option>
             <option value="getZoneCapabilities" data-i18n="tado.option.get-zone-capabilities"></option>
@@ -115,6 +116,13 @@
             <option value="AWAY" data-i18n="tado.option.away"></option>
         </select>
     </div>
+    <div class="form-row" id="tadoGeoTracking">
+        <label for="node-input-geo-tracking"><i class="fa fa-map-marker"></i> <span data-i18n="tado.label.geo-tracking"></span></label>
+        <select id="node-input-geo-tracking" style="width:60%; margin-right:5px;">
+            <option value="true" data-i18n="tado.option.enabled"></option>
+            <option value="false" data-i18n="tado.option.disabled"></option>
+        </select>
+    </div>
     <div class="form-row">
         <label for="node-input-name"><i class="fa fa-tag"></i> <span data-i18n="node-red:common.label.name"></span></label>
         <input type="text" id="node-input-name" data-i18n="[placeholder]node-red:common.label.name">
@@ -155,6 +163,9 @@
 
         <dt class="optional">presence <span class="property-type">string</span></dt>
         <dd> either <code>"HOME"</code> or <code>"AWAY"</code></dd>
+
+        <dt class="optional">geoTracking <span class="property-type">boolean</span></dt>
+        <dd> Enabled or disbale Geo Tracking on a device</dd>
     </dl>
 
     <h3>Outputs</h3>
@@ -193,6 +204,7 @@
             name: {value: ""},
             reportDate: {value: ""},
             presence: {value: "HOME"},
+            geoTracking: {value: true},
             temperatureOffset: {value: 0},
         },
         inputs: 1,
@@ -215,6 +227,7 @@
                 $('#tadoReportDate').hide();
                 $('#tadoPresence').hide();
                 $('#tadoTemperatureOffset').hide();
+                $('#tadoGeoTracking').hide();
 
                 switch(apiCall) {
                     case "getMe":
@@ -264,6 +277,9 @@
                         break;
                     case "updatePresence":
                         $('#tadoHomeId').show();
+                        break;
+                    case "setGeoTracking":
+                        $("#tadoGeoTracking").show();
                         break;
                 }
             });
