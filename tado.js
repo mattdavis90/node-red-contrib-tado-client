@@ -39,6 +39,8 @@ module.exports = function(RED) {
         this.presence = n.presence;
         this.temperatureOffset = n.temperatureOffset;
         this.geoTracking = n.geoTracking;
+        this.windowDetection = n.windowDetection;
+        this.windowDetectionTimeout = n.windowDetectionTimeout;
 
         this.configName = n.configName;
         this.tadoConfig = RED.nodes.getNode(this.configName);
@@ -64,6 +66,8 @@ module.exports = function(RED) {
                         var presence = msg.hasOwnProperty("presence") ? msg.presence : node.presence;
                         var temperatureOffset = msg.hasOwnProperty("temperatureOffset") ? msg.temperatureOffset : node.temperatureOffset;
                         var geoTracking = msg.hasOwnProperty("geoTracking") ? msg.geoTracking : node.geoTracking;
+                        var windowDetection = msg.hasOwnProperty("windowDetection") ? msg.windowDetection : node.windowDetection;
+                        var windowDetectionTimeout = msg.hasOwnProperty("windowDetectionTimeout") ? msg.windowDetectionTimeout : node.windowDetectionTimeout;
 
                         msg.topic = apiCall;
 
@@ -315,6 +319,19 @@ module.exports = function(RED) {
                                 break;
                             case "updatePresence":
                                 tado.updatePresence(homeId).then(function(resp) {
+                                    node.status({ fill: "green", shape: "dot", text: apiCall });
+                                    msg.payload = resp;
+                                    node.send(msg);
+                                }).catch(function(err) {
+                                    node.status({ fill: "red", shape: "ring", text: "errored" });
+                                    node.error(err);
+                                });
+
+                                break;
+                            case "setWindowDetection":
+                                const enabled = (windowDetection === true || windowDetection == "true") ? true : false;
+
+                                tado.setWindowDetection(homeId, zoneId, enabled, windowDetectionTimeout).then(function(resp) {
                                     node.status({ fill: "green", shape: "dot", text: apiCall });
                                     msg.payload = resp;
                                     node.send(msg);

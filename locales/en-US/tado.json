@@ -13,10 +13,11 @@
             "temperature-offset": "Termination Offset (C)",
             "termination-timeout": "Termination Timeout (secs)",
             "termination-type": "Type of Termination",
+            "window-detection": "Window Detection",
+            "window-detection-timeout": "Timeout for Window Detection",
             "zone-id": "Zone ID"
         },
         "option": {
-	    "get-zone-day-report": "Get a zone's day report.",
             "auto": "Tado schedule termination",
             "away": "Away",
             "clear-zone-overlay": "Clear a zone's overlay",
@@ -33,6 +34,7 @@
             "get-users": "Get all users",
             "get-weather": "Get the weather",
             "get-zone-capabilities": "Get a zone's capabilities",
+            "get-zone-day-report": "Get a zone's day report.",
             "get-zone-overlay": "Get a zone's overlay",
             "get-zone-state": "Get a zone's state",
             "get-zones": "Get all zones",
@@ -44,6 +46,7 @@
             "set-device-temperature-offset": "Set a device's temperature offset",
             "set-geo-tracking": "Set Geo Tracking for a mobile device",
             "set-presence": "Set presence",
+            "set-window-detection": "Configure window detection for a zone",
             "set-zone-overlay": "Set a zone's overlay",
             "timer": "Timer based termination",
             "update-presence": "Update presence"

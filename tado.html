@@ -60,6 +60,7 @@
             <option value="getZoneDayReport" data-i18n="tado.option.get-zone-day-report"></option>
             <option value="setPresence" data-i18n="tado.option.set-presence"></option>
             <option value="updatePresence" data-i18n="tado.option.update-presence"></option>
+            <option value="setWindowDetection" data-i18n="tado.option.set-window-detection"></option>
         </select>
     </div>
     <div class="form-row" id="tadoHomeId">
@@ -123,6 +124,19 @@
             <option value="false" data-i18n="tado.option.disabled"></option>
         </select>
     </div>
+    <div id="tadoWindowDetectionForm">
+        <div class="form-row">
+            <label for="node-input-windowDetection"><i class="fa fa-windows"></i> <span data-i18n="tado.label.window-detection"></span></label>
+            <select id="node-input-windowDetection" style="width:60%; margin-right:5px;">
+                <option value="true" data-i18n="tado.option.enabled"></option>
+                <option value="false" data-i18n="tado.option.disabled"></option>
+            </select>
+        </div>
+        <div class="form-row">
+            <label for="node-input-windowDetectionTimeout"><i class="fa fa-windows"></i> <span data-i18n="tado.label.window-detection-timeout"></span></label>
+            <input type="text" id="node-input-windowDetectionTimeout" data-i18n="[placeholder]tado.label.window-detection-timeout">
+        </div>
+    </div>
     <div class="form-row">
         <label for="node-input-name"><i class="fa fa-tag"></i> <span data-i18n="node-red:common.label.name"></span></label>
         <input type="text" id="node-input-name" data-i18n="[placeholder]node-red:common.label.name">
@@ -166,6 +180,12 @@
 
         <dt class="optional">geoTracking <span class="property-type">boolean</span></dt>
         <dd> Enabled or disable Geo Tracking on a device</dd>
+
+        <dt class="optional">windowDetection <span class="property-type">boolean</span></dt>
+        <dd> Enable or disable window detection for a zone</dd>
+
+        <dt class="optional">windowDetectionTimeout <span class="property-type">number</span></dt>
+        <dd> How long should window detection shut-off the heating for</dd>
     </dl>
 
     <h3>Outputs</h3>
@@ -206,6 +226,8 @@
             presence: {value: "HOME"},
             geoTracking: {value: true},
             temperatureOffset: {value: 0},
+            windowDetection: {value: true},
+            windowDetectionTimeout: {value: 900},
         },
         inputs: 1,
         outputs: 1,
@@ -214,7 +236,7 @@
             return this.name || "Tado";
         },
         labelStyle: function() {
-            return this.name ? "node_label_italic" : ""; 
+            return this.name ? "node_label_italic" : "";
         },
         oneditprepare: function() {
             $('#node-input-apiCall').change(function() {
@@ -228,6 +250,7 @@
                 $('#tadoPresence').hide();
                 $('#tadoTemperatureOffset').hide();
                 $('#tadoGeoTracking').hide();
+                $('#tadoWindowDetectionForm').hide();
 
                 switch(apiCall) {
                     case "getMe":
@@ -280,6 +303,11 @@
                         break;
                     case "setGeoTracking":
                         $("#tadoGeoTracking").show();
+                        break;
+                    case "setWindowDetection":
+                        $('#tadoHomeId').show();
+                        $('#tadoZoneId').show();
+                        $("#tadoWindowDetectionForm").show();
                         break;
                 }
             });
