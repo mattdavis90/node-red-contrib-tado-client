@@ -34,6 +34,7 @@
             "get-mobile-device": "Get a mobile device",
             "get-mobile-device-settings": "Get a mobile device's settings",
             "get-mobile-devices": "Get all mobile devices",
+            "get-state": "Get home state",
             "get-users": "Get all users",
             "get-weather": "Get the weather",
             "get-zone-capabilities": "Get a zone's capabilities",

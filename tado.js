@@ -96,6 +96,17 @@ module.exports = function(RED) {
                                 });
 
                                 break;
+                            case "getState":
+                                tado.getState(homeId).then(function(resp) {
+                                    node.status({ fill: "green", shape: "dot", text: apiCall });
+                                    msg.payload = resp;
+                                    node.send(msg);
+                                }).catch(function(err) {
+                                    node.status({ fill: "red", shape: "ring", text: "errored" });
+                                    node.error(err);
+                                });
+
+                                break;
                             case "getWeather":
                                 tado.getWeather(homeId).then(function(resp) {
                                     node.status({ fill: "green", shape: "dot", text: apiCall });
