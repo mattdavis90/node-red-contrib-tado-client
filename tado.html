@@ -61,6 +61,7 @@
             <option value="setPresence" data-i18n="tado.option.set-presence"></option>
             <option value="updatePresence" data-i18n="tado.option.update-presence"></option>
             <option value="setWindowDetection" data-i18n="tado.option.set-window-detection"></option>
+            <option value="setOpenWindowMode" data-i18n="tado.option.set-open-window"></option>
         </select>
     </div>
     <div class="form-row" id="tadoHomeId">
@@ -137,6 +138,15 @@
             <input type="text" id="node-input-windowDetectionTimeout" data-i18n="[placeholder]tado.label.window-detection-timeout">
         </div>
     </div>
+    <div id="tadoOpenWindowMode">
+        <div class="form-row">
+            <label for="node-input-openWindowMode"><i class="fa fa-windows"></i> <span data-i18n="tado.label.open-window-mode"></span></label>
+            <select id="node-input-openWindowMode> style="width:60%; margin-right:5px;">
+                <option value="true" data-i18n="tado.option.activate"></option>
+                <option value="false" data-i18n="tado.option.cancel"></option>
+            </select>
+        </div>
+    </div>
     <div class="form-row">
         <label for="node-input-name"><i class="fa fa-tag"></i> <span data-i18n="node-red:common.label.name"></span></label>
         <input type="text" id="node-input-name" data-i18n="[placeholder]node-red:common.label.name">
@@ -186,6 +196,9 @@
 
         <dt class="optional">windowDetectionTimeout <span class="property-type">number</span></dt>
         <dd> How long should window detection shut-off the heating for</dd>
+
+        <dt class="optional">openWindowMode <span class="property-type">boolean</span></dt>
+        <dd> Activate or cancel open window mode for a zone</dd>
     </dl>
 
     <h3>Outputs</h3>
@@ -228,6 +241,7 @@
             temperatureOffset: {value: 0},
             windowDetection: {value: true},
             windowDetectionTimeout: {value: 900},
+            openWindowMode: {value: true},
         },
         inputs: 1,
         outputs: 1,
@@ -251,6 +265,7 @@
                 $('#tadoTemperatureOffset').hide();
                 $('#tadoGeoTracking').hide();
                 $('#tadoWindowDetectionForm').hide();
+                $('#tadoOpenWindowMode').hide();
 
                 switch(apiCall) {
                     case "getMe":
@@ -308,6 +323,11 @@
                         $('#tadoHomeId').show();
                         $('#tadoZoneId').show();
                         $("#tadoWindowDetectionForm").show();
+                        break;
+                      case "setOpenWindowMode":
+                        $('#tadoHomeId').show();
+                        $('#tadoZoneId').show();
+                        $('#tadoOpenWindowMode').show();
                         break;
                 }
             });

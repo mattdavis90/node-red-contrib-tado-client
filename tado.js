@@ -41,6 +41,7 @@ module.exports = function(RED) {
         this.geoTracking = n.geoTracking;
         this.windowDetection = n.windowDetection;
         this.windowDetectionTimeout = n.windowDetectionTimeout;
+        this.openWindowMode = n.openWindowMode;
 
         this.configName = n.configName;
         this.tadoConfig = RED.nodes.getNode(this.configName);
@@ -68,6 +69,7 @@ module.exports = function(RED) {
                         var geoTracking = msg.hasOwnProperty("geoTracking") ? msg.geoTracking : node.geoTracking;
                         var windowDetection = msg.hasOwnProperty("windowDetection") ? msg.windowDetection : node.windowDetection;
                         var windowDetectionTimeout = msg.hasOwnProperty("windowDetectionTimeout") ? msg.windowDetectionTimeout : node.windowDetectionTimeout;
+                        var openWindowMode = msg.hasOwnProperty("openWindowMode") ? msg.openWindowMode : node.openWindowMode;
 
                         msg.topic = apiCall;
 
@@ -341,7 +343,18 @@ module.exports = function(RED) {
                                 });
 
                                 break;
+                            case "setOpenWindowMode":
+                                const activate = (openWindowMode === true || openWindowMode == "true") ? true : false;
 
+                                tado.setOpenWindowMode(homeId, zoneId, activate).then(function(resp) {
+                                    node.status({ fill: "green", shape: "dot", text: apiCall });
+                                    msg.payload = resp;
+                                    node.send(msg);
+                                }).catch(function(err) {
+                                    node.status({ fill: "red", shape: "ring", text: "errored" });
+                                    node.error(err);
+                                });
+                                break;
                         }
                     });
                 })
