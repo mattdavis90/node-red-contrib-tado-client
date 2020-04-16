@@ -271,12 +271,12 @@
                 switch(apiCall) {
                     case "getMe":
                         break;
-                    case "getHome":
-                    case "getWeather":
                     case "getDevices":
+                    case "getHome":
                     case "getInstallations":
-                    case "getUsers":
                     case "getMobileDevices":
+                    case "getUsers":
+                    case "getWeather":
                     case "getZones":
                         $('#tadoHomeId').show();
                         break;
@@ -285,10 +285,11 @@
                         $('#tadoHomeId').show();
                         $('#tadoDeviceId').show();
                         break;
-                    case "getZoneState":
+                    case "clearZoneOverlay":
+                    case "getState":
                     case "getZoneCapabilities":
                     case "getZoneOverlay":
-                    case "clearZoneOverlay":
+                    case "getZoneState":
                         $('#tadoHomeId').show();
                         $('#tadoZoneId').show();
                         break;
@@ -325,7 +326,7 @@
                         $('#tadoZoneId').show();
                         $("#tadoWindowDetectionForm").show();
                         break;
-                      case "setOpenWindowMode":
+                    case "setOpenWindowMode":
                         $('#tadoHomeId').show();
                         $('#tadoZoneId').show();
                         $('#tadoOpenWindowMode').show();
