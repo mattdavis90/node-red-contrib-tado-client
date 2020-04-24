@@ -168,6 +168,9 @@ module.exports = function(RED) {
                 case "setOpenWindowMode":
                     call(arg("homeId"), arg("zoneId"), bool(arg("activate")));
                     break;
+                case "getAirComfort":
+                    call(arg("homeId"));
+                    break;
                 default:
                     node.error(`invalid apiCall "${apiCall}"`);
                     break;

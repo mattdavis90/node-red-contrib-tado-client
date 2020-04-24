@@ -59,7 +59,8 @@
             "update-presence": "Update presence",
             "get-timetables": "Get timetables",
             "get-timetable": "Get timetable",
-            "get-away-configuration": "Get away configuration"
+            "get-away-configuration": "Get away configuration",
+            "get-air-comfort": "Get air comfort"
         },
         "optgroup": {
             "account": "Account",

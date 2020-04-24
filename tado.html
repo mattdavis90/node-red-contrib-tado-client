@@ -18,13 +18,13 @@
         category: 'config',
         color: "rgb(218, 196, 180)",
         defaults: {
-            name: {value: ""}
+            name: { value: "" }
         },
         credentials: {
-            username: {type: "text"},
-            password: {type: "password"}
+            username: { type: "text" },
+            password: { type: "password" }
         },
-        label: function() {
+        label: function () {
             return this.name || "Tado Config";
         }
     });
@@ -47,6 +47,7 @@
                 <option value="getUsers" data-i18n="tado.option.get-users"></option>
                 <option value="getInstallations" data-i18n="tado.option.get-installations"></option>
                 <option value="getWeather" data-i18n="tado.option.get-weather"></option>
+                <option value="getAirComfort" data-i18n="tado.option.get-air-comfort"></option>
             </optgroup>
             <optgroup data-i18n="[label]tado.optgroup.zone">
                 <option value="getZones" data-i18n="tado.option.get-zones"></option>
@@ -195,7 +196,7 @@
         <dd> the timetable ID to target</dd>
 
         <dt class="optional">power <span class="property-type">string</span></dt>
-        <dd> turn the heating system on or off</dd>
+        <dd> turn the heating system <code>"on"</code> or <code>"off"</code></dd>
 
         <dt class="optional">reportDate <span class="property-type">string</span></dt>
         <dd> the date in <code>yyyy-mm-dd</code> notation to fetch the report data from</dd>
@@ -415,6 +416,9 @@
                         home.show();
                         zone.show();
                         windowMode.show();
+                        break;
+                    case "getAirComfort":
+                        home.show();
                         break;
                 }
             });
