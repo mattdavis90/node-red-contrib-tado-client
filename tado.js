@@ -1,382 +1,178 @@
 module.exports = function(RED) {
     "use strict";
-    var Tado = require('node-tado-client');
+    const Tado = require('node-tado-client');
 
     /**
      * Config node
      */
-    function TadoConfigNode(n) {
-        RED.nodes.createNode(this, n);
+    function TadoConfigNode(input) {
+        RED.nodes.createNode(this, input);
+        const node = this;
 
-        this.name = n.name;
-        this.username = n.username;
-        this.password = n.password;
+        node.tado = new Tado(node.credentials.username, node.credentials.password);
+
+        node.call = async function(method) {
+            const args = [...arguments].slice(1);
+            // console.log({ method: method, args: args });
+            return node.tado[method](...args);
+        }
     }
 
     RED.nodes.registerType("tado-config", TadoConfigNode, {
         credentials: {
-            username: {type: "text"},
-            password: {type: "password"}
+            username: { type: "text" },
+            password: { type: "password" },
         }
     });
 
     /**
      * Tado node
      */
-    function TadoNode(n) {
-        RED.nodes.createNode(this, n);
+    function TadoNode(input) {
+        RED.nodes.createNode(this, input);
+        const node = this;
 
-        this.apiCall = n.apiCall;
-        this.homeId = n.homeId;
-        this.deviceId = n.deviceId;
-        this.zoneId = n.zoneId;
-        this.power = n.power;
-        this.temperature = n.temperature;
-        this.terminationType = n.terminationType;
-        this.terminationTimeout = n.terminationTimeout;
-        this.name = n.name;
-        this.reportDate = n.reportDate;
-        this.presence = n.presence;
-        this.temperatureOffset = n.temperatureOffset;
-        this.geoTracking = n.geoTracking;
-        this.windowDetection = n.windowDetection;
-        this.windowDetectionTimeout = n.windowDetectionTimeout;
-        this.openWindowMode = n.openWindowMode;
+        [
+            "apiCall",
+            "homeId",
+            "deviceId",
+            "zoneId",
+            "power",
+            "temperature",
+            "terminationType",
+            "terminationTimeout",
+            "name",
+            "reportDate",
+            "presence",
+            "temperatureOffset",
+            "geoTracking",
+            "windowDetection",
+            "windowDetectionTimeout",
+            "openWindowMode",
+            "configName",
+        ].forEach(k => node[k] = input[k]);
 
-        this.configName = n.configName;
-        this.tadoConfig = RED.nodes.getNode(this.configName);
+        node.tadoConfig = RED.nodes.getNode(node.configName);
+        
+        if (!node.tadoConfig) {
+            node.status({ fill: "grey", shape: "ring", text: "unconfigured" });
+            node.error(RED._("tado.errors.missingconfig"));
+            return;
+        }
 
-        if (this.tadoConfig) {
-            var node = this;
-            var tado = new Tado();
-
-            tado.login(this.tadoConfig.credentials.username, this.tadoConfig.credentials.password)
-                .then(token => {
-                    node.status({ fill: "blue", shape: "dot", text: "connected" });
-
-                    node.on("input", function(msg) {
-                        var apiCall = msg.hasOwnProperty("apiCall") ? msg.apiCall : node.apiCall;
-                        var homeId = msg.hasOwnProperty("homeId") ? msg.homeId : node.homeId;
-                        var deviceId = msg.hasOwnProperty("deviceId") ? msg.deviceId : node.deviceId;
-                        var zoneId = msg.hasOwnProperty("zoneId") ? msg.zoneId : node.zoneId;
-                        var power = msg.hasOwnProperty("power") ? msg.power : node.power;
-                        var temperature = msg.hasOwnProperty("temperature") ? msg.temperature : node.temperature;
-                        var terminationType = msg.hasOwnProperty("terminationType") ? msg.terminationType : node.terminationType;
-                        var terminationTimeout = msg.hasOwnProperty("terminationTimeout") ? msg.terminationTimeout : node.terminationTimeout;
-                        var reportDate = msg.hasOwnProperty("reportDate") ? msg.reportDate : node.reportDate;
-                        var presence = msg.hasOwnProperty("presence") ? msg.presence : node.presence;
-                        var temperatureOffset = msg.hasOwnProperty("temperatureOffset") ? msg.temperatureOffset : node.temperatureOffset;
-                        var geoTracking = msg.hasOwnProperty("geoTracking") ? msg.geoTracking : node.geoTracking;
-                        var windowDetection = msg.hasOwnProperty("windowDetection") ? msg.windowDetection : node.windowDetection;
-                        var windowDetectionTimeout = msg.hasOwnProperty("windowDetectionTimeout") ? msg.windowDetectionTimeout : node.windowDetectionTimeout;
-                        var openWindowMode = msg.hasOwnProperty("openWindowMode") ? msg.openWindowMode : node.openWindowMode;
-
-                        msg.topic = apiCall;
-
-                        switch(apiCall) {
-                            case "getMe":
-                                tado.getMe().then(function(resp) {
-                                    node.status({ fill: "green", shape: "dot", text: apiCall });
-                                    msg.payload = resp;
-                                    node.send(msg);
-                                }).catch(function(err) {
-                                    node.status({ fill: "red", shape: "ring", text: "errored" });
-                                    node.error(err);
-                                });
-
-                                break;
-                            case "getHome":
-                                tado.getHome(homeId).then(function(resp) {
-                                    node.status({ fill: "green", shape: "dot", text: apiCall });
-                                    msg.payload = resp;
-                                    node.send(msg);
-                                }).catch(function(err) {
-                                    node.status({ fill: "red", shape: "ring", text: "errored" });
-                                    node.error(err);
-                                });
-
-                                break;
-                            case "getState":
-                                tado.getState(homeId).then(function(resp) {
-                                    node.status({ fill: "green", shape: "dot", text: apiCall });
-                                    msg.payload = resp;
-                                    node.send(msg);
-                                }).catch(function(err) {
-                                    node.status({ fill: "red", shape: "ring", text: "errored" });
-                                    node.error(err);
-                                });
-
-                                break;
-                            case "getWeather":
-                                tado.getWeather(homeId).then(function(resp) {
-                                    node.status({ fill: "green", shape: "dot", text: apiCall });
-                                    msg.payload = resp;
-                                    node.send(msg);
-                                }).catch(function(err) {
-                                    node.status({ fill: "red", shape: "ring", text: "errored" });
-                                    node.error(err);
-                                });
-
-                                break;
-                            case "getDevices":
-                                tado.getDevices(homeId).then(function(resp) {
-                                    node.status({ fill: "green", shape: "dot", text: apiCall });
-                                    msg.payload = resp;
-                                    node.send(msg);
-                                }).catch(function(err) {
-                                    node.status({ fill: "red", shape: "ring", text: "errored" });
-                                    node.error(err);
-                                });
-
-                                break;
-                            case "getDeviceTemperatureOffset":
-                                tado.getDeviceTemperatureOffset(deviceId).then(function(resp) {
-                                    node.status({ fill: "green", shape: "dot", text: apiCall });
-                                    msg.payload = resp;
-                                    node.send(msg);
-                                }).catch(function(err) {
-                                    node.status({ fill: "red", shape: "ring", text: "errored" });
-                                    node.error(err);
-                                });
-
-                                break;
-                            case "getInstallations":
-                                tado.getInstallations(homeId).then(function(resp) {
-                                    node.status({ fill: "green", shape: "dot", text: apiCall });
-                                    msg.payload = resp;
-                                    node.send(msg);
-                                }).catch(function(err) {
-                                    node.status({ fill: "red", shape: "ring", text: "errored" });
-                                    node.error(err);
-                                });
-
-                                break;
-                            case "getUsers":
-                                tado.getUsers(homeId).then(function(resp) {
-                                    node.status({ fill: "green", shape: "dot", text: apiCall });
-                                    msg.payload = resp;
-                                    node.send(msg);
-                                }).catch(function(err) {
-                                    node.status({ fill: "red", shape: "ring", text: "errored" });
-                                    node.error(err);
-                                });
-
-                                break;
-                            case "getMobileDevices":
-                                tado.getMobileDevices(homeId).then(function(resp) {
-                                    node.status({ fill: "green", shape: "dot", text: apiCall });
-                                    msg.payload = resp;
-                                    node.send(msg);
-                                }).catch(function(err) {
-                                    node.status({ fill: "red", shape: "ring", text: "errored" });
-                                    node.error(err);
-                                });
-
-                                break;
-                            case "getMobileDevice":
-                                tado.getMobileDevice(homeId, deviceId).then(function(resp) {
-                                    node.status({ fill: "green", shape: "dot", text: apiCall });
-                                    msg.payload = resp;
-                                    node.send(msg);
-                                }).catch(function(err) {
-                                    node.status({ fill: "red", shape: "ring", text: "errored" });
-                                    node.error(err);
-                                });
-
-                                break;
-                            case "getMobileDeviceSettings":
-                                tado.getMobileDeviceSettings(homeId, deviceId).then(function(resp) {
-                                    node.status({ fill: "green", shape: "dot", text: apiCall });
-                                    msg.payload = resp;
-                                    node.send(msg);
-                                }).catch(function(err) {
-                                    node.status({ fill: "red", shape: "ring", text: "errored" });
-                                    node.error(err);
-                                });
-
-                                break;
-                            case "setGeoTracking":
-                                geoTracking = (geoTracking === true || geoTracking == "true") ? true : false;
-
-                                tado.setGeoTracking(homeId, deviceId, geoTracking).then(function(resp) {
-                                    node.status({ fill: "green", shape: "dot", text: apiCall });
-                                    msg.payload = resp;
-                                    node.send(msg);
-                                }).catch(function(err) {
-                                    node.status({ fill: "red", shape: "ring", text: "errored" });
-                                    node.error(err);
-                                });
-
-                                break;
-                            case "getZones":
-                                tado.getZones(homeId).then(function(resp) {
-                                    node.status({ fill: "green", shape: "dot", text: apiCall });
-                                    msg.payload = resp;
-                                    node.send(msg);
-                                }).catch(function(err) {
-                                    node.status({ fill: "red", shape: "ring", text: "errored" });
-                                    node.error(err);
-                                });
-
-                                break;
-                            case "getZoneState":
-                                tado.getZoneState(homeId, zoneId).then(function(resp) {
-                                    node.status({ fill: "green", shape: "dot", text: apiCall });
-                                    msg.payload = resp;
-                                    node.send(msg);
-                                }).catch(function(err) {
-                                    node.status({ fill: "red", shape: "ring", text: "errored" });
-                                    node.error(err);
-                                });
-
-                                break;
-                            case "getZoneCapabilities":
-                                tado.getZoneCapabilities(homeId, zoneId).then(function(resp) {
-                                    node.status({ fill: "green", shape: "dot", text: apiCall });
-                                    msg.payload = resp;
-                                    node.send(msg);
-                                }).catch(function(err) {
-                                    node.status({ fill: "red", shape: "ring", text: "errored" });
-                                    node.error(err);
-                                });
-
-                                break;
-                            case "getZoneOverlay":
-                                tado.getZoneOverlay(homeId, zoneId).then(function(resp) {
-                                    node.status({ fill: "green", shape: "dot", text: apiCall });
-                                    msg.payload = resp;
-                                    node.send(msg);
-                                }).catch(function(err) {
-                                    if (err.response.status === 404) {
-                                        node.status({ fill: "green", shape: "dot", text: apiCall });
-                                        msg.payload = {};
-                                        node.send(msg);
-                                    } else {
-                                        node.status({ fill: "red", shape: "ring", text: "errored" });
-                                        node.error(err);
-                                    }
-                                });
-
-                                break;
-                            case "clearZoneOverlay":
-                                tado.clearZoneOverlay(homeId, zoneId).then(function(resp) {
-                                    node.status({ fill: "green", shape: "dot", text: apiCall });
-                                    msg.payload = resp;
-                                    node.send(msg);
-                                }).catch(function(err) {
-                                    node.status({ fill: "red", shape: "ring", text: "errored" });
-                                    node.error(err);
-                                });
-
-                                break;
-                            case "setZoneOverlay":
-                                var termination = terminationType;
-                                if (terminationType === 'timer') {
-                                    termination = terminationTimeout;
-                                }
-
-                                tado.setZoneOverlay(homeId, zoneId, power, temperature, termination).then(function(resp) {
-                                    node.status({ fill: "green", shape: "dot", text: apiCall });
-                                    msg.payload = resp;
-                                    node.send(msg);
-                                }).catch(function(err) {
-                                    node.status({ fill: "red", shape: "ring", text: "errored" });
-                                    node.error(err);
-                                });
-
-                                break;
-                            case "setDeviceTemperatureOffset":
-                                tado.setDeviceTemperatureOffset(deviceId, temperatureOffset).then(function(resp) {
-                                    node.status({ fill: "green", shape: "dot", text: apiCall });
-                                    msg.payload = resp;
-                                    node.send(msg);
-                                }).catch(function(err) {
-                                    node.status({ fill: "red", shape: "ring", text: "errored" });
-                                    node.error(err);
-                                });
-
-                                break;
-                            case "identifyDevice":
-                                tado.identifyDevice(deviceId).then(function(resp) {
-                                    node.status({ fill: "green", shape: "dot", text: apiCall });
-                                    msg.payload = resp;
-                                    node.send(msg);
-                                }).catch(function(err) {
-                                    node.status({ fill: "red", shape: "ring", text: "errored" });
-                                    node.error(err);
-                                });
-
-                                break;
-                            case "getZoneDayReport":
-                                tado.getZoneDayReport(homeId, zoneId, reportDate).then(function(resp) {
-                                    node.status({ fill: "green", shape: "dot", text: apiCall });
-                                    msg.payload = resp;
-                                    msg.zoneId = zoneId;
-                                    node.send(msg);
-                                }).catch(function(err) {
-                                    node.status({ fill: "red", shape: "ring", text: "errored" });
-                                    node.error(err);
-                                });
-
-                                break;
-                            case "setPresence":
-                                tado.setPresence(homeId, presence).then(function(resp) {
-                                    node.status({ fill: "green", shape: "dot", text: apiCall });
-                                    msg.payload = resp;
-                                    node.send(msg);
-                                }).catch(function(err) {
-                                    node.status({ fill: "red", shape: "ring", text: "errored" });
-                                    node.error(err);
-                                });
-
-                                break;
-                            case "updatePresence":
-                                tado.updatePresence(homeId).then(function(resp) {
-                                    node.status({ fill: "green", shape: "dot", text: apiCall });
-                                    msg.payload = resp;
-                                    node.send(msg);
-                                }).catch(function(err) {
-                                    node.status({ fill: "red", shape: "ring", text: "errored" });
-                                    node.error(err);
-                                });
-
-                                break;
-                            case "setWindowDetection":
-                                const enabled = (windowDetection === true || windowDetection == "true") ? true : false;
-
-                                tado.setWindowDetection(homeId, zoneId, enabled, windowDetectionTimeout).then(function(resp) {
-                                    node.status({ fill: "green", shape: "dot", text: apiCall });
-                                    msg.payload = resp;
-                                    node.send(msg);
-                                }).catch(function(err) {
-                                    node.status({ fill: "red", shape: "ring", text: "errored" });
-                                    node.error(err);
-                                });
-
-                                break;
-                            case "setOpenWindowMode":
-                                const activate = (openWindowMode === true || openWindowMode == "true") ? true : false;
-
-                                tado.setOpenWindowMode(homeId, zoneId, activate).then(function(resp) {
-                                    node.status({ fill: "green", shape: "dot", text: apiCall });
-                                    msg.payload = resp;
-                                    node.send(msg);
-                                }).catch(function(err) {
-                                    node.status({ fill: "red", shape: "ring", text: "errored" });
-                                    node.error(err);
-                                });
-                                break;
-                        }
-                    });
-                })
-                .catch(function(err) {
+        node.on("input", msg => {
+            const arg = name => msg.hasOwnProperty(name) ? msg[name] : node[name];
+            const bool = x => x === true || x === "true";
+            const apiCall = arg("apiCall");
+            const call = function() {
+                node.tadoConfig.call(apiCall, ...arguments).then(resp => {
+                    node.status({ fill: "green", shape: "dot", text: apiCall });
+                    msg.payload = resp;
+                    node.send(msg);
+                }).catch(err => {
                     node.status({ fill: "red", shape: "ring", text: "errored" });
                     node.error(err);
                 });
-        } else {
-            node.status({ fill: "grey", shape: "ring", text: "unconfigured" });
-            this.error(RED._("tado.errors.missingconfig"));
-        }
+            }
+
+            msg.topic = apiCall;
+
+            switch(apiCall) {
+                case "getMe":                       
+                    call();                                     
+                    break;
+                case "getHome":
+                    call(arg("homeId"));                             
+                    break;
+                case "getWeather":
+                    call(arg("homeId"));                             
+                    break;
+                case "getDevices":                  
+                    call(arg("homeId"));
+                    break;
+                case "getDeviceTemperatureOffset":  
+                    call(arg("deviceId"));
+                    break;
+                case "getInstallations":
+                    call(arg("homeId"));
+                    break;
+                case "getUsers":
+                    call(arg("homeId"));
+                    break;
+                case "getState": 
+                    call(arg("homeId"));
+                    break;
+                case "getMobileDevices":
+                    call(arg("homeId"));                             
+                    break;
+                case "getMobileDevice":             
+                    call(arg("homeId"), arg("deviceId"));
+                    break;
+                case "getMobileDeviceSettings":
+                    call(arg("homeId"), arg("deviceId"));
+                    break;
+                case "setGeoTracking":
+                    call(arg("homeId"), arg("deviceId"), bool(arg("geoTracking")));  
+                    break;
+                case "getZones":
+                    call(arg("homeId"));
+                    break;
+                case "getZoneState":
+                    call(arg("homeId"), arg("zoneId"));
+                    break;
+                case "getZoneCapabilities":
+                    call(arg("homeId"), arg("zoneId"));
+                    break;
+                case "getZoneOverlay":
+                    call(arg("homeId"), arg("zoneId"));
+                    break;
+                case "getZoneDayReport":
+                    call(arg("homeId"), arg("zoneId"), arg("reportDate"));
+                    break;
+                case "getTimeTables":
+                    call(arg("homeId"), arg("zoneId"));
+                    break;
+                case "getAwayConfiguration":
+                    call(arg("homeId"), arg("zoneId"));
+                    break;
+                case "getTimeTable":
+                    call(arg("homeId"), arg("zoneId"), arg("timetableId"));
+                    break;
+                case "clearZoneOverlay":
+                    call(arg("homeId"), arg("zoneId"));
+                    break;
+                case "setZoneOverlay": {
+                    const type = arg("terminationType");
+                    const termination = type === "timer" ? arg("terminationTimeout") : type;
+                    call(arg("homeId"), arg("zoneId"), arg("power"), arg("temperature"), termination);
+                    break;
+                }
+                case "setDeviceTemperatureOffset":
+                    call(arg("deviceId"), arg("temperatureOffset"));
+                    break;
+                case "identifyDevice":
+                    call(arg("deviceId"));
+                    break;
+                case "setPresence":
+                    call(arg("homeId"), arg("presence"));
+                    break;
+                case "isAnyoneAtHome":
+                    call(arg("homeId"));
+                    break;
+                case "updatePresence":
+                    call(arg("homeId"));
+                    break;
+                case "setWindowDetection":
+                    call(arg("homeId"), arg("zoneId"), bool(arg("enabled")), arg("windowDetectionTimeout"));
+                    break;
+                case "setOpenWindowMode":
+                    call(arg("homeId"), arg("zoneId"), bool(arg("activate")));
+                    break;
+                default:
+                    node.error(`invalid apiCall "${apiCall}"`);
+                    break;
+            }
+        });
     }
 
     RED.nodes.registerType("tado", TadoNode);

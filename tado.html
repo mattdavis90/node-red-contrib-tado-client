@@ -38,31 +38,47 @@
     <div class="form-row">
         <label for="node-input-apiCall"><i class="fa fa-bolt"></i> <span data-i18n="tado.label.api-call"></span></label>
         <select id="node-input-apiCall" style="width:60%; margin-right:5px;">
-            <option value="clearZoneOverlay" data-i18n="tado.option.clear-zone-overlay"></option>
-            <option value="getDeviceTemperatureOffset" data-i18n="tado.option.get-device-temperature-offset"></option>
-            <option value="getDevices" data-i18n="tado.option.get-devices"></option>
-            <option value="getHome" data-i18n="tado.option.get-home"></option>
-            <option value="getInstallations" data-i18n="tado.option.get-installations"></option>
-            <option value="getMe" data-i18n="tado.option.get-me"></option>
-            <option value="getMobileDevice" data-i18n="tado.option.get-mobile-device"></option>
-            <option value="getMobileDeviceSettings" data-i18n="tado.option.get-mobile-device-settings"></option>
-            <option value="getMobileDevices" data-i18n="tado.option.get-mobile-devices"></option>
-            <option value="getState" data-i18n="tado.option.get-state"></option>
-            <option value="getUsers" data-i18n="tado.option.get-users"></option>
-            <option value="getWeather" data-i18n="tado.option.get-weather"></option>
-            <option value="getZoneCapabilities" data-i18n="tado.option.get-zone-capabilities"></option>
-            <option value="getZoneDayReport" data-i18n="tado.option.get-zone-day-report"></option>
-            <option value="getZoneOverlay" data-i18n="tado.option.get-zone-overlay"></option>
-            <option value="getZoneState" data-i18n="tado.option.get-zone-state"></option>
-            <option value="getZones" data-i18n="tado.option.get-zones"></option>
-            <option value="identifyDevice" data-i18n="tado.option.identify-device"></option>
-            <option value="setDeviceTemperatureOffset" data-i18n="tado.option.set-device-temperature-offset"></option>
-            <option value="setGeoTracking" data-i18n="tado.option.set-geo-tracking"></option>
-            <option value="setOpenWindowMode" data-i18n="tado.option.set-open-window"></option>
-            <option value="setPresence" data-i18n="tado.option.set-presence"></option>
-            <option value="setWindowDetection" data-i18n="tado.option.set-window-detection"></option>
-            <option value="setZoneOverlay" data-i18n="tado.option.set-zone-overlay"></option>
-            <option value="updatePresence" data-i18n="tado.option.update-presence"></option>
+            <optgroup data-i18n="[label]tado.optgroup.account">
+                <option value="getMe" data-i18n="tado.option.get-me"></option>
+            </optgroup>
+            <optgroup data-i18n="[label]tado.optgroup.home">
+                <option value="getHome" data-i18n="tado.option.get-home"></option>
+                <option value="getState" data-i18n="tado.option.get-state"></option>
+                <option value="getUsers" data-i18n="tado.option.get-users"></option>
+                <option value="getInstallations" data-i18n="tado.option.get-installations"></option>
+                <option value="getWeather" data-i18n="tado.option.get-weather"></option>
+            </optgroup>
+            <optgroup data-i18n="[label]tado.optgroup.zone">
+                <option value="getZones" data-i18n="tado.option.get-zones"></option>
+                <option value="getZoneState" data-i18n="tado.option.get-zone-state"></option>
+                <option value="getZoneCapabilities" data-i18n="tado.option.get-zone-capabilities"></option>
+                <option value="getZoneDayReport" data-i18n="tado.option.get-zone-day-report"></option>
+                <option value="getZoneOverlay" data-i18n="tado.option.get-zone-overlay"></option>
+                <option value="setZoneOverlay" data-i18n="tado.option.set-zone-overlay"></option>
+                <option value="getTimeTables" data-i18n="tado.option.get-timetables"></option>
+                <option value="getTimeTable" data-i18n="tado.option.get-timetable"></option>
+                <option value="getAwayConfiguration" data-i18n="tado.option.get-away-configuration"></option>
+                <option value="clearZoneOverlay" data-i18n="tado.option.clear-zone-overlay"></option>
+                <option value="setOpenWindowMode" data-i18n="tado.option.set-open-window"></option>
+            </optgroup>
+            <optgroup data-i18n="[label]tado.optgroup.device">
+                <option value="setWindowDetection" data-i18n="tado.option.set-window-detection"></option>
+                <option value="getDevices" data-i18n="tado.option.get-devices"></option>
+                <option value="getDeviceTemperatureOffset" data-i18n="tado.option.get-device-temperature-offset"></option>
+                <option value="identifyDevice" data-i18n="tado.option.identify-device"></option>
+                <option value="setDeviceTemperatureOffset" data-i18n="tado.option.set-device-temperature-offset"></option>
+            </optgroup>
+            <optgroup data-i18n="[label]tado.optgroup.mobiledevice">
+                <option value="getMobileDevices" data-i18n="tado.option.get-mobile-devices"></option>
+                <option value="getMobileDevice" data-i18n="tado.option.get-mobile-device"></option>
+                <option value="getMobileDeviceSettings" data-i18n="tado.option.get-mobile-device-settings"></option>
+                <option value="setGeoTracking" data-i18n="tado.option.set-geo-tracking"></option>
+            </optgroup>
+            <optgroup data-i18n="[label]tado.optgroup.presence">
+                <option value="isAnyoneAtHome" data-i18n="tado.option.is-anyone-at-home"></option>
+                <option value="setPresence" data-i18n="tado.option.set-presence"></option>
+                <option value="updatePresence" data-i18n="tado.option.update-presence"></option>
+            </optgroup>
         </select>
     </div>
     <div class="form-row" id="tadoHomeId">
@@ -76,6 +92,10 @@
     <div class="form-row" id="tadoZoneId">
         <label for="node-input-zoneId"><i class="fa fa-th"></i> <span data-i18n="tado.label.zone-id"></span></label>
         <input type="text" id="node-input-zoneId" data-i18n="[placeholder]tado.label.zone-id">
+    </div>
+    <div class="form-row" id="tadoTimetableId">
+        <label for="node-input-timetableId"><i class="fa fa-home"></i> <span data-i18n="tado.label.timetable-id"></span></label>
+        <input type="text" id="node-input-timetableId" data-i18n="[placeholder]tado.label.timetable-id">
     </div>
     <div class="form-row" id="tadoReportDate">
         <label for="node-input-reportDate"><i class="fa fa-th"></i> <span data-i18n="tado.label.reportDate"></span></label>
@@ -171,6 +191,9 @@
         <dt class="optional">zoneId <span class="property-type">string</span></dt>
         <dd> the zone ID to target</dd>
 
+        <dt class="optional">timetableId <span class="property-type">string</span></dt>
+        <dd> the timetable ID to target</dd>
+
         <dt class="optional">power <span class="property-type">string</span></dt>
         <dd> turn the heating system on or off</dd>
 
@@ -181,13 +204,13 @@
         <dd> the target temperature</dd>
 
         <dt class="optional">terminationType <span class="property-type">string</span></dt>
-        <dd> the mode of terminating the overlay</dd>
+        <dd> <code>"manual"</code>, <code>"auto"</code> or <code>"timer"</code></dd>
 
         <dt class="optional">terminationTimeout <span class="property-type">string</span></dt>
         <dd> the timeout in seconds to clear the overaly</dd>
 
         <dt class="optional">presence <span class="property-type">string</span></dt>
-        <dd> either <code>"HOME"</code> or <code>"AWAY"</code></dd>
+        <dd> <code>"home"</code>, <code>"away"</code> or <code>"auto"</code></dd>
 
         <dt class="optional">geoTracking <span class="property-type">boolean</span></dt>
         <dd> Enabled or disable Geo Tracking on a device</dd>
@@ -226,117 +249,179 @@
         category: 'heating',
         color: "rgb(255, 255, 255)",
         defaults: {
-            configName: {type: "tado-config", required: true},
-            apiCall: {value: "getMe"},
-            homeId: {value: ""},
-            deviceId: {value: ""},
-            zoneId: {value: ""},
-            power: {value: "on"},
-            temperature: {value: "18"},
-            terminationType: {value: "manual"},
-            terminationTimeout: {value: 900, validate: RED.validators.number()},
-            name: {value: ""},
-            reportDate: {value: ""},
-            presence: {value: "HOME"},
-            geoTracking: {value: true},
-            temperatureOffset: {value: 0},
-            windowDetection: {value: true},
-            windowDetectionTimeout: {value: 900},
-            openWindowMode: {value: true},
+            configName: { type: "tado-config", required: true },
+            apiCall: { value: "getMe" },
+            homeId: { value: "" },
+            deviceId: { value: "" },
+            zoneId: { value: "" },
+            power: { value: "on" },
+            temperature: { value: "18" },
+            terminationType: { value: "manual" },
+            terminationTimeout: { value: 900, validate: RED.validators.number() },
+            name: { value: "" },
+            reportDate: { value: "" },
+            presence: { value: "HOME" },
+            geoTracking: { value: true },
+            temperatureOffset: { value: 0 },
+            windowDetection: { value: true },
+            windowDetectionTimeout: { value: 900 },
+            openWindowMode: { value: true },
+            timetableId: { value: "" },
         },
         inputs: 1,
         outputs: 1,
         icon: "tado.png",
-        label: function() {
+        label: function () {
             return this.name || "Tado";
         },
-        labelStyle: function() {
+        labelStyle: function () {
             return this.name ? "node_label_italic" : "";
         },
-        oneditprepare: function() {
-            $('#node-input-apiCall').change(function() {
-                var apiCall = $('#node-input-apiCall').val();
+        oneditprepare: function () {
+            $('#node-input-apiCall').change(function () {
+                const apiCall = $('#node-input-apiCall').val();
 
-                $('#tadoHomeId').hide();
-                $('#tadoZoneId').hide();
-                $('#tadoDeviceId').hide();
-                $('#tadoOverlayForm').hide();
-                $('#tadoReportDate').hide();
-                $('#tadoPresence').hide();
-                $('#tadoTemperatureOffset').hide();
-                $('#tadoGeoTracking').hide();
-                $('#tadoWindowDetectionForm').hide();
-                $('#tadoOpenWindowMode').hide();
+                const home = $('#tadoHomeId');
+                const zone = $('#tadoZoneId');
+                const device = $('#tadoDeviceId');
+                const overlay = $('#tadoOverlayForm');
+                const reportDate = $('#tadoReportDate');
+                const presence = $('#tadoPresence');
+                const temperatureOffset = $('#tadoTemperatureOffset');
+                const geoTracking = $('#tadoGeoTracking');
+                const windowDetection = $('#tadoWindowDetectionForm');
+                const windowMode = $('#tadoOpenWindowMode');
+                const timetable = $('#tadoTimetableId');
 
-                switch(apiCall) {
+                [
+                    home,
+                    zone,
+                    device,
+                    overlay,
+                    reportDate,
+                    presence,
+                    temperatureOffset,
+                    geoTracking,
+                    windowDetection,
+                    windowMode,
+                    timetable,
+                ].forEach(e => e.hide());
+
+                switch (apiCall) {
                     case "getMe":
                         break;
-                    case "getDevices":
                     case "getHome":
-                    case "getInstallations":
-                    case "getMobileDevices":
-                    case "getUsers":
+                        home.show();
+                        break;
                     case "getWeather":
-                    case "getZones":
-                        $('#tadoHomeId').show();
+                        home.show();
                         break;
-                    case "getMobileDevice":
-                    case "getMobileDeviceSettings":
-                        $('#tadoHomeId').show();
-                        $('#tadoDeviceId').show();
-                        break;
-                    case "clearZoneOverlay":
-                    case "getState":
-                    case "getZoneCapabilities":
-                    case "getZoneOverlay":
-                    case "getZoneState":
-                        $('#tadoHomeId').show();
-                        $('#tadoZoneId').show();
-                        break;
-                    case "setZoneOverlay":
-                        $('#tadoHomeId').show();
-                        $('#tadoZoneId').show();
-                        $('#tadoOverlayForm').show();
-                        break;
-                    case "identifyDevice":
-                        $('#tadoDeviceId').show();
+                    case "getDevices":
+                        home.show();
                         break;
                     case "getDeviceTemperatureOffset":
-                    case "setDeviceTemperatureOffset":
-                        $('#tadoDeviceId').show();
-                        $('#tadoTemperatureOffset').show();
+                        device.show();
                         break;
-                    case "getZoneDayReport":
-                        $('#tadoHomeId').show();
-                        $('#tadoZoneId').show();
-                        $('#tadoReportDate').show();
+                    case "getInstallations":
+                        home.show();
                         break;
-                    case "setPresence":
-                        $('#tadoHomeId').show();
-                        $('#tadoPresence').show();
+                    case "getUsers":
+                        home.show();
                         break;
-                    case "updatePresence":
-                        $('#tadoHomeId').show();
+                    case "getState":
+                        home.show();
+                        break;
+                    case "getMobileDevices":
+                        home.show();
+                        break;
+                    case "getMobileDevice":
+                        home.show();
+                        device.show();
+                        break;
+                    case "getMobileDeviceSettings":
+                        home.show();
+                        device.show();
                         break;
                     case "setGeoTracking":
-                        $("#tadoGeoTracking").show();
+                        home.show();
+                        device.show();
+                        geoTracking.show();
+                        break;
+                    case "getZones":
+                        home.show();
+                        break;
+                    case "getZoneState":
+                        home.show();
+                        zone.show();
+                        break;
+                    case "getZoneCapabilities":
+                        home.show();
+                        zone.show();
+                        break;
+                    case "getZoneOverlay":
+                        home.show();
+                        zone.show();
+                        break;
+                    case "getZoneDayReport":
+                        home.show();
+                        zone.show();
+                        reportDate.show();
+                        break;
+                    case "getTimeTables":
+                        home.show();
+                        zone.show();
+                        break;
+                    case "getAwayConfiguration":
+                        home.show();
+                        zone.show();
+                        break;
+                    case "getTimeTable":
+                        home.show();
+                        zone.show();
+                        timetable.show();
+                        break;
+                    case "clearZoneOverlay":
+                        home.show();
+                        zone.show();
+                        break;
+                    case "setZoneOverlay":
+                        home.show();
+                        zone.show();
+                        overlay.show();
+                        break;
+                    case "setDeviceTemperatureOffset":
+                        device.show();
+                        temperatureOffset.show();
+                        break;
+                    case "identifyDevice":
+                        device.show();
+                        break;
+                    case "setPresence":
+                        home.show();
+                        presence.show();
+                        break;
+                    case "isAnyoneAtHome":
+                        home.show();
+                        break;
+                    case "updatePresence":
+                        home.show();
                         break;
                     case "setWindowDetection":
-                        $('#tadoHomeId').show();
-                        $('#tadoZoneId').show();
-                        $("#tadoWindowDetectionForm").show();
+                        home.show();
+                        zone.show();
+                        windowDetection.show();
                         break;
                     case "setOpenWindowMode":
-                        $('#tadoHomeId').show();
-                        $('#tadoZoneId').show();
-                        $('#tadoOpenWindowMode').show();
+                        home.show();
+                        zone.show();
+                        windowMode.show();
                         break;
                 }
             });
 
-            $('#node-input-power').change(function() {
-                var power = $('#node-input-power').val();
-                switch(power) {
+            $('#node-input-power').change(function () {
+                const power = $('#node-input-power').val();
+                switch (power) {
                     case "on":
                         $('#tadoPowerForm').show();
                         break;
@@ -346,9 +431,9 @@
                 }
             });
 
-            $('#node-input-terminationType').change(function() {
-                var terminationType = $('#node-input-terminationType').val();
-                switch(terminationType) {
+            $('#node-input-terminationType').change(function () {
+                const terminationType = $('#node-input-terminationType').val();
+                switch (terminationType) {
                     case "manual":
                     case "auto":
                         $('#tadoTerminationTimeout').hide();

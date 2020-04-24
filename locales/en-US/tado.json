@@ -11,12 +11,13 @@
             "presence": "Presence",
             "reportDate": "Report Date (yyyy-mm-dd)",
             "temperature": "Temperature (C)",
-            "temperature-offset": "Termination Offset (C)",
+            "temperature-offset": "Temperature Offset (C)",
             "termination-timeout": "Termination Timeout (secs)",
             "termination-type": "Type of Termination",
             "window-detection": "Window Detection",
             "window-detection-timeout": "Timeout for Window Detection",
-            "zone-id": "Zone ID"
+            "zone-id": "Zone ID",
+            "timetable-id": "Timetable ID"
         },
         "option": {
             "activate": "Activate",
@@ -28,7 +29,7 @@
             "enabled": "Enabled",
             "get-device-temperature-offset": "Get a device's temperature offset",
             "get-devices": "Get all devices",
-            "get-home": "Get the home info.",
+            "get-home": "Get the home info",
             "get-installations": "Get all installations",
             "get-me": "Get the current user",
             "get-mobile-device": "Get a mobile device",
@@ -38,7 +39,7 @@
             "get-users": "Get all users",
             "get-weather": "Get the weather",
             "get-zone-capabilities": "Get a zone's capabilities",
-            "get-zone-day-report": "Get a zone's day report.",
+            "get-zone-day-report": "Get a zone's day report",
             "get-zone-overlay": "Get a zone's overlay",
             "get-zone-state": "Get a zone's state",
             "get-zones": "Get all zones",
@@ -54,7 +55,19 @@
             "set-window-detection": "Configure window detection for a zone",
             "set-zone-overlay": "Set a zone's overlay",
             "timer": "Timer based termination",
-            "update-presence": "Update presence"
+            "is-anyone-at-home": "Is anyone at home",
+            "update-presence": "Update presence",
+            "get-timetables": "Get timetables",
+            "get-timetable": "Get timetable",
+            "get-away-configuration": "Get away configuration"
+        },
+        "optgroup": {
+            "account": "Account",
+            "home": "Home",
+            "zone": "Zone",
+            "device": "Device",
+            "mobiledevice": "Mobile Device",
+            "presence": "Presence"
         }
     }
 }
