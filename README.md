@@ -1,5 +1,7 @@
 # Tado Web API Node with shared config
 
+### Note: From v0.9.0 onward this node requires at least nodejs v12 due to using async functions.
+
 A <a href="http://nodered.org" target="_new">Node-RED</a> node with the shared configuration that lets you connect to the Tado Web API.
 
 *Please note: The library used by this node is derived from reverse engineering the Tado Web API and hence may be unstable.*

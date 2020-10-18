@@ -13,7 +13,6 @@ module.exports = function(RED) {
 
         node.call = async function(method) {
             const args = [...arguments].slice(1);
-            // console.log({ method: method, args: args });
             return node.tado[method](...args);
         }
     }
@@ -53,7 +52,7 @@ module.exports = function(RED) {
         ].forEach(k => node[k] = input[k]);
 
         node.tadoConfig = RED.nodes.getNode(node.configName);
-        
+
         if (!node.tadoConfig) {
             node.status({ fill: "grey", shape: "ring", text: "unconfigured" });
             node.error(RED._("tado.errors.missingconfig"));
@@ -78,19 +77,19 @@ module.exports = function(RED) {
             msg.topic = apiCall;
 
             switch(apiCall) {
-                case "getMe":                       
-                    call();                                     
+                case "getMe":
+                    call();
                     break;
                 case "getHome":
-                    call(arg("homeId"));                             
-                    break;
-                case "getWeather":
-                    call(arg("homeId"));                             
-                    break;
-                case "getDevices":                  
                     call(arg("homeId"));
                     break;
-                case "getDeviceTemperatureOffset":  
+                case "getWeather":
+                    call(arg("homeId"));
+                    break;
+                case "getDevices":
+                    call(arg("homeId"));
+                    break;
+                case "getDeviceTemperatureOffset":
                     call(arg("deviceId"));
                     break;
                 case "getInstallations":
@@ -99,20 +98,20 @@ module.exports = function(RED) {
                 case "getUsers":
                     call(arg("homeId"));
                     break;
-                case "getState": 
+                case "getState":
                     call(arg("homeId"));
                     break;
                 case "getMobileDevices":
-                    call(arg("homeId"));                             
+                    call(arg("homeId"));
                     break;
-                case "getMobileDevice":             
+                case "getMobileDevice":
                     call(arg("homeId"), arg("deviceId"));
                     break;
                 case "getMobileDeviceSettings":
                     call(arg("homeId"), arg("deviceId"));
                     break;
                 case "setGeoTracking":
-                    call(arg("homeId"), arg("deviceId"), bool(arg("geoTracking")));  
+                    call(arg("homeId"), arg("deviceId"), bool(arg("geoTracking")));
                     break;
                 case "getZones":
                     call(arg("homeId"));
