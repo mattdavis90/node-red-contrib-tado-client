@@ -1,9 +1,9 @@
 {
   "name": "node-red-contrib-tado-client",
-  "version": "0.9.0",
+  "version": "0.9.1",
   "description": "Tado web API client node for Node Red",
   "dependencies": {
-    "node-tado-client": "^0.9.0"
+    "node-tado-client": "^0.9.1"
   },
   "devDependencies": {},
   "scripts": {},
