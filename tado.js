@@ -61,7 +61,7 @@ module.exports = function(RED) {
 
         node.on("input", msg => {
             const arg = name => msg.hasOwnProperty(name) ? msg[name] : node[name];
-            const bool = x => x === true || x === "true";
+            const bool = x => x === true || x === "true" || x === "True";
             const apiCall = arg("apiCall");
             const call = function() {
                 node.tadoConfig.call(apiCall, ...arguments).then(resp => {
@@ -162,10 +162,10 @@ module.exports = function(RED) {
                     call(arg("homeId"));
                     break;
                 case "setWindowDetection":
-                    call(arg("homeId"), arg("zoneId"), bool(arg("enabled")), arg("windowDetectionTimeout"));
+                    call(arg("homeId"), arg("zoneId"), bool(arg("windowDetection")), arg("windowDetectionTimeout"));
                     break;
                 case "setOpenWindowMode":
-                    call(arg("homeId"), arg("zoneId"), bool(arg("activate")));
+                    call(arg("homeId"), arg("zoneId"), bool(arg("openWindowMode")));
                     break;
                 case "getAirComfort":
                     call(arg("homeId"));
