@@ -22,6 +22,7 @@
         "option": {
             "activate": "Activate",
             "auto": "Tado schedule termination",
+            "auto-presence": "Auto",
             "away": "Away",
             "cancel": "Cancel",
             "clear-zone-overlay": "Clear a zone's overlay",
