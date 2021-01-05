@@ -71,6 +71,7 @@ module.exports = function(RED) {
                 }).catch(err => {
                     node.status({ fill: "red", shape: "ring", text: "errored" });
                     node.error(err);
+                    node.send([undefined, { payload: err }]);
                 });
             }
 
