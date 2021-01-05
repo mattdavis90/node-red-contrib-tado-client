@@ -271,7 +271,7 @@
             timetableId: { value: "" },
         },
         inputs: 1,
-        outputs: 2,
+        outputs: 1,
         icon: "tado.png",
         label: function () {
             return this.name || "Tado";
@@ -279,7 +279,6 @@
         labelStyle: function () {
             return this.name ? "node_label_italic" : "";
         },
-        outputLabels: ["response", "error"],
         oneditprepare: function () {
             $('#node-input-apiCall').change(function () {
                 const apiCall = $('#node-input-apiCall').val();
