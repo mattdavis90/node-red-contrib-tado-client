@@ -67,10 +67,14 @@ module.exports = function(RED) {
                 node.tadoConfig.call(apiCall, ...arguments).then(resp => {
                     node.status({ fill: "green", shape: "dot", text: apiCall });
                     msg.payload = resp;
-                    send(msg);
+                    if(send != null){
+                        send(msg);
+                    } else {
+                        node.send(msg);
+                    }
                 }).catch(err => {
                     node.status({ fill: "red", shape: "ring", text: "errored" });
-                    if(done){
+                    if(done != null){
                         done(err); // Node-RED 1.0 compatible
                     } else {
                         node.error(err, msg); // Node-RED 0.x compatible
