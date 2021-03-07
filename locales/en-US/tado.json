@@ -61,7 +61,8 @@
             "get-timetables": "Get timetables",
             "get-timetable": "Get timetable",
             "get-away-configuration": "Get away configuration",
-            "get-air-comfort": "Get air comfort"
+            "get-air-comfort": "Get air comfort",
+            "get-air-comfort-detailed": "Get detailed air comfort"
         },
         "optgroup": {
             "account": "Account",

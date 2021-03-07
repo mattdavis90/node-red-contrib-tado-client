@@ -48,6 +48,7 @@
                 <option value="getInstallations" data-i18n="tado.option.get-installations"></option>
                 <option value="getWeather" data-i18n="tado.option.get-weather"></option>
                 <option value="getAirComfort" data-i18n="tado.option.get-air-comfort"></option>
+                <option value="getAirComfortDetailed" data-i18n="tado.option.get-air-comfort-detailed"></option>
             </optgroup>
             <optgroup data-i18n="[label]tado.optgroup.zone">
                 <option value="getZones" data-i18n="tado.option.get-zones"></option>
@@ -419,6 +420,9 @@
                         windowMode.show();
                         break;
                     case "getAirComfort":
+                        home.show();
+                        break;
+                    case "getAirComfortDetailed":
                         home.show();
                         break;
                 }

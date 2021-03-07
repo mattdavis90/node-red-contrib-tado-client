@@ -178,6 +178,9 @@ module.exports = function(RED) {
                 case "getAirComfort":
                     call(arg("homeId"));
                     break;
+                case "getAirComfortDetailed":
+                    call(arg("homeId"));
+                    break;
                 default:
                     node.error(`invalid apiCall "${apiCall}"`);
                     break;
