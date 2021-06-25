@@ -1,5 +1,7 @@
 # Tado Web API Node with shared config
 
+[![Node.js Package](https://github.com/mattdavis90/node-red-contrib-tado-client/actions/workflows/npm-publish.yml/badge.svg)](https://github.com/mattdavis90/node-red-contrib-tado-client/actions/workflows/npm-publish.yml)
+
 ### Note: From v0.9.0 onward this node requires at least nodejs v12 due to using async functions.
 
 A <a href="http://nodered.org" target="_new">Node-RED</a> node with the shared configuration that lets you connect to the Tado Web API.
