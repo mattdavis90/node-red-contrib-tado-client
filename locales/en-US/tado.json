@@ -4,6 +4,7 @@
             "api-call": "API Call",
             "config-name": "Tado Config",
             "device-id": "Device ID",
+            "fan-speed": "Fan Speed",
             "geo-tracking": "Geo Tracking",
             "home-id": "Home ID",
             "open-window-mode": "Open Window Mode",
@@ -14,20 +15,24 @@
             "temperature-offset": "Temperature Offset (C)",
             "termination-timeout": "Termination Timeout (secs)",
             "termination-type": "Type of Termination",
+            "timetable-id": "Timetable ID",
             "window-detection": "Window Detection",
             "window-detection-timeout": "Timeout for Window Detection",
-            "zone-id": "Zone ID",
-            "timetable-id": "Timetable ID"
+            "zone-id": "Zone ID"
         },
         "option": {
             "activate": "Activate",
             "auto": "Tado schedule termination",
+            "auto-fan": "Auto",
             "auto-presence": "Auto",
             "away": "Away",
             "cancel": "Cancel",
             "clear-zone-overlay": "Clear a zone's overlay",
             "disabled": "Disabled",
             "enabled": "Enabled",
+            "get-air-comfort": "Get air comfort",
+            "get-air-comfort-detailed": "Get detailed air comfort",
+            "get-away-configuration": "Get away configuration",
             "get-device-temperature-offset": "Get a device's temperature offset",
             "get-devices": "Get all devices",
             "get-home": "Get the home info",
@@ -37,6 +42,8 @@
             "get-mobile-device-settings": "Get a mobile device's settings",
             "get-mobile-devices": "Get all mobile devices",
             "get-state": "Get home state",
+            "get-timetable": "Get timetable",
+            "get-timetables": "Get timetables",
             "get-users": "Get all users",
             "get-weather": "Get the weather",
             "get-zone-capabilities": "Get a zone's capabilities",
@@ -44,9 +51,13 @@
             "get-zone-overlay": "Get a zone's overlay",
             "get-zone-state": "Get a zone's state",
             "get-zones": "Get all zones",
+            "high": "High",
             "home": "Home",
             "identify-device": "Identify a device",
+            "is-anyone-at-home": "Is anyone at home",
+            "low": "Low",
             "manual": "Manual termination",
+            "middle": "Middle",
             "off": "Heating Off",
             "on": "Heating On",
             "set-device-temperature-offset": "Set a device's temperature offset",
@@ -56,21 +67,15 @@
             "set-window-detection": "Configure window detection for a zone",
             "set-zone-overlay": "Set a zone's overlay",
             "timer": "Timer based termination",
-            "is-anyone-at-home": "Is anyone at home",
-            "update-presence": "Update presence",
-            "get-timetables": "Get timetables",
-            "get-timetable": "Get timetable",
-            "get-away-configuration": "Get away configuration",
-            "get-air-comfort": "Get air comfort",
-            "get-air-comfort-detailed": "Get detailed air comfort"
+            "update-presence": "Update presence"
         },
         "optgroup": {
             "account": "Account",
-            "home": "Home",
-            "zone": "Zone",
             "device": "Device",
+            "home": "Home",
             "mobiledevice": "Mobile Device",
-            "presence": "Presence"
+            "presence": "Presence",
+            "zone": "Zone"
         }
     }
 }

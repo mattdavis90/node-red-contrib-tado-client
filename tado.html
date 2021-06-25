@@ -128,6 +128,15 @@
                 <label for="node-input-terminationTimeout"><i class="fa fa-history"></i> <span data-i18n="tado.label.termination-timeout"></span></label>
                 <input type="text" id="node-input-terminationTimeout" data-i18n="[placeholder]tado.label.temperature-timeout">
             </div>
+            <div class="form-row" id="tadoFanSpeed">
+                <label for="node-input-fanSpeed"><i class="fa fa-tachometer"></i> <span data-i18n="tado.label.fan-speed"></span></label>
+                <select id="node-input-fanSpeed" style="width:60%; margin-right:5px;">
+                    <option value="AUTO" data-i18n="tado.option.auto-fan"></option>
+                    <option value="LOW" data-i18n="tado.option.low"></option>
+                    <option value="MIDDLE" data-i18n="tado.option.middle"></option>
+                    <option value="HIGH" data-i18n="tado.option.high"></option>
+                </select>
+            </div>
         </div>
     </div>
     <div class="form-row" id="tadoTemperatureOffset">
@@ -210,7 +219,10 @@
         <dd> <code>"manual"</code>, <code>"auto"</code> or <code>"timer"</code></dd>
 
         <dt class="optional">terminationTimeout <span class="property-type">string</span></dt>
-        <dd> the timeout in seconds to clear the overaly</dd>
+        <dd> the timeout in seconds to clear the overlay</dd>
+
+        <dt class="optional">fanSpeed <span class="property-type">string</span></dt>
+        <dd> the speed of the fan in an AC system</dd>
 
         <dt class="optional">presence <span class="property-type">string</span></dt>
         <dd> <code>"home"</code>, <code>"away"</code> or <code>"auto"</code></dd>
@@ -261,6 +273,7 @@
             temperature: { value: "18" },
             terminationType: { value: "manual" },
             terminationTimeout: { value: 900, validate: RED.validators.number() },
+            fanSpeed: { value: "AUTO" },
             name: { value: "" },
             reportDate: { value: "" },
             presence: { value: "HOME" },

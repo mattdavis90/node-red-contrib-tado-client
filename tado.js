@@ -40,6 +40,7 @@ module.exports = function(RED) {
             "temperature",
             "terminationType",
             "terminationTimeout",
+            "fanSpeed",
             "name",
             "reportDate",
             "presence",
@@ -151,7 +152,7 @@ module.exports = function(RED) {
                 case "setZoneOverlay": {
                     const type = arg("terminationType");
                     const termination = type === "timer" ? arg("terminationTimeout") : type;
-                    call(arg("homeId"), arg("zoneId"), arg("power"), arg("temperature"), termination);
+                    call(arg("homeId"), arg("zoneId"), arg("power"), arg("temperature"), termination, arg("fanSpeed"));
                     break;
                 }
                 case "setDeviceTemperatureOffset":
