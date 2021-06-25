@@ -137,6 +137,16 @@
                     <option value="HIGH" data-i18n="tado.option.high"></option>
                 </select>
             </div>
+            <div class="form-row" id="tadoAcMode">
+                <label for="node-input-acMode"><i class="fa fa-random"></i> <span data-i18n="tado.label.ac-mode"></span></label>
+                <select id="node-input-acMode" style="width:60%; margin-right:5px;">
+                    <option value="AUTO" data-i18n="tado.option.auto-fan"></option>
+                    <option value="COOL" data-i18n="tado.option.cool"></option>
+                    <option value="DRY" data-i18n="tado.option.dry"></option>
+                    <option value="FAN" data-i18n="tado.option.fan"></option>
+                    <option value="HEAT" data-i18n="tado.option.heat"></option>
+                </select>
+            </div>
         </div>
     </div>
     <div class="form-row" id="tadoTemperatureOffset">
@@ -222,7 +232,10 @@
         <dd> the timeout in seconds to clear the overlay</dd>
 
         <dt class="optional">fanSpeed <span class="property-type">string</span></dt>
-        <dd> the speed of the fan in an AC system</dd>
+        <dd> the speed of the fan in an AC system (AUTO, LOW, MIDDLE, HIGH)</dd>
+
+        <dt class="optional">acMode <span class="property-type">string</span></dt>
+        <dd> the mode of the AC system (AUTO, COOL, DRY, FAN, HEAT)</dd>
 
         <dt class="optional">presence <span class="property-type">string</span></dt>
         <dd> <code>"home"</code>, <code>"away"</code> or <code>"auto"</code></dd>
@@ -274,6 +287,7 @@
             terminationType: { value: "manual" },
             terminationTimeout: { value: 900, validate: RED.validators.number() },
             fanSpeed: { value: "AUTO" },
+            acMode: { value: "AUTO" },
             name: { value: "" },
             reportDate: { value: "" },
             presence: { value: "HOME" },

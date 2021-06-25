@@ -3,7 +3,7 @@
   "version": "0.9.7",
   "description": "Tado web API client node for Node Red",
   "dependencies": {
-    "node-tado-client": "^0.9.4"
+    "node-tado-client": "^0.9.5"
   },
   "devDependencies": {},
   "scripts": {},

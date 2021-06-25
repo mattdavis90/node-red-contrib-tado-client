@@ -1,6 +1,7 @@
 {
     "tado": {
         "label": {
+            "ac-mode": "AC Mode",
             "api-call": "API Call",
             "config-name": "Tado Config",
             "device-id": "Device ID",
@@ -28,8 +29,11 @@
             "away": "Away",
             "cancel": "Cancel",
             "clear-zone-overlay": "Clear a zone's overlay",
+            "cool": "Cool",
             "disabled": "Disabled",
+            "dry": "Dry",
             "enabled": "Enabled",
+            "fan": "Fan",
             "get-air-comfort": "Get air comfort",
             "get-air-comfort-detailed": "Get detailed air comfort",
             "get-away-configuration": "Get away configuration",
@@ -51,6 +55,7 @@
             "get-zone-overlay": "Get a zone's overlay",
             "get-zone-state": "Get a zone's state",
             "get-zones": "Get all zones",
+            "heat": "Heat",
             "high": "High",
             "home": "Home",
             "identify-device": "Identify a device",
