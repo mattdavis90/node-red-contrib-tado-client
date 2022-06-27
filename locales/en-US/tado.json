@@ -29,6 +29,7 @@
             "away": "Away",
             "cancel": "Cancel",
             "clear-zone-overlay": "Clear a zone's overlay",
+            "clear-zone-overlays": "Clear a zone's overlays NEW",
             "cool": "Cool",
             "disabled": "Disabled",
             "dry": "Dry",
@@ -71,6 +72,7 @@
             "set-presence": "Set presence",
             "set-window-detection": "Configure window detection for a zone",
             "set-zone-overlay": "Set a zone's overlay",
+            "set-zone-overlays": "Set a zone's overlays NEW",
             "timer": "Timer based termination",
             "update-presence": "Update presence"
         },
