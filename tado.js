@@ -50,9 +50,7 @@ module.exports = function(RED) {
             "windowDetection",
             "windowDetectionTimeout",
             "openWindowMode",
-            "configName",
-            "overlays",
-            "termination"
+            "configName"
         ].forEach(k => node[k] = input[k]);
 
         node.tadoConfig = RED.nodes.getNode(node.configName);
