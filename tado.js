@@ -51,6 +51,8 @@ module.exports = function(RED) {
             "windowDetectionTimeout",
             "openWindowMode",
             "configName",
+            "overlays",
+            "termination"
         ].forEach(k => node[k] = input[k]);
 
         node.tadoConfig = RED.nodes.getNode(node.configName);
@@ -183,6 +185,13 @@ module.exports = function(RED) {
                 case "getAirComfortDetailed":
                     call(arg("homeId"));
                     break;
+                case "clearZoneOverlays":
+                    call(arg("homeId"), arg("zoneId"));
+                    break;
+                case "setZoneOverlays":
+                    const type = arg("terminationType");
+                    const termination = type === "timer" ? arg("terminationTimeout") : type;
+                    call(arg("homeId"), arg("overlays"), termination);
                 default:
                     node.error(`invalid apiCall "${apiCall}"`);
                     break;
