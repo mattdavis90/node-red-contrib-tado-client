@@ -199,7 +199,6 @@ module.exports = function(RED) {
                                         "horizontalSwing": "OFF",
                                         "light": "OFF"
                                       }];
-                    console.warn(overlays);
                     call(arg("homeId"), overlays , termination);
                     break;
                 default:
