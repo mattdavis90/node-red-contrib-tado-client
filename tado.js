@@ -190,6 +190,7 @@ module.exports = function(RED) {
                     const type = arg("terminationType");
                     const termination = type === "timer" ? arg("terminationTimeout") : type;
                     call(arg("homeId"), arg("overlays"), termination);
+                    break;
                 default:
                     node.error(`invalid apiCall "${apiCall}"`);
                     break;
