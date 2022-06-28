@@ -189,7 +189,18 @@ module.exports = function(RED) {
                 case "setZoneOverlays":
                     const type = arg("terminationType");
                     const termination = type === "timer" ? arg("terminationTimeout") : type;
-                    call(arg("homeId"), arg("overlays"), termination);
+                    const overlays = [{
+                                        "zone_id": arg("zoneId"),
+                                        "power": arg("power"),
+                                        "temperature": { "celsius": arg("temperature")},
+                                        "mode": arg("acMode"),
+                                        "fanLevel": arg("fanSpeed"),
+                                        "verticalSwing": "ON",
+                                        "horizontalSwing": "OFF",
+                                        "light": "OFF"
+                                      }];
+                    console.warn(overlays);
+                    call(arg("homeId"), overlays , termination);
                     break;
                 default:
                     node.error(`invalid apiCall "${apiCall}"`);
