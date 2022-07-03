@@ -184,7 +184,8 @@ module.exports = function(RED) {
                     call(arg("homeId"));
                     break;
                 case "clearZoneOverlays":
-                    call(arg("homeId"), arg("zoneId"));
+					const zoneIds = [arg("zoneId")]; 
+                    call(arg("homeId"), zoneIds);
                     break;
                 case "setZoneOverlays":
                     const type = arg("terminationType");
@@ -195,8 +196,8 @@ module.exports = function(RED) {
                                         "temperature": { "celsius": arg("temperature")},
                                         "mode": arg("acMode"),
                                         "fanLevel": arg("fanSpeed"),
-                                        "verticalSwing": "ON",
-                                        "horizontalSwing": "OFF",
+                                        "verticalSwing": "OFF",
+                                        "horizontalSwing": "ON",
                                         "light": "OFF"
                                       }];
                     call(arg("homeId"), overlays , termination);

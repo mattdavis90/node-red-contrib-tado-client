@@ -8,6 +8,8 @@
             "fan-speed": "Fan Speed",
             "geo-tracking": "Geo Tracking",
             "home-id": "Home ID",
+            "HorizSwing": "Horiz. Swing",
+            "Light": "Light",
             "open-window-mode": "Open Window Mode",
             "power": "Power On/Off",
             "presence": "Presence",
@@ -17,6 +19,7 @@
             "termination-timeout": "Termination Timeout (secs)",
             "termination-type": "Type of Termination",
             "timetable-id": "Timetable ID",
+            "VertSwing": "Vert. Swing",
             "window-detection": "Window Detection",
             "window-detection-timeout": "Timeout for Window Detection",
             "zone-id": "Zone ID"
