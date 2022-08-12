@@ -57,10 +57,12 @@
                 <option value="getZoneDayReport" data-i18n="tado.option.get-zone-day-report"></option>
                 <option value="getZoneOverlay" data-i18n="tado.option.get-zone-overlay"></option>
                 <option value="setZoneOverlay" data-i18n="tado.option.set-zone-overlay"></option>
+                <option value="setZoneOverlays" data-i18n="tado.option.set-zone-overlays"></option>
                 <option value="getTimeTables" data-i18n="tado.option.get-timetables"></option>
                 <option value="getTimeTable" data-i18n="tado.option.get-timetable"></option>
                 <option value="getAwayConfiguration" data-i18n="tado.option.get-away-configuration"></option>
                 <option value="clearZoneOverlay" data-i18n="tado.option.clear-zone-overlay"></option>
+                <option value="clearZoneOverlays" data-i18n="tado.option.clear-zone-overlays"></option>
                 <option value="setOpenWindowMode" data-i18n="tado.option.set-open-window"></option>
             </optgroup>
             <optgroup data-i18n="[label]tado.optgroup.device">
@@ -145,6 +147,27 @@
                     <option value="DRY" data-i18n="tado.option.dry"></option>
                     <option value="FAN" data-i18n="tado.option.fan"></option>
                     <option value="HEAT" data-i18n="tado.option.heat"></option>
+                </select>
+            </div>
+            <div class="form-row" id="tadoVertSwing">
+                <label for="node-input-VertSwing"><i class="fa fa-arrow-up-arrow-down"></i> <span data-i18n="tado.label.VertSwing"></span></label>
+                <select id="node-input-VertSwing" style="width:60%; margin-right:5px;">
+                    <option value="on" data-i18n="tado.option.on"></option>
+                    <option value="off" data-i18n="tado.option.off"></option>
+                </select>
+            </div>
+            <div class="form-row" id="tadoHorizSwing">
+                <label for="node-input-HorizSwing"><i class="fa fa-arrow-right-arrow-left"></i> <span data-i18n="tado.label.HorizSwing"></span></label>
+                <select id="node-input-HorizSwing" style="width:60%; margin-right:5px;">
+                    <option value="on" data-i18n="tado.option.on"></option>
+                    <option value="off" data-i18n="tado.option.off"></option>
+                </select>
+            </div>
+            <div class="form-row" id="tadoLight">
+                <label for="node-input-Light"><i class="fa fa-lightbulb"></i> <span data-i18n="tado.label.Light"></span></label>
+                <select id="node-input-Light" style="width:60%; margin-right:5px;">
+                    <option value="on" data-i18n="tado.option.on"></option>
+                    <option value="off" data-i18n="tado.option.off"></option>
                 </select>
             </div>
         </div>
@@ -414,7 +437,16 @@
                         home.show();
                         zone.show();
                         break;
+                    case "clearZoneOverlays":
+                        home.show();
+                        zone.show();
+                        break;
                     case "setZoneOverlay":
+                        home.show();
+                        zone.show();
+                        overlay.show();
+                        break;
+                    case "setZoneOverlays":
                         home.show();
                         zone.show();
                         overlay.show();
