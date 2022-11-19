@@ -1,6 +1,6 @@
 module.exports = function(RED) {
     "use strict";
-    const Tado = require('node-tado-client');
+    const { Tado } = require('node-tado-client');
 
     /**
      * Config node
