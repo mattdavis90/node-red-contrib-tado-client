@@ -27,6 +27,8 @@ You can create multiple Tado nodes, each of which interacts with a single end-po
 The node is triggered by each message on the input, regardless of content. This allows creating flows using other Nodes to
 trigger the API. If the message on the input contains any of the following fields then they will ovewrite the properties on the node.
 
+*Please note: These properties must be present on `msg`, not `msg.payload`. e.g. `msg.power`*
+
 * deviceId
 * geoTracking
 * homeId
