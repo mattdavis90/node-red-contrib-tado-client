@@ -1,12 +1,15 @@
+/**
+ * @param { import("node-red").NodeAPI } RED
+ */
 module.exports = function(RED) {
     "use strict";
-    const Tado = require('node-tado-client');
+    const { Tado } = require('node-tado-client');
 
     /**
      * Config node
      */
-    function TadoConfigNode(input) {
-        RED.nodes.createNode(this, input);
+    function TadoConfigNode(config) {
+        RED.nodes.createNode(this, config);
         const node = this;
 
         node.tado = new Tado(node.credentials.username, node.credentials.password);
@@ -27,8 +30,8 @@ module.exports = function(RED) {
     /**
      * Tado node
      */
-    function TadoNode(input) {
-        RED.nodes.createNode(this, input);
+    function TadoNode(config) {
+        RED.nodes.createNode(this, config);
         const node = this;
 
         [
@@ -50,8 +53,11 @@ module.exports = function(RED) {
             "windowDetection",
             "windowDetectionTimeout",
             "openWindowMode",
+            "childlock",
             "configName",
-        ].forEach(k => node[k] = input[k]);
+        ].forEach((k) => {
+            node[k] = config[k];
+        });
 
         node.tadoConfig = RED.nodes.getNode(node.configName);
 
@@ -62,21 +68,31 @@ module.exports = function(RED) {
         }
 
         node.on("input", (msg, send, done) => {
-            const arg = name => msg.hasOwnProperty(name) ? msg[name] : node[name];
-            const bool = x => x === true || x === "true" || x === "True";
+            const arg = (name) => {
+                return msg.hasOwnProperty(name) ? msg[name] : node[name];
+            }
+            const bool = (x) => {
+                return x === true || x === "true" || x === "True";
+            }
             const apiCall = arg("apiCall");
             const call = function() {
                 node.tadoConfig.call(apiCall, ...arguments).then(resp => {
                     node.status({ fill: "green", shape: "dot", text: apiCall });
                     msg.payload = resp;
-                    if(send != null){
+
+                    if (send) {
                         send(msg);
                     } else {
                         node.send(msg);
                     }
+
+                    if (done) {
+                        done();
+                    }
                 }).catch(err => {
                     node.status({ fill: "red", shape: "ring", text: "errored" });
-                    if(done != null){
+
+                    if (done) {
                         done(err); // Node-RED 1.0 compatible
                     } else {
                         node.error(err, msg); // Node-RED 0.x compatible
@@ -86,7 +102,7 @@ module.exports = function(RED) {
 
             msg.topic = apiCall;
 
-            switch(apiCall) {
+            switch (apiCall) {
                 case "getMe":
                     call();
                     break;
@@ -161,6 +177,9 @@ module.exports = function(RED) {
                     break;
                 case "identifyDevice":
                     call(arg("deviceId"));
+                    break;
+                case "setChildlock":
+                    call(arg("deviceId"), arg("childlock"));
                     break;
                 case "setPresence":
                     call(arg("homeId"), arg("presence"));

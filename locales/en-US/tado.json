@@ -3,6 +3,7 @@
         "label": {
             "ac-mode": "AC Mode",
             "api-call": "API Call",
+            "child-lock": "Child Lock",
             "config-name": "Tado Config",
             "device-id": "Device ID",
             "fan-speed": "Fan Speed",
@@ -60,11 +61,13 @@
             "home": "Home",
             "identify-device": "Identify a device",
             "is-anyone-at-home": "Is anyone at home",
+            "locked": "Locked",
             "low": "Low",
             "manual": "Manual termination",
             "middle": "Middle",
             "off": "Heating Off",
             "on": "Heating On",
+            "set-child-lock": "Set child lock",
             "set-device-temperature-offset": "Set a device's temperature offset",
             "set-geo-tracking": "Set Geo Tracking for a mobile device",
             "set-open-window": "Set open window mode",
@@ -72,6 +75,7 @@
             "set-window-detection": "Configure window detection for a zone",
             "set-zone-overlay": "Set a zone's overlay",
             "timer": "Timer based termination",
+            "unlocked": "Unlocked",
             "update-presence": "Update presence"
         },
         "optgroup": {

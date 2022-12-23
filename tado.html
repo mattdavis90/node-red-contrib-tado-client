@@ -69,6 +69,7 @@
                 <option value="getDeviceTemperatureOffset" data-i18n="tado.option.get-device-temperature-offset"></option>
                 <option value="identifyDevice" data-i18n="tado.option.identify-device"></option>
                 <option value="setDeviceTemperatureOffset" data-i18n="tado.option.set-device-temperature-offset"></option>
+                <option value="setChildlock" data-i18n="tado.option.set-child-lock"></option>
             </optgroup>
             <optgroup data-i18n="[label]tado.optgroup.mobiledevice">
                 <option value="getMobileDevices" data-i18n="tado.option.get-mobile-devices"></option>
@@ -190,6 +191,15 @@
             </select>
         </div>
     </div>
+    <div id="tadoChildlock">
+        <div class="form-row">
+            <label for="node-input-childlock"><i class="fa fa-windows"></i> <span data-i18n="tado.label.child-lock"></span></label>
+            <select id="node-input-childlock" style="width:60%; margin-right:5px;">
+                <option value="false" data-i18n="tado.option.unlocked"></option>
+                <option value="true" data-i18n="tado.option.locked"></option>
+            </select>
+        </div>
+    </div>
     <div class="form-row">
         <label for="node-input-name"><i class="fa fa-tag"></i> <span data-i18n="node-red:common.label.name"></span></label>
         <input type="text" id="node-input-name" data-i18n="[placeholder]node-red:common.label.name">
@@ -296,13 +306,14 @@
             windowDetection: { value: true },
             windowDetectionTimeout: { value: 900 },
             openWindowMode: { value: true },
+            childlock: { value: false },
             timetableId: { value: "" },
         },
         inputs: 1,
         outputs: 1,
         icon: "tado.png",
         label: function () {
-            return this.name || "Tado";
+            return this.name || `Tado [${this.apiCall}]`;
         },
         labelStyle: function () {
             return this.name ? "node_label_italic" : "";
@@ -321,6 +332,7 @@
                 const geoTracking = $('#tadoGeoTracking');
                 const windowDetection = $('#tadoWindowDetectionForm');
                 const windowMode = $('#tadoOpenWindowMode');
+                const childlock = $('#tadoChildlock');
                 const timetable = $('#tadoTimetableId');
 
                 [
@@ -334,6 +346,7 @@
                     geoTracking,
                     windowDetection,
                     windowMode,
+                    childlock,
                     timetable,
                 ].forEach(e => e.hide());
 
@@ -425,6 +438,10 @@
                         break;
                     case "identifyDevice":
                         device.show();
+                        break;
+                    case "setChildlock":
+                        device.show();
+                        childlock.show();
                         break;
                     case "setPresence":
                         home.show();
