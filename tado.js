@@ -145,6 +145,9 @@ module.exports = function(RED) {
                 case "getZoneState":
                     call(arg("homeId"), arg("zoneId"));
                     break;
+                case "getZoneStates":
+                    call(arg("homeId"));
+                    break;
                 case "getZoneCapabilities":
                     call(arg("homeId"), arg("zoneId"));
                     break;

@@ -53,6 +53,7 @@
             <optgroup data-i18n="[label]tado.optgroup.zone">
                 <option value="getZones" data-i18n="tado.option.get-zones"></option>
                 <option value="getZoneState" data-i18n="tado.option.get-zone-state"></option>
+                <option value="getZoneStates" data-i18n="tado.option.get-zone-states"></option>
                 <option value="getZoneCapabilities" data-i18n="tado.option.get-zone-capabilities"></option>
                 <option value="getZoneDayReport" data-i18n="tado.option.get-zone-day-report"></option>
                 <option value="getZoneOverlay" data-i18n="tado.option.get-zone-overlay"></option>
@@ -396,6 +397,9 @@
                     case "getZoneState":
                         home.show();
                         zone.show();
+                        break;
+                    case "getZoneStates":
+                        home.show();
                         break;
                     case "getZoneCapabilities":
                         home.show();
