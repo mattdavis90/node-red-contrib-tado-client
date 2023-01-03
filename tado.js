@@ -106,105 +106,83 @@ module.exports = function(RED) {
                 case "getMe":
                     call();
                     break;
-                case "getHome":
-                    call(arg("homeId"));
-                    break;
-                case "getWeather":
-                    call(arg("homeId"));
-                    break;
+
+                case "getAirComfort":
+                case "getAirComfortDetailed":
                 case "getDevices":
-                    call(arg("homeId"));
-                    break;
-                case "getDeviceTemperatureOffset":
-                    call(arg("deviceId"));
-                    break;
+                case "getHeatingCircuits":
+                case "getHome":
                 case "getInstallations":
-                    call(arg("homeId"));
-                    break;
-                case "getUsers":
-                    call(arg("homeId"));
-                    break;
-                case "getState":
-                    call(arg("homeId"));
-                    break;
                 case "getMobileDevices":
-                    call(arg("homeId"));
-                    break;
-                case "getMobileDevice":
-                    call(arg("homeId"), arg("deviceId"));
-                    break;
-                case "getMobileDeviceSettings":
-                    call(arg("homeId"), arg("deviceId"));
-                    break;
-                case "setGeoTracking":
-                    call(arg("homeId"), arg("deviceId"), bool(arg("geoTracking")));
-                    break;
+                case "getState":
+                case "getUsers":
+                case "getWeather":
                 case "getZones":
+                case "getZoneStates":
+                case "isAnyoneAtHome":
+                case "updatePresence":
                     call(arg("homeId"));
                     break;
+
+                case "clearZoneOverlay":
+                case "getAwayConfiguration":
+                case "getTimeTables":
+                case "getZoneCapabilities":
+                case "getZoneControl":
+                case "getZoneOverlay":
                 case "getZoneState":
                     call(arg("homeId"), arg("zoneId"));
                     break;
-                case "getZoneStates":
-                    call(arg("homeId"));
+
+                case "getDeviceTemperatureOffset":
+                case "identifyDevice":
+                    call(arg("deviceId"));
                     break;
-                case "getZoneCapabilities":
-                    call(arg("homeId"), arg("zoneId"));
+
+                case "getMobileDevice":
+                case "getMobileDeviceSettings":
+                    call(arg("homeId"), arg("deviceId"));
                     break;
-                case "getZoneOverlay":
-                    call(arg("homeId"), arg("zoneId"));
+
+                case "setGeoTracking":
+                    call(arg("homeId"), arg("deviceId"), bool(arg("geoTracking")));
                     break;
+
                 case "getZoneDayReport":
                     call(arg("homeId"), arg("zoneId"), arg("reportDate"));
                     break;
-                case "getTimeTables":
-                    call(arg("homeId"), arg("zoneId"));
-                    break;
-                case "getAwayConfiguration":
-                    call(arg("homeId"), arg("zoneId"));
-                    break;
+
                 case "getTimeTable":
                     call(arg("homeId"), arg("zoneId"), arg("timetableId"));
                     break;
-                case "clearZoneOverlay":
-                    call(arg("homeId"), arg("zoneId"));
-                    break;
+
                 case "setZoneOverlay": {
                     const type = arg("terminationType");
                     const termination = type === "timer" ? arg("terminationTimeout") : type;
                     call(arg("homeId"), arg("zoneId"), arg("power"), arg("temperature"), termination, arg("fanSpeed"), arg("acMode"));
                     break;
                 }
+
                 case "setDeviceTemperatureOffset":
                     call(arg("deviceId"), arg("temperatureOffset"));
                     break;
-                case "identifyDevice":
-                    call(arg("deviceId"));
-                    break;
+
                 case "setChildlock":
                     call(arg("deviceId"), arg("childlock"));
                     break;
+
                 case "setPresence":
                     call(arg("homeId"), arg("presence"));
                     break;
-                case "isAnyoneAtHome":
-                    call(arg("homeId"));
-                    break;
-                case "updatePresence":
-                    call(arg("homeId"));
-                    break;
+
                 case "setWindowDetection":
                     call(arg("homeId"), arg("zoneId"), bool(arg("windowDetection")), arg("windowDetectionTimeout"));
                     break;
+
                 case "setOpenWindowMode":
                     call(arg("homeId"), arg("zoneId"), bool(arg("openWindowMode")));
                     break;
-                case "getAirComfort":
-                    call(arg("homeId"));
-                    break;
-                case "getAirComfortDetailed":
-                    call(arg("homeId"));
-                    break;
+
                 default:
                     node.error(`invalid apiCall "${apiCall}"`);
                     break;

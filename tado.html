@@ -42,35 +42,37 @@
                 <option value="getMe" data-i18n="tado.option.get-me"></option>
             </optgroup>
             <optgroup data-i18n="[label]tado.optgroup.home">
-                <option value="getHome" data-i18n="tado.option.get-home"></option>
-                <option value="getState" data-i18n="tado.option.get-state"></option>
-                <option value="getUsers" data-i18n="tado.option.get-users"></option>
-                <option value="getInstallations" data-i18n="tado.option.get-installations"></option>
-                <option value="getWeather" data-i18n="tado.option.get-weather"></option>
                 <option value="getAirComfort" data-i18n="tado.option.get-air-comfort"></option>
                 <option value="getAirComfortDetailed" data-i18n="tado.option.get-air-comfort-detailed"></option>
+                <option value="getHeatingCircuits" data-i18n="tado.option.get-heating-circuits"></option>
+                <option value="getHome" data-i18n="tado.option.get-home"></option>
+                <option value="getInstallations" data-i18n="tado.option.get-installations"></option>
+                <option value="getState" data-i18n="tado.option.get-state"></option>
+                <option value="getUsers" data-i18n="tado.option.get-users"></option>
+                <option value="getWeather" data-i18n="tado.option.get-weather"></option>
             </optgroup>
             <optgroup data-i18n="[label]tado.optgroup.zone">
                 <option value="getZones" data-i18n="tado.option.get-zones"></option>
-                <option value="getZoneState" data-i18n="tado.option.get-zone-state"></option>
-                <option value="getZoneStates" data-i18n="tado.option.get-zone-states"></option>
+                <option value="clearZoneOverlay" data-i18n="tado.option.clear-zone-overlay"></option>
+                <option value="getAwayConfiguration" data-i18n="tado.option.get-away-configuration"></option>
+                <option value="getTimeTable" data-i18n="tado.option.get-timetable"></option>
+                <option value="getTimeTables" data-i18n="tado.option.get-timetables"></option>
                 <option value="getZoneCapabilities" data-i18n="tado.option.get-zone-capabilities"></option>
+                <option value="getZoneControl" data-i18n="tado.option.get-zone-control"></option>
                 <option value="getZoneDayReport" data-i18n="tado.option.get-zone-day-report"></option>
                 <option value="getZoneOverlay" data-i18n="tado.option.get-zone-overlay"></option>
-                <option value="setZoneOverlay" data-i18n="tado.option.set-zone-overlay"></option>
-                <option value="getTimeTables" data-i18n="tado.option.get-timetables"></option>
-                <option value="getTimeTable" data-i18n="tado.option.get-timetable"></option>
-                <option value="getAwayConfiguration" data-i18n="tado.option.get-away-configuration"></option>
-                <option value="clearZoneOverlay" data-i18n="tado.option.clear-zone-overlay"></option>
+                <option value="getZoneState" data-i18n="tado.option.get-zone-state"></option>
+                <option value="getZoneStates" data-i18n="tado.option.get-zone-states"></option>
                 <option value="setOpenWindowMode" data-i18n="tado.option.set-open-window"></option>
+                <option value="setZoneOverlay" data-i18n="tado.option.set-zone-overlay"></option>
             </optgroup>
             <optgroup data-i18n="[label]tado.optgroup.device">
-                <option value="setWindowDetection" data-i18n="tado.option.set-window-detection"></option>
                 <option value="getDevices" data-i18n="tado.option.get-devices"></option>
                 <option value="getDeviceTemperatureOffset" data-i18n="tado.option.get-device-temperature-offset"></option>
                 <option value="identifyDevice" data-i18n="tado.option.identify-device"></option>
-                <option value="setDeviceTemperatureOffset" data-i18n="tado.option.set-device-temperature-offset"></option>
                 <option value="setChildlock" data-i18n="tado.option.set-child-lock"></option>
+                <option value="setDeviceTemperatureOffset" data-i18n="tado.option.set-device-temperature-offset"></option>
+                <option value="setWindowDetection" data-i18n="tado.option.set-window-detection"></option>
             </optgroup>
             <optgroup data-i18n="[label]tado.optgroup.mobiledevice">
                 <option value="getMobileDevices" data-i18n="tado.option.get-mobile-devices"></option>
@@ -323,155 +325,126 @@
             $('#node-input-apiCall').change(function () {
                 const apiCall = $('#node-input-apiCall').val();
 
-                const home = $('#tadoHomeId');
-                const zone = $('#tadoZoneId');
+                const childlock = $('#tadoChildlock');
                 const device = $('#tadoDeviceId');
-                const overlay = $('#tadoOverlayForm');
-                const reportDate = $('#tadoReportDate');
-                const presence = $('#tadoPresence');
-                const temperatureOffset = $('#tadoTemperatureOffset');
                 const geoTracking = $('#tadoGeoTracking');
+                const home = $('#tadoHomeId');
+                const overlay = $('#tadoOverlayForm');
+                const presence = $('#tadoPresence');
+                const reportDate = $('#tadoReportDate');
+                const temperatureOffset = $('#tadoTemperatureOffset');
+                const timetable = $('#tadoTimetableId');
                 const windowDetection = $('#tadoWindowDetectionForm');
                 const windowMode = $('#tadoOpenWindowMode');
-                const childlock = $('#tadoChildlock');
-                const timetable = $('#tadoTimetableId');
+                const zone = $('#tadoZoneId');
 
                 [
-                    home,
-                    zone,
+                    childlock,
                     device,
-                    overlay,
-                    reportDate,
-                    presence,
-                    temperatureOffset,
                     geoTracking,
+                    home,
+                    overlay,
+                    presence,
+                    reportDate,
+                    temperatureOffset,
+                    timetable,
                     windowDetection,
                     windowMode,
-                    childlock,
-                    timetable,
+                    zone,
                 ].forEach(e => e.hide());
 
                 switch (apiCall) {
                     case "getMe":
                         break;
-                    case "getHome":
-                        home.show();
-                        break;
-                    case "getWeather":
-                        home.show();
-                        break;
+
+                    case "getAirComfort":
+                    case "getAirComfortDetailed":
                     case "getDevices":
-                        home.show();
-                        break;
-                    case "getDeviceTemperatureOffset":
-                        device.show();
-                        break;
+                    case "getHeatingCircuits":
+                    case "getHome":
                     case "getInstallations":
-                        home.show();
-                        break;
-                    case "getUsers":
-                        home.show();
-                        break;
-                    case "getState":
-                        home.show();
-                        break;
                     case "getMobileDevices":
+                    case "getState":
+                    case "getUsers":
+                    case "getWeather":
+                    case "getZones":
+                    case "getZoneStates":
+                    case "isAnyoneAtHome":
+                    case "updatePresence":
                         home.show();
                         break;
-                    case "getMobileDevice":
+
+                    case "clearZoneOverlay":
+                    case "getAwayConfiguration":
+                    case "getTimeTables":
+                    case "getZoneCapabilities":
+                    case "getZoneControl":
+                    case "getZoneOverlay":
+                    case "getZoneState":
                         home.show();
+                        zone.show();
+                        break;
+
+                    case "getDeviceTemperatureOffset":
+                    case "identifyDevice":
                         device.show();
                         break;
+
+                    case "getMobileDevice":
                     case "getMobileDeviceSettings":
                         home.show();
                         device.show();
                         break;
+
                     case "setGeoTracking":
                         home.show();
                         device.show();
                         geoTracking.show();
                         break;
-                    case "getZones":
-                        home.show();
-                        break;
-                    case "getZoneState":
-                        home.show();
-                        zone.show();
-                        break;
-                    case "getZoneStates":
-                        home.show();
-                        break;
-                    case "getZoneCapabilities":
-                        home.show();
-                        zone.show();
-                        break;
-                    case "getZoneOverlay":
-                        home.show();
-                        zone.show();
-                        break;
+
                     case "getZoneDayReport":
                         home.show();
                         zone.show();
                         reportDate.show();
                         break;
-                    case "getTimeTables":
-                        home.show();
-                        zone.show();
-                        break;
-                    case "getAwayConfiguration":
-                        home.show();
-                        zone.show();
-                        break;
+
                     case "getTimeTable":
                         home.show();
                         zone.show();
                         timetable.show();
                         break;
-                    case "clearZoneOverlay":
-                        home.show();
-                        zone.show();
-                        break;
+
                     case "setZoneOverlay":
                         home.show();
                         zone.show();
                         overlay.show();
                         break;
+
                     case "setDeviceTemperatureOffset":
                         device.show();
                         temperatureOffset.show();
                         break;
-                    case "identifyDevice":
-                        device.show();
-                        break;
+
                     case "setChildlock":
                         device.show();
                         childlock.show();
                         break;
+
                     case "setPresence":
                         home.show();
                         presence.show();
                         break;
-                    case "isAnyoneAtHome":
-                        home.show();
-                        break;
-                    case "updatePresence":
-                        home.show();
-                        break;
+
                     case "setWindowDetection":
                         home.show();
                         zone.show();
                         windowDetection.show();
                         break;
+
                     case "setOpenWindowMode":
                         home.show();
                         zone.show();
                         windowMode.show();
-                        break;
-                    case "getAirComfort":
-                        home.show();
-                        break;
-                    case "getAirComfortDetailed":
-                        home.show();
                         break;
                 }
             });
