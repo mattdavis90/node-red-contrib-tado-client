@@ -1,6 +1,6 @@
 {
   "name": "node-red-contrib-tado-client",
-  "version": "0.10.3",
+  "version": "0.10.4",
   "description": "Tado web API client node for Node Red",
   "dependencies": {
     "node-tado-client": "^0.12.3"
@@ -18,7 +18,11 @@
   "node-red": {
     "nodes": {
       "tado": "tado.js"
-    }
+    },
+    "version": ">=1.3.0"
+  },
+  "engines": {
+    "node": ">=12.0.0"
   },
   "author": "Matt Davis <mattdavis90@googlemail.com>",
   "license": "MIT",
