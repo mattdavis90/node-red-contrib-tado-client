@@ -101,7 +101,6 @@ module.exports = function(RED) {
 				}).catch(err => {
 					node.status({ fill: "red", shape: "ring", text: "errored" });
 					if (done) {
-						//console.log(err);						
 						if (err.response) {	
 						  done(err.response.data);
 						} else if (err.request) {						  
@@ -202,12 +201,11 @@ module.exports = function(RED) {
 					break;
 					
 				case "addEnergyIQTariff":
-					call(arg("homeId"), arg("unit"), arg("startDate"), arg("endDate"), Number(arg("tariffInCents")));
+					call(arg("homeId"), arg("unit"), arg("startDate"), arg("endDate"), parseFloat(arg("tariffInCents").toFixed(2)));
 					break;
 
 				case "updateEnergyIQTariff":
-					//console.log(node);
-					call(arg("homeId"), arg("tariffId"), arg("unit"), arg("startDate"), arg("endDate"), Number(arg("tariffInCents")));
+					call(arg("homeId"), arg("tariffId"), arg("unit"), arg("startDate"), arg("endDate"), parseFloat(arg("tariffInCents").toFixed(2)));
 					break;
 					
 				case "addEnergyIQMeterReading":
@@ -215,7 +213,6 @@ module.exports = function(RED) {
 					break;
 					
 				case "deleteEnergyIQMeterReading":
-				console.log(node);
 					call(arg("homeId"), arg("readingId"));
 					break;
 					
