@@ -213,8 +213,7 @@ module.exports = function(RED) {
 					call(arg("homeId"), arg("readingDate"), parseInt(arg("reading"), 10));
 					break;
 					
-				case "deleteEnergyIQMeterReading":
-				console.log(node);
+				case "deleteEnergyIQMeterReading":				
 					call(arg("homeId"), arg("readingId"));
 					break;
 					
