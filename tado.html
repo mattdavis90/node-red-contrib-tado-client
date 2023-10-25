@@ -85,6 +85,15 @@
                 <option value="setPresence" data-i18n="tado.option.set-presence"></option>
                 <option value="updatePresence" data-i18n="tado.option.update-presence"></option>
             </optgroup>
+			<optgroup data-i18n="[label]tado.optgroup.energy-iq">
+                <option value="getEnergyIQ" data-i18n="tado.option.get-energy-iq"></option>
+				<option value="getEnergyIQTariff" data-i18n="tado.option.get-energy-iq-tariff"></option>
+				<option value="addEnergyIQTariff" data-i18n="tado.option.add-energy-iq-tariff"></option>
+				<option value="updateEnergyIQTariff" data-i18n="tado.option.update-energy-iq-tariff"></option>
+				<option value="getEnergyIQMeterReadings" data-i18n="tado.option.get-energy-iq-meter-readings"></option>
+				<option value="addEnergyIQMeterReading" data-i18n="tado.option.add-energy-iq-meter-readings"></option>
+				<option value="deleteEnergyIQMeterReading" data-i18n="tado.option.delete-energy-iq-meter-readings"></option>
+            </optgroup>
         </select>
     </div>
     <div class="form-row" id="tadoHomeId">
@@ -103,9 +112,25 @@
         <label for="node-input-timetableId"><i class="fa fa-home"></i> <span data-i18n="tado.label.timetable-id"></span></label>
         <input type="text" id="node-input-timetableId" data-i18n="[placeholder]tado.label.timetable-id">
     </div>
+	<div class="form-row" id="tadoTariffId">
+        <label for="node-input-tariffId"><i class="fa fa-search"></i> <span data-i18n="tado.label.tariff-id"></span></label>
+        <input type="text" id="node-input-tariffId" data-i18n="[placeholder]tado.label.tariff-id">
+    </div>
+    <div class="form-row" id="tadoReadingDate">
+        <label for="node-input-readingDate"><i class="fa fa-th"></i> <span data-i18n="tado.label.reading-date"></span></label>
+        <input type="text" id="node-input-readingDate" data-i18n="[placeholder]tado.label.reading-date">
+    </div>
     <div class="form-row" id="tadoReportDate">
-        <label for="node-input-reportDate"><i class="fa fa-th"></i> <span data-i18n="tado.label.reportDate"></span></label>
-        <input type="text" id="node-input-reportDate" data-i18n="[placeholder]tado.label.reportDate">
+        <label for="node-input-reportDate"><i class="fa fa-th"></i> <span data-i18n="tado.label.report-date"></span></label>
+        <input type="text" id="node-input-reportDate" data-i18n="[placeholder]tado.label.report-date">
+    </div>
+	<div class="form-row" id="tadoStartDate">
+        <label for="node-input-startDate"><i class="fa fa-th"></i> <span data-i18n="tado.label.start-date"></span></label>
+        <input type="text" id="node-input-startDate" data-i18n="[placeholder]tado.label.start-date">
+    </div>
+	<div class="form-row" id="tadoEndDate">
+        <label for="node-input-endDate"><i class="fa fa-th"></i> <span data-i18n="tado.label.end-date"></span></label>
+        <input type="text" id="node-input-endDate" data-i18n="[placeholder]tado.label.end-date">
     </div>
     <div id="tadoOverlayForm">
         <div class="form-row" id="tadoPower">
@@ -152,6 +177,25 @@
                 </select>
             </div>
         </div>
+    </div>
+	<div class="form-row" id="tadoUnit">
+        <label for="node-input-unit"><i class="fa fa-credit-card"></i> <span data-i18n="tado.label.unit"></span></label>
+        <select id="node-input-unit" style="width:60%; margin-right:5px;">
+            <option value="m3" data-i18n="tado.option.unit-m3"></option>
+            <option value="kWh" data-i18n="tado.option.unit-kwh"></option>
+        </select>
+    </div>
+	<div class="form-row" id="tadoTariffInCents">
+        <label for="node-input-tariffInCents"><i class="fa fa-money"></i> <span data-i18n="tado.label.tariff-in-cents"></span></label>
+        <input type="text" id="node-input-tariffInCents" data-i18n="[placeholder]tado.label.tariff-in-cents">
+    </div>
+	<div class="form-row" id="tadoReading">
+        <label for="node-input-reading"><i class="fa fa-search"></i> <span data-i18n="tado.label.reading"></span></label>
+        <input type="text" id="node-input-reading" data-i18n="[placeholder]tado.label.reading">
+    </div>
+	<div class="form-row" id="tadoReadingId">
+        <label for="node-input-readingId"><i class="fa fa-search"></i> <span data-i18n="tado.label.reading-id"></span></label>
+        <input type="text" id="node-input-readingId" data-i18n="[placeholder]tado.label.reading-id">
     </div>
     <div class="form-row" id="tadoTemperatureOffset">
         <label for="node-input-temperatureOffset"><i class="fa fa-thermometer-half"></i> <span data-i18n="tado.label.temperature-offset"></span></label>
@@ -290,28 +334,36 @@
         category: 'heating',
         color: "rgb(255, 255, 255)",
         defaults: {
-            configName: { type: "tado-config", required: true },
-            apiCall: { value: "getMe" },
-            homeId: { value: "" },
-            deviceId: { value: "" },
-            zoneId: { value: "" },
-            power: { value: "on" },
-            temperature: { value: "18" },
-            terminationType: { value: "manual" },
-            terminationTimeout: { value: 900, validate: RED.validators.number() },
-            fanSpeed: { value: "AUTO" },
-            acMode: { value: "AUTO" },
-            name: { value: "" },
-            reportDate: { value: "" },
-            presence: { value: "HOME" },
-            geoTracking: { value: true },
-            temperatureOffset: { value: 0 },
-            windowDetection: { value: true },
-            windowDetectionTimeout: { value: 900 },
-            openWindowMode: { value: true },
-            childlock: { value: false },
-            timetableId: { value: "" },
-        },
+			configName: { type: "tado-config", required: true },
+			apiCall: { value: "getMe" },
+			homeId: { value: "" },
+			acMode: { value: "AUTO" },			
+			childlock: { value: false },			
+			deviceId: { value: "" },
+			fanSpeed: { value: "AUTO" },
+			geoTracking: { value: true },			
+			name: { value: "" },
+			openWindowMode: { value: true },
+			power: { value: "on" },
+			presence: { value: "HOME" },
+			reading: { value: 0 },			
+			readingDate: { value: "" },
+			readingId: { value: "" },
+			reportDate: { value: "" },
+			startDate: { value: "" },
+			endDate: { value: "" },
+			tariffId: { value: "" },
+			tariffInCents: { value: 0, validate: RED.validators.number() },
+			temperature: { value: "18" },
+			temperatureOffset: { value: 0 },
+			terminationTimeout: { value: 900, validate: RED.validators.number() },
+			terminationType: { value: "manual" },
+			timetableId: { value: "" },
+			unit: { value: "m3" },
+			windowDetection: { value: true },
+			windowDetectionTimeout: { value: 900 },
+			zoneId: { value: "" }
+		},
         inputs: 1,
         outputs: 1,
         icon: "tado.png",
@@ -327,13 +379,21 @@
 
                 const childlock = $('#tadoChildlock');
                 const device = $('#tadoDeviceId');
+				const endDate = $('#tadoEndDate');
                 const geoTracking = $('#tadoGeoTracking');
                 const home = $('#tadoHomeId');
                 const overlay = $('#tadoOverlayForm');
                 const presence = $('#tadoPresence');
+				const reading = $('#tadoReading');
+				const readingDate = $('#tadoReadingDate');				
+				const readingId = $('#tadoReadingId');
                 const reportDate = $('#tadoReportDate');
-                const temperatureOffset = $('#tadoTemperatureOffset');
+				const startDate = $('#tadoStartDate');
+				const tariffId = $('#tadoTariffId');
+                const tariffInCents = $('#tadoTariffInCents');
+				const temperatureOffset = $('#tadoTemperatureOffset');
                 const timetable = $('#tadoTimetableId');
+				const unit = $('#tadoUnit');
                 const windowDetection = $('#tadoWindowDetectionForm');
                 const windowMode = $('#tadoOpenWindowMode');
                 const zone = $('#tadoZoneId');
@@ -341,13 +401,21 @@
                 [
                     childlock,
                     device,
+					endDate,
                     geoTracking,
                     home,
                     overlay,
                     presence,
+					reading,
+					readingId,
+					readingDate,
                     reportDate,
+					startDate,
+					tariffId,
+					tariffInCents,
                     temperatureOffset,
                     timetable,
+					unit,
                     windowDetection,
                     windowMode,
                     zone,
@@ -360,6 +428,9 @@
                     case "getAirComfort":
                     case "getAirComfortDetailed":
                     case "getDevices":
+					case "getEnergyIQ":
+					case "getEnergyIQMeterReadings":
+					case "getEnergyIQTariff":					
                     case "getHeatingCircuits":
                     case "getHome":
                     case "getInstallations":
@@ -370,10 +441,10 @@
                     case "getZones":
                     case "getZoneStates":
                     case "isAnyoneAtHome":
-                    case "updatePresence":
+					case "updatePresence":
                         home.show();
                         break;
-
+						
                     case "clearZoneOverlay":
                     case "getAwayConfiguration":
                     case "getTimeTables":
@@ -400,8 +471,8 @@
                         home.show();
                         device.show();
                         geoTracking.show();
-                        break;
-
+                        break;					
+			
                     case "getZoneDayReport":
                         home.show();
                         zone.show();
@@ -446,6 +517,33 @@
                         zone.show();
                         windowMode.show();
                         break;
+						
+					case "addEnergyIQTariff":
+						home.show();
+						unit.show();
+						startDate.show();
+						endDate.show();
+						tariffInCents.show();
+						break;
+						
+					case "updateEnergyIQTariff":
+						home.show();
+						tariffId.show();
+						unit.show();						
+						tariffInCents.show();
+						break;
+						
+					case "addEnergyIQMeterReading":
+						home.show();
+						readingDate.show();
+						reading.show();
+						break;
+						
+					case "deleteEnergyIQMeterReading":
+						home.show();
+						readingId.show();
+						break;
+
                 }
             });
 
