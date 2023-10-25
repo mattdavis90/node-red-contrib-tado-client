@@ -206,14 +206,16 @@ module.exports = function(RED) {
 					break;
 
 				case "updateEnergyIQTariff":
-					call(arg("homeId"), arg("tariffId"), arg("unit"), Number(arg("tariffInCents")));
+					//console.log(node);
+					call(arg("homeId"), arg("tariffId"), arg("unit"), arg("startDate"), arg("endDate"), Number(arg("tariffInCents")));
 					break;
 					
 				case "addEnergyIQMeterReading":
 					call(arg("homeId"), arg("readingDate"), parseInt(arg("reading"), 10));
 					break;
 					
-				case "deleteEnergyIQMeterReading":				
+				case "deleteEnergyIQMeterReading":
+				console.log(node);
 					call(arg("homeId"), arg("readingId"));
 					break;
 					
