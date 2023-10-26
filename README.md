@@ -46,6 +46,8 @@ trigger the API. If the message on the input contains any of the following field
 * windowDetectionTimeout
 * zoneId
 
+### Note: For AC users - Tado changed from FanSpeed to FanLevel. If you zone shows FanLevel then please use Level1, Level2, etc. as the FanSpeed parameter, otherwise use High, Medium, Low.
+
 The response from the Tado API is represented in ```msg.payload``` and the generating API call is ```msg.topic```.
 
 ## Credits

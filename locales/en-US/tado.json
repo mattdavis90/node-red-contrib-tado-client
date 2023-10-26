@@ -79,6 +79,9 @@
             "home": "Home",
             "identify-device": "Identify a Device",
             "is-anyone-at-home": "Is Anyone at Home?",
+            "level1": "Level 1",
+            "level2": "Level 2",
+            "level3": "Level 3",
             "locked": "Locked",
             "low": "Low",
             "manual": "Manual Termination",
@@ -92,12 +95,13 @@
             "set-presence": "Set Presence",
             "set-window-detection": "Configure Window Detection for a Zone",
             "set-zone-overlay": "Set a Zone's Overlay",
+            "silent": "Silent",
             "timer": "Timer Based Termination",
-            "unlocked": "Unlocked",
-            "unit-m3": "m3",
             "unit-kwh": "kWh",
-            "update-presence": "Update Presence",
-            "update-energy-iq-tariff": "Update Energy Tariff"
+            "unit-m3": "m3",
+            "unlocked": "Unlocked",
+            "update-energy-iq-tariff": "Update Energy Tariff",
+            "update-presence": "Update Presence"
         },
         "optgroup": {
             "account": "Account",
