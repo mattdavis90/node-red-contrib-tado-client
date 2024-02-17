@@ -2,7 +2,8 @@
 
 [![Node.js Package](https://github.com/mattdavis90/node-red-contrib-tado-client/actions/workflows/npm-publish.yml/badge.svg)](https://github.com/mattdavis90/node-red-contrib-tado-client/actions/workflows/npm-publish.yml)
 
-### Note: From v0.9.0 onward this node requires at least nodejs v12 due to using async functions.
+> [!IMPORTANT]
+> From v0.9.0 onward this node requires at least nodejs v12 due to using async functions.
 
 A <a href="http://nodered.org" target="_new">Node-RED</a> node with the shared configuration that lets you connect to the Tado Web API.
 
@@ -84,7 +85,8 @@ trigger the API. If the message on the input contains any of the following field
   - deleteEnergyIQMeterReading (msg.homeId)
 
 
-### Note: For AC users - Tado changed from FanSpeed to FanLevel. If you zone shows FanLevel then please use Level1, Level2, etc. as the FanSpeed parameter, otherwise use High, Medium, Low.
+> [!NOTE]
+> For AC users - Tado changed from FanSpeed to FanLevel. If you zone shows FanLevel then please use Level1, Level2, etc. as the FanSpeed parameter, otherwise use High, Medium, Low.
 
 The response from the Tado API is represented in ```msg.payload``` and the generating API call is ```msg.topic```.
 
