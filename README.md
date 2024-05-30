@@ -1,15 +1,19 @@
 # Tado Web API Node with shared config
 
-[![Node.js Package](https://github.com/mattdavis90/node-red-contrib-tado-client/actions/workflows/npm-publish.yml/badge.svg)](https://github.com/mattdavis90/node-red-contrib-tado-client/actions/workflows/npm-publish.yml)
-
-> [!IMPORTANT]
-> From v0.9.0 onward this node requires at least nodejs v12 due to using async functions.
-
 A <a href="http://nodered.org" target="_new">Node-RED</a> node with the shared configuration that lets you connect to the Tado Web API.
 
 *Please note: The library used by this node is derived from reverse engineering the Tado Web API and hence may be unstable.*
 
-## Install
+> [!IMPORTANT]
+> From v0.9.0 onward this node requires at least nodejs v12 due to using async functions.
+
+## Installation
+
+### Nodered Palette (Preferred)
+
+You can install the node from the built-in Nodered palette. It is available on the menu in the top-right corner of Nodered, under the "Manage Palette" option; search for tado.
+
+### Using NPM
 
 Run the following command in the root directory of your Node-RED install or home directory (usually ~/.node-red) and will also install
 needed libraries.
@@ -18,14 +22,33 @@ needed libraries.
 npm install node-red-contrib-tado-client
 ```
 
-## Usage
+## Getting Started
 
-First, create a Tado Config node and enter your Tado username and password. This node connects to the Tado Web API and gets an OAuth2
-token for further transactions.
+### Install the Example Flow
 
-You can create multiple Tado nodes, each of which interacts with a single end-point on the Tado API.
+There is an example flow available in the repo. I'd recommend giving it a go to trial the functionality available. [Link to example](https://github.com/mattdavis90/node-red-contrib-tado-client/blob/master/examples/tado.json)
 
-The node is triggered by each message on the input, regardless of content. This allows creating flows using other Nodes to
+The example can be installed from the Nodered menu in the top-right, then choose "Import", and paste the JSON from the example into the box. It
+is a good idea to change the target to "New Flow" so you don't override any of your existing nodes. Once imported make sure to deploy the changes.
+
+### Configure the Node
+
+Open the Tado configuration node by selecting the Nodered menu and choosing "Configuration Nodes" then double clicking the "Tado Config" node
+in the righthand sidebar. This will open the configuration window, here you can enter your Tado username and password, click update to save.
+You can then press deploy to update your Nodered.
+
+
+### Find your home_id
+
+In order to use most API calls you'll need to know your Tado `home_id`. This can be found using the first example (`getMe`) from the example
+flow. Make sure you've done the previous step and click the inject button to the left of the `getMe` node. You should see your `home_id`
+in the debug message pane on the righthand side. You can now edit other Tado nodes to include this `home_id` value.
+
+### Going further
+
+You can create multiple Tado nodes, each of which interacts with a single end-point on the Tado API. Many are demoed in the example.
+
+The node is triggered by each message on the input, regardless of content. This allows creating flows using other nodes to
 trigger the API. If the message on the input contains any of the following fields then they will ovewrite the properties on the node.
 
 * Account:
