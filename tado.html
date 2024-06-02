@@ -134,10 +134,10 @@
     </div>
     <div id="tadoOverlayForm">
         <div class="form-row" id="tadoPower">
-            <label for="node-input-power"><i class="fa fa-power-off"></i> <span data-i18n="tado.label.power"></span></label>
+            <label for="node-input-power"><i class="fa fa-power-off"></i> <span data-i18n="tado.label.heating-power"></span></label>
             <select id="node-input-power" style="width:60%; margin-right:5px;">
-                <option value="on" data-i18n="tado.option.on"></option>
-                <option value="off" data-i18n="tado.option.off"></option>
+                <option value="on" data-i18n="tado.option.heating-on"></option>
+                <option value="off" data-i18n="tado.option.heating-off"></option>
             </select>
         </div>
         <div id="tadoPowerForm">
@@ -178,6 +178,30 @@
                     <option value="DRY" data-i18n="tado.option.dry"></option>
                     <option value="FAN" data-i18n="tado.option.fan"></option>
                     <option value="HEAT" data-i18n="tado.option.heat"></option>
+                </select>
+            </div>
+            <div class="form-row" id="tadoHorizontalSwing">
+                <label for="node-input-horizontal-swing"><i class="fa fa-arrows-h"></i> <span data-i18n="tado.label.horizontal-swing"></span></label>
+                <select id="node-input-horizontal-swing" style="width:60%; margin-right:5px;">
+                    <option value="OFF" data-i18n="tado.option.off"></option>
+                    <option value="ON" data-i18n="tado.option.on"></option>
+                    <option value="RIGHT" data-i18n="tado.option.right"></option>
+                    <option value="MID-RIGHT" data-i18n="tado.option.mid-right"></option>
+                    <option value="MID" data-i18n="tado.option.mid"></option>
+                    <option value="MID-LEFT" data-i18n="tado.option.mid-left"></option>
+                    <option value="LEFT" data-i18n="tado.option.left"></option>
+                </select>
+            </div>
+            <div class="form-row" id="tadoVerticalSwing">
+                <label for="node-input-vertical-swing"><i class="fa fa-arrows-v"></i> <span data-i18n="tado.label.vertical-swing"></span></label>
+                <select id="node-input-vertical-swing" style="width:60%; margin-right:5px;">
+                    <option value="OFF" data-i18n="tado.option.off"></option>
+                    <option value="ON" data-i18n="tado.option.on"></option>
+                    <option value="DOWN" data-i18n="tado.option.down"></option>
+                    <option value="MID-DOWN" data-i18n="tado.option.mid-down"></option>
+                    <option value="MID" data-i18n="tado.option.mid"></option>
+                    <option value="MID-UP" data-i18n="tado.option.mid-up"></option>
+                    <option value="UP" data-i18n="tado.option.up"></option>
                 </select>
             </div>
         </div>
@@ -338,14 +362,16 @@
         category: 'heating',
         color: "rgb(255, 255, 255)",
         defaults: {
-            configName: { type: "tado-config", required: true },
-            apiCall: { value: "getMe" },
-            homeId: { value: "" },
             acMode: { value: "AUTO" },
+            apiCall: { value: "getMe" },
             childlock: { value: false },
+            configName: { type: "tado-config", required: true },
             deviceId: { value: "" },
+            endDate: { value: "" },
             fanSpeed: { value: "AUTO" },
             geoTracking: { value: true },
+            homeId: { value: "" },
+            horizontalSwing: { value: "off" },
             name: { value: "" },
             openWindowMode: { value: true },
             power: { value: "on" },
@@ -355,7 +381,6 @@
             readingId: { value: "" },
             reportDate: { value: "" },
             startDate: { value: "" },
-            endDate: { value: "" },
             tariffId: { value: "" },
             tariffInCents: { value: 0, validate: function(v) { return v === undefined || RED.validators.number()(v); } },
             temperature: { value: "18" },
@@ -364,9 +389,10 @@
             terminationType: { value: "manual" },
             timetableId: { value: "" },
             unit: { value: "m3" },
+            verticalSwing: { value: "off" },
             windowDetection: { value: true },
             windowDetectionTimeout: { value: 900 },
-            zoneId: { value: "" }
+            zoneId: { value: "" },
         },
         inputs: 1,
         outputs: 1,

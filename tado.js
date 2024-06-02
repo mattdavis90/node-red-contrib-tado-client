@@ -35,35 +35,37 @@ module.exports = function(RED) {
         const node = this;
 
         [
-            "apiCall",
-            "homeId",
-            "deviceId",
-            "zoneId",
-            "power",
-            "temperature",
-            "terminationType",
-            "terminationTimeout",
-            "fanSpeed",
             "acMode",
+            "apiCall",
+            "childlock",
+            "configName",
+            "deviceId",
+            "endDate",
+            "fanSpeed",
+            "geoTracking",
+            "homeId",
+            "horizontalSwing",
             "name",
+            "openWindowMode",
+            "power",
+            "presence",
             "reading",
             "readingDate",
             "readingId",
             "reportDate",
             "startDate",
-            "endDate",
-            "presence",
             "tariffId",
+            "tariffInCents",
+            "temperature",
             "temperatureOffset",
+            "terminationTimeout",
+            "terminationType",
             "timetableId",
-            "geoTracking",
+            "unit",
+            "verticalSwing",
             "windowDetection",
             "windowDetectionTimeout",
-            "unit",
-            "tariffInCents",
-            "openWindowMode",
-            "childlock",
-            "configName",
+            "zoneId",
         ].forEach((k) => {
             node[k] = config[k];
         });
@@ -176,7 +178,7 @@ module.exports = function(RED) {
                 case "setZoneOverlay": {
                     const type = arg("terminationType");
                     const termination = type === "timer" ? arg("terminationTimeout") : type;
-                    call(arg("homeId"), arg("zoneId"), arg("power"), arg("temperature"), termination, arg("fanSpeed"), arg("acMode"));
+                    call(arg("homeId"), arg("zoneId"), arg("power"), arg("temperature"), termination, arg("fanSpeed"), arg("acMode"), arg("verticalSwing"), arg("horizontalSwing"));
                     break;
                 }
 
@@ -217,7 +219,11 @@ module.exports = function(RED) {
                     break;
 
                 default:
-                    node.error(`invalid apiCall "${apiCall}"`);
+                    if (node.tadoConfig.hasOwnProperty(apiCall)) {
+                        call(msg.payload);
+                    } else {
+                        node.error(`invalid apiCall "${apiCall}"`);
+                    }
                     break;
             }
         });
