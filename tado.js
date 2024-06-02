@@ -220,7 +220,7 @@ module.exports = function(RED) {
 
                 default:
                     if (typeof node.tadoConfig.tado[apiCall] === "function") {
-                        if (msg.payload instanceof Array) {
+                        if (Array.isArray(msg.payload)) {
                             call(...msg.payload);
                         } else {
                             call(msg.payload);
