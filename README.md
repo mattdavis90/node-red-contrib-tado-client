@@ -137,6 +137,24 @@ properties on the node.
 The response from the Tado API is represented in ```msg.payload``` and the
 generating API call is ```msg.topic```.
 
+## Advanced Usage
+
+It is now possible to make API calls that aren't in the list above but that
+have been implemented in the underlying
+[library](https://github.com/mattdavis90/node-tado-client/).
+
+This can be done by injecting a `msg.apiCall` with the function name and a
+`msg.payload` with an array of arguments.
+
+For instance to call the `clearZoneOverlays` API as defined
+[here](https://github.com/mattdavis90/node-tado-client/blob/a2ae3f3913f13ec5f754ba05eda7bda37c9e97d0/src/index.ts#L453)
+but not yet exposed in Node-RED, you could do the following.
+
+* Configure an `Inject` node with the following properties
+  - `msg.apiCall` = `clearZoneOverlays`
+  - `msg.payload` = `[12345, [1, 2, 3]]` - where `12345` is your home_id and
+  `[1, 2, 3]` is a list of zones to clear
+
 ## Credits
 
 This node is based on the work of
