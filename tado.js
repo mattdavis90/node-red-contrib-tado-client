@@ -219,8 +219,12 @@ module.exports = function(RED) {
                     break;
 
                 default:
-                    if (node.tadoConfig.hasOwnProperty(apiCall)) {
-                        call(msg.payload);
+                    if (typeof node.tadoConfig.tado[apiCall] === "function") {
+                        if (msg.payload instanceof Array) {
+                            call(...msg.payload);
+                        } else {
+                            call(msg.payload);
+                        }
                     } else {
                         node.error(`invalid apiCall "${apiCall}"`);
                     }
