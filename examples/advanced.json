@@ -1,0 +1,270 @@
+[
+    {
+        "id": "f13c18b017f80295",
+        "type": "tab",
+        "label": "Flow 2",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "e7c47735e23946c7",
+        "type": "inject",
+        "z": "f13c18b017f80295",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 100,
+        "y": 60,
+        "wires": [
+            [
+                "a214ec8ff4c3f6c5"
+            ]
+        ]
+    },
+    {
+        "id": "c06dd6a372ed67b1",
+        "type": "tado",
+        "z": "f13c18b017f80295",
+        "acMode": "AUTO",
+        "apiCall": "getZones",
+        "configName": "d1cf260f.0bb368",
+        "deviceId": "",
+        "endDate": "",
+        "fanSpeed": "AUTO",
+        "geoTracking": true,
+        "homeId": "",
+        "name": "",
+        "openWindowMode": true,
+        "power": "on",
+        "presence": "HOME",
+        "reading": "",
+        "readingDate": "",
+        "readingId": "",
+        "reportDate": "",
+        "startDate": "",
+        "tariffId": "",
+        "tariffInCents": "0",
+        "temperature": "18",
+        "temperatureOffset": 0,
+        "terminationTimeout": 900,
+        "terminationType": "manual",
+        "timetableId": "",
+        "windowDetection": true,
+        "windowDetectionTimeout": 900,
+        "zoneId": "3",
+        "x": 320,
+        "y": 160,
+        "wires": [
+            [
+                "2c239e5a00f643bd"
+            ]
+        ]
+    },
+    {
+        "id": "bbbe7d1e2d469540",
+        "type": "function",
+        "z": "f13c18b017f80295",
+        "name": "Clear All Overlays",
+        "func": "const overlays = [];\n\nfor (const zone of msg.payload) {\n    overlays.push(zone.id);\n}\n\nreturn {\n    apiCall: \"clearZoneOverlays\",\n    payload: [\n        msg.homeId,\n        overlays,\n        \"MANUAL\"\n    ]\n}",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 530,
+        "y": 200,
+        "wires": [
+            [
+                "0fd706789171578d"
+            ]
+        ]
+    },
+    {
+        "id": "d7ce16038bb88350",
+        "type": "function",
+        "z": "f13c18b017f80295",
+        "name": "Boost All Zones",
+        "func": "const overlays = [];\n\nfor (const zone of msg.payload) {\n    overlays.push({\n        zone_id: zone.id,\n        power: \"ON\",\n        temperature: {\n            celsius: 23\n        }\n    });\n}\n\nreturn {\n    apiCall: \"setZoneOverlays\",\n    payload: [\n        msg.homeId,\n        overlays,\n        \"MANUAL\"\n    ]\n}",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 520,
+        "y": 140,
+        "wires": [
+            [
+                "0fd706789171578d"
+            ]
+        ]
+    },
+    {
+        "id": "0fd706789171578d",
+        "type": "tado",
+        "z": "f13c18b017f80295",
+        "acMode": "AUTO",
+        "apiCall": "getMe",
+        "configName": "d1cf260f.0bb368",
+        "deviceId": "",
+        "endDate": "",
+        "fanSpeed": "AUTO",
+        "geoTracking": true,
+        "homeId": "",
+        "name": "Custom API Call",
+        "openWindowMode": true,
+        "power": "on",
+        "presence": "HOME",
+        "reading": "",
+        "readingDate": "",
+        "readingId": "",
+        "reportDate": "",
+        "startDate": "",
+        "tariffId": "",
+        "tariffInCents": "0",
+        "temperature": "18",
+        "temperatureOffset": 0,
+        "terminationTimeout": 900,
+        "terminationType": "manual",
+        "timetableId": "",
+        "windowDetection": true,
+        "windowDetectionTimeout": 900,
+        "zoneId": "3",
+        "x": 740,
+        "y": 160,
+        "wires": [
+            [
+                "acee2fb7c096e0fa"
+            ]
+        ]
+    },
+    {
+        "id": "acee2fb7c096e0fa",
+        "type": "debug",
+        "z": "f13c18b017f80295",
+        "name": "debug",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 910,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "a214ec8ff4c3f6c5",
+        "type": "tado",
+        "z": "f13c18b017f80295",
+        "acMode": "AUTO",
+        "apiCall": "getMe",
+        "configName": "d1cf260f.0bb368",
+        "deviceId": "",
+        "endDate": "",
+        "fanSpeed": "AUTO",
+        "geoTracking": true,
+        "homeId": "",
+        "name": "",
+        "openWindowMode": true,
+        "power": "on",
+        "presence": "HOME",
+        "reading": "",
+        "readingDate": "",
+        "readingId": "",
+        "reportDate": "",
+        "startDate": "",
+        "tariffId": "",
+        "tariffInCents": "0",
+        "temperature": "18",
+        "temperatureOffset": 0,
+        "terminationTimeout": 900,
+        "terminationType": "manual",
+        "timetableId": "",
+        "windowDetection": true,
+        "windowDetectionTimeout": 900,
+        "zoneId": "3",
+        "x": 270,
+        "y": 60,
+        "wires": [
+            [
+                "915c43bfccb7c54b"
+            ]
+        ]
+    },
+    {
+        "id": "915c43bfccb7c54b",
+        "type": "change",
+        "z": "f13c18b017f80295",
+        "name": "Set Home ID",
+        "rules": [
+            {
+                "t": "set",
+                "p": "homeId",
+                "pt": "msg",
+                "to": "msg.payload.homes[0].id",
+                "tot": "jsonata"
+            },
+            {
+                "t": "delete",
+                "p": "payload",
+                "pt": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 130,
+        "y": 160,
+        "wires": [
+            [
+                "c06dd6a372ed67b1"
+            ]
+        ]
+    },
+    {
+        "id": "2c239e5a00f643bd",
+        "type": "function",
+        "z": "f13c18b017f80295",
+        "name": "Get Air Comfort",
+        "func": "return {\n    apiCall: \"apiCall\",\n    payload: [\n        `/api/v2/homes/${msg.homeId}/airComfort`,\n        \"GET\"\n    ]\n}",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 520,
+        "y": 260,
+        "wires": [
+            [
+                "0fd706789171578d"
+            ]
+        ]
+    },
+    {
+        "id": "d1cf260f.0bb368",
+        "type": "tado-config",
+        "name": ""
+    }
+]

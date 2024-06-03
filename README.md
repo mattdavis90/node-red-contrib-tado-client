@@ -155,6 +155,22 @@ but not yet exposed in Node-RED, you could do the following.
   - `msg.payload` = `[12345, [1, 2, 3]]` - where `12345` is your home_id and
   `[1, 2, 3]` is a list of zones to clear
 
+Other available apiCalls can be found by reading the library documenation but
+some noteworthy calls are:
+
+* [clearZoneOverlays](https://github.com/mattdavis90/node-tado-client/blob/a2ae3f3913f13ec5f754ba05eda7bda37c9e97d0/src/index.ts#L453)
+
+* [setZoneOverlays](https://github.com/mattdavis90/node-tado-client/blob/a2ae3f3913f13ec5f754ba05eda7bda37c9e97d0/src/index.ts#L461)
+
+* [apiCall](https://github.com/mattdavis90/node-tado-client/blob/a2ae3f3913f13ec5f754ba05eda7bda37c9e97d0/src/index.ts#L125)
+  - This is the generic API call wrapper with authenticaion already handled you
+  can call this method to test new API calls that even the underlying library
+  doesn't yet support. If you find something useful then please open a PR or
+  Issue with what you find. Thanks!
+
+Examples of using this advanced functionality can be found in the examples
+[here](https://github.com/mattdavis90/node-red-contrib-tado-client/blob/master/examples/advanced.json)
+
 ## Credits
 
 This node is based on the work of
