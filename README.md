@@ -6,8 +6,9 @@ configuration that lets you connect to the Tado Web API.
 *Please note: The library used by this node is derived from reverse engineering
 the Tado Web API and hence may be unstable.*
 
-> [!IMPORTANT] From v0.9.0 onward this node requires at least nodejs v12 due to
-> using async functions.
+> [!IMPORTANT]
+> From v0.9.0 onward this node requires at least nodejs v12 due to using async
+> functions.
 
 ## Installation
 
@@ -130,9 +131,10 @@ properties on the node.
   - deleteEnergyIQMeterReading (msg.homeId)
 
 
-> [!NOTE] For AC users - Tado changed from FanSpeed to FanLevel. If you zone
-> shows FanLevel then please use Level1, Level2, etc. as the FanSpeed
-> parameter, otherwise use High, Medium, Low.
+> [!NOTE]
+> For AC users - Tado changed from FanSpeed to FanLevel. If you zone shows
+> FanLevel then please use Level1, Level2, etc. as the FanSpeed parameter,
+> otherwise use High, Medium, Low.
 
 The response from the Tado API is represented in ```msg.payload``` and the
 generating API call is ```msg.topic```.
