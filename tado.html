@@ -55,7 +55,7 @@
                 <option value="getZones" data-i18n="tado.option.get-zones"></option>
                 <option value="clearZoneOverlay" data-i18n="tado.option.clear-zone-overlay"></option>
                 <option value="getAwayConfiguration" data-i18n="tado.option.get-away-configuration"></option>
-                <option value="getDefaultZoneOverlay" data-i18n="tado.option.get-default-zone-overlay"></option>
+                <option value="getZoneDefaultOverlay" data-i18n="tado.option.get-zone-default-overlay"></option>
                 <option value="getTimeTable" data-i18n="tado.option.get-timetable"></option>
                 <option value="getTimeTables" data-i18n="tado.option.get-timetables"></option>
                 <option value="getZoneCapabilities" data-i18n="tado.option.get-zone-capabilities"></option>
@@ -66,7 +66,7 @@
                 <option value="getZoneStates" data-i18n="tado.option.get-zone-states"></option>
                 <option value="setOpenWindowMode" data-i18n="tado.option.set-open-window"></option>
                 <option value="setZoneOverlay" data-i18n="tado.option.set-zone-overlay"></option>
-                <option value="setDefaultZoneOverlay" data-i18n="tado.option.set-default-zone-overlay"></option>
+                <option value="setZoneDefaultOverlay" data-i18n="tado.option.set-zone-default-overlay"></option>
             </optgroup>
             <optgroup data-i18n="[label]tado.optgroup.device">
                 <option value="getDevices" data-i18n="tado.option.get-devices"></option>
@@ -496,17 +496,17 @@
 
                     case "clearZoneOverlay":
                     case "getAwayConfiguration":
-                    case "getDefaultZoneOverlay":
                     case "getTimeTables":
                     case "getZoneCapabilities":
                     case "getZoneControl":
+                    case "getZoneDefaultOverlay":
                     case "getZoneOverlay":
                     case "getZoneState":
                         home.show();
                         zone.show();
                         break;
 
-                    case "setDefaultZoneOverlay":
+                    case "setZoneDefaultOverlay":
                         home.show();
                         zone.show();
                         defaultTerminaion.show();

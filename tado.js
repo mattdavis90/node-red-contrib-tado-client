@@ -147,10 +147,10 @@ module.exports = function(RED) {
 
                 case "clearZoneOverlay":
                 case "getAwayConfiguration":
-                case "getDefaultZoneOverlay":
                 case "getTimeTables":
                 case "getZoneCapabilities":
                 case "getZoneControl":
+                case "getZoneDefaultOverlay":
                 case "getZoneOverlay":
                 case "getZoneState":
                     call(arg("homeId"), arg("zoneId"));
@@ -178,7 +178,7 @@ module.exports = function(RED) {
                     call(arg("homeId"), arg("zoneId"), arg("timetableId"));
                     break;
 
-                case "setDefaultZoneOverlay": {
+                case "setZoneDefaultOverlay": {
                     const type = arg("defaultTerminationType");
                     let termination = {
                         terminationCondition: {
