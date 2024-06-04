@@ -55,6 +55,7 @@
                 <option value="getZones" data-i18n="tado.option.get-zones"></option>
                 <option value="clearZoneOverlay" data-i18n="tado.option.clear-zone-overlay"></option>
                 <option value="getAwayConfiguration" data-i18n="tado.option.get-away-configuration"></option>
+                <option value="getDefaultZoneOverlay" data-i18n="tado.option.get-default-zone-overlay"></option>
                 <option value="getTimeTable" data-i18n="tado.option.get-timetable"></option>
                 <option value="getTimeTables" data-i18n="tado.option.get-timetables"></option>
                 <option value="getZoneCapabilities" data-i18n="tado.option.get-zone-capabilities"></option>
@@ -65,6 +66,7 @@
                 <option value="getZoneStates" data-i18n="tado.option.get-zone-states"></option>
                 <option value="setOpenWindowMode" data-i18n="tado.option.set-open-window"></option>
                 <option value="setZoneOverlay" data-i18n="tado.option.set-zone-overlay"></option>
+                <option value="setDefaultZoneOverlay" data-i18n="tado.option.set-default-zone-overlay"></option>
             </optgroup>
             <optgroup data-i18n="[label]tado.optgroup.device">
                 <option value="getDevices" data-i18n="tado.option.get-devices"></option>
@@ -131,6 +133,20 @@
     <div class="form-row" id="tadoEndDate">
         <label for="node-input-endDate"><i class="fa fa-th"></i> <span data-i18n="tado.label.end-date"></span></label>
         <input type="text" id="node-input-endDate" data-i18n="[placeholder]tado.label.end-date">
+    </div>
+    <div id="tadoDefaultOverlayForm">
+        <div class="form-row" id="tadoDefaultTerminationType">
+            <label for="node-input-defaultTerminationType"><i class="fa fa-ban"></i> <span data-i18n="tado.label.termination-type"></span></label>
+            <select id="node-input-defaultTerminationType" style="width:60%; margin-right:5px;">
+                <option value="manual" data-i18n="tado.option.manual"></option>
+                <option value="auto" data-i18n="tado.option.auto"></option>
+                <option value="timer" data-i18n="tado.option.timer"></option>
+            </select>
+        </div>
+        <div class="form-row" id="tadoDefaultTerminationTimeout">
+            <label for="node-input-defaultTerminationTimeout"><i class="fa fa-history"></i> <span data-i18n="tado.label.termination-timeout"></span></label>
+            <input type="text" id="node-input-defaultTerminationTimeout" data-i18n="[placeholder]tado.label.temperature-timeout">
+        </div>
     </div>
     <div id="tadoOverlayForm">
         <div class="form-row" id="tadoPower">
@@ -409,6 +425,7 @@
                 const apiCall = $('#node-input-apiCall').val();
 
                 const childlock = $('#tadoChildlock');
+                const defaultTerminaion = $('#tadoDefaultOverlayForm');
                 const device = $('#tadoDeviceId');
                 const endDate = $('#tadoEndDate');
                 const geoTracking = $('#tadoGeoTracking');
@@ -431,6 +448,7 @@
 
                 [
                     childlock,
+                    defaultTerminaion,
                     device,
                     endDate,
                     geoTracking,
@@ -478,6 +496,7 @@
 
                     case "clearZoneOverlay":
                     case "getAwayConfiguration":
+                    case "getDefaultZoneOverlay":
                     case "getTimeTables":
                     case "getZoneCapabilities":
                     case "getZoneControl":
@@ -485,6 +504,12 @@
                     case "getZoneState":
                         home.show();
                         zone.show();
+                        break;
+
+                    case "setDefaultZoneOverlay":
+                        home.show();
+                        zone.show();
+                        defaultTerminaion.show();
                         break;
 
                     case "getDeviceTemperatureOffset":

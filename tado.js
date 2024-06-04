@@ -39,6 +39,8 @@ module.exports = function(RED) {
             "apiCall",
             "childlock",
             "configName",
+            "defaultTerminationTimeout",
+            "defaultTerminationType",
             "deviceId",
             "endDate",
             "fanSpeed",
@@ -145,6 +147,7 @@ module.exports = function(RED) {
 
                 case "clearZoneOverlay":
                 case "getAwayConfiguration":
+                case "getDefaultZoneOverlay":
                 case "getTimeTables":
                 case "getZoneCapabilities":
                 case "getZoneControl":
@@ -174,6 +177,18 @@ module.exports = function(RED) {
                 case "getTimeTable":
                     call(arg("homeId"), arg("zoneId"), arg("timetableId"));
                     break;
+
+                case "setDefaultZoneOverlay": {
+                    const type = arg("defaultTerminationType");
+                    let termination = {
+                        terminationCondition: {
+                            type,
+                            durationInSeconds: type == "TIMER" ? arg("defaultTerminationTimeout") : undefined,
+                        },
+                    };
+                    call(arg("homeId"), arg("zoneId"), termination);
+                    break;
+                }
 
                 case "setZoneOverlay": {
                     const type = arg("terminationType");
