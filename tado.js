@@ -180,7 +180,7 @@ module.exports = function(RED) {
 
                 case "setZoneDefaultOverlay": {
                     const type = arg("defaultTerminationType");
-                    let termination = {
+                    const termination = {
                         terminationCondition: {
                             type,
                             durationInSeconds: type == "TIMER" ? arg("defaultTerminationTimeout") : undefined,
