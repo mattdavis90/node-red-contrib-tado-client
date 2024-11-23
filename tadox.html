@@ -58,14 +58,6 @@
                 <option value="manualControl" data-i18n="tado.option.manual-control"></option>
                 <option value="resumeSchedule" data-i18n="tado.option.resume-schedule"></option>
             </optgroup>
-            <optgroup data-i18n="[label]tado.optgroup.device">
-                <option value="getDevices" data-i18n="tado.option.get-devices"></option>
-                <option value="getDeviceTemperatureOffset" data-i18n="tado.option.get-device-temperature-offset"></option>
-                <option value="identifyDevice" data-i18n="tado.option.identify-device"></option>
-                <option value="setChildlock" data-i18n="tado.option.set-child-lock"></option>
-                <option value="setDeviceTemperatureOffset" data-i18n="tado.option.set-device-temperature-offset"></option>
-                <option value="setWindowDetection" data-i18n="tado.option.set-window-detection"></option>
-            </optgroup>
             <optgroup data-i18n="[label]tado.optgroup.mobiledevice">
                 <option value="getMobileDevices" data-i18n="tado.option.get-mobile-devices"></option>
                 <option value="getMobileDevice" data-i18n="tado.option.get-mobile-device"></option>
@@ -462,7 +454,6 @@
 
                     case "getAirComfort":
                     case "getAirComfortDetailed":
-                    case "getDevices":
                     case "getEnergyIQ":
                     case "getEnergyIQMeterReadings":
                     case "getEnergyIQTariff":
@@ -492,11 +483,6 @@
                         overlay.show();
                         break;
 
-                    case "getDeviceTemperatureOffset":
-                    case "identifyDevice":
-                        device.show();
-                        break;
-
                     case "getMobileDevice":
                     case "getMobileDeviceSettings":
                         home.show();
@@ -507,16 +493,6 @@
                         home.show();
                         device.show();
                         geoTracking.show();
-                        break;
-
-                    case "setDeviceTemperatureOffset":
-                        device.show();
-                        temperatureOffset.show();
-                        break;
-
-                    case "setChildlock":
-                        device.show();
-                        childlock.show();
                         break;
 
                     case "setPresence":

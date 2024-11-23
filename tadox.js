@@ -127,7 +127,6 @@ module.exports = function(RED) {
 
                 case "getAirComfort":
                 case "getAirComfortDetailed":
-                case "getDevices":
                 case "getEnergyIQ":
                 case "getEnergyIQMeterReadings":
                 case "getEnergyIQTariff":
@@ -157,11 +156,6 @@ module.exports = function(RED) {
                     break;
                 }
 
-                case "getDeviceTemperatureOffset":
-                case "identifyDevice":
-                    call(arg("deviceId"));
-                    break;
-
                 case "getMobileDevice":
                 case "getMobileDeviceSettings":
                     call(arg("homeId"), arg("deviceId"));
@@ -169,14 +163,6 @@ module.exports = function(RED) {
 
                 case "setGeoTracking":
                     call(arg("homeId"), arg("deviceId"), bool(arg("geoTracking")));
-                    break;
-
-                case "setDeviceTemperatureOffset":
-                    call(arg("deviceId"), arg("temperatureOffset"));
-                    break;
-
-                case "setChildlock":
-                    call(arg("deviceId"), arg("childlock"));
                     break;
 
                 case "setPresence":
