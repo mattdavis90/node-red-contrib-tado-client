@@ -18,6 +18,7 @@
             "reading-date": "Reading Date (yyyy-mm-dd)",
             "reading-id": "Reading ID",
             "report-date": "Report Date (yyyy-mm-dd)",
+            "room-id": "Room ID",
             "start-date": "Start Date (yyyy-mm-dd)",
             "tariff-id": "Tariff ID",
             "tariff-in-cents": "Tariff (cents)",
@@ -65,6 +66,9 @@
             "get-mobile-device": "Get a Mobile Device",
             "get-mobile-device-settings": "Get a Mobile Device's Settings",
             "get-mobile-devices": "Get all Mobile Devices",
+            "get-room-state": "Get Room State",
+            "get-rooms": "Get Rooms",
+            "get-rooms-and-devices": "Get Rooms and Devices",
             "get-state": "Get the Home's State",
             "get-timetable": "Get a Timetable",
             "get-timetables": "Get all Timetables",
@@ -91,6 +95,7 @@
             "locked": "Locked",
             "low": "Low",
             "manual": "Manual Termination",
+            "manual-control": "Manual Control",
             "mid": "Mid",
             "mid-down": "Mid Down",
             "mid-left": "Mid Left",
@@ -99,6 +104,7 @@
             "middle": "Middle",
             "off": "Off",
             "on": "On",
+            "resume-schedule": "Resume Schedule",
             "right": "Right",
             "set-child-lock": "Set Child Lock",
             "set-device-temperature-offset": "Set a Device's Temperature Offset",
@@ -124,6 +130,7 @@
             "home": "Home",
             "mobiledevice": "Mobile Device",
             "presence": "Presence",
+            "rooms": "Rooms",
             "zone": "Zone"
         }
     }
