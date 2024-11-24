@@ -36,6 +36,7 @@ module.exports = function(RED) {
 
         [
             "acMode",
+            "action",
             "apiCall",
             "childlock",
             "configName",
@@ -130,18 +131,23 @@ module.exports = function(RED) {
                 case "getEnergyIQ":
                 case "getEnergyIQMeterReadings":
                 case "getEnergyIQTariff":
+                case "getFeatures":
                 case "getHeatingCircuits":
                 case "getHome":
                 case "getInstallations":
                 case "getMobileDevices":
+                case "getRooms":
+                case "getRoomsAndDevices":
                 case "getState":
                 case "getUsers":
                 case "getWeather":
                 case "isAnyoneAtHome":
                 case "updatePresence":
-                case "getRoomsAndDevices":
-                case "getRooms":
                     call(arg("homeId"));
+                    break;
+
+                case "performQuickAction":
+                    call(arg("homeId"), arg("action"));
                     break;
 
                 case "getRoomState":

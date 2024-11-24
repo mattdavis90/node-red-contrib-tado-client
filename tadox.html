@@ -50,6 +50,8 @@
                 <option value="getState" data-i18n="tado.option.get-state"></option>
                 <option value="getUsers" data-i18n="tado.option.get-users"></option>
                 <option value="getWeather" data-i18n="tado.option.get-weather"></option>
+                <option value="getFeatures" data-i18n="tado.option.get-features"></option>
+                <option value="performQuickAction" data-i18n="tado.option.quick-action"></option>
             </optgroup>
             <optgroup data-i18n="[label]tado.optgroup.rooms">
                 <option value="getRoomsAndDevices" data-i18n="tado.option.get-rooms-and-devices"></option>
@@ -267,10 +269,19 @@
     </div>
     <div id="tadoChildlock">
         <div class="form-row">
-            <label for="node-input-childlock"><i class="fa fa-windows"></i> <span data-i18n="tado.label.child-lock"></span></label>
+            <label for="node-input-childlock"><i class="fa fa-lock"></i> <span data-i18n="tado.label.child-lock"></span></label>
             <select id="node-input-childlock" style="width:60%; margin-right:5px;">
                 <option value="false" data-i18n="tado.option.unlocked"></option>
                 <option value="true" data-i18n="tado.option.locked"></option>
+            </select>
+        </div>
+    </div>
+    <div id="tadoQuickAction">
+        <div class="form-row">
+            <label for="node-input-quick-action"><i class="fa fa-bolt"></i> <span data-i18n="tado.label.quick-action"></span></label>
+            <select id="node-input-quick-action" style="width:60%; margin-right:5px;">
+                <option value="allOff" data-i18n="tado.option.all-off"></option>
+                <option value="resumeSchedule" data-i18n="tado.option.resume-schedule"></option>
             </select>
         </div>
     </div>
@@ -402,6 +413,7 @@
             $('#node-input-apiCall').change(function () {
                 const apiCall = $('#node-input-apiCall').val();
 
+                const action = $('#tadoQuickAction');
                 const childlock = $('#tadoChildlock');
                 const defaultTerminaion = $('#tadoDefaultOverlayForm');
                 const device = $('#tadoDeviceId');
@@ -425,6 +437,7 @@
                 const room = $('#tadoRoomId');
 
                 [
+                    action,
                     childlock,
                     defaultTerminaion,
                     device,
@@ -457,18 +470,24 @@
                     case "getEnergyIQ":
                     case "getEnergyIQMeterReadings":
                     case "getEnergyIQTariff":
+                    case "getFeatures":
                     case "getHeatingCircuits":
                     case "getHome":
                     case "getInstallations":
                     case "getMobileDevices":
+                    case "getRooms":
+                    case "getRoomsAndDevices":
                     case "getState":
                     case "getUsers":
                     case "getWeather":
                     case "isAnyoneAtHome":
                     case "updatePresence":
-                    case "getRoomsAndDevices":
-                    case "getRooms":
                         home.show();
+                        break;
+
+                    case "performQuickAction":
+                        home.show();
+                        action.show();
                         break;
 
                     case "getRoomState":
