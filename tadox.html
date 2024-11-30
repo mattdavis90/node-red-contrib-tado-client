@@ -148,61 +148,13 @@
                 <label for="node-input-terminationType"><i class="fa fa-ban"></i> <span data-i18n="tado.label.termination-type"></span></label>
                 <select id="node-input-terminationType" style="width:60%; margin-right:5px;">
                     <option value="manual" data-i18n="tado.option.manual"></option>
-                    <option value="auto" data-i18n="tado.option.auto"></option>
+                    <option value="next_time_block" data-i18n="tado.option.next-block"></option>
                     <option value="timer" data-i18n="tado.option.timer"></option>
                 </select>
             </div>
             <div class="form-row" id="tadoTerminationTimeout">
                 <label for="node-input-terminationTimeout"><i class="fa fa-history"></i> <span data-i18n="tado.label.termination-timeout"></span></label>
                 <input type="text" id="node-input-terminationTimeout" data-i18n="[placeholder]tado.label.termination-timeout">
-            </div>
-            <div class="form-row" id="tadoFanSpeed">
-                <label for="node-input-fanSpeed"><i class="fa fa-tachometer"></i> <span data-i18n="tado.label.fan-speed"></span></label>
-                <select id="node-input-fanSpeed" style="width:60%; margin-right:5px;">
-                    <option value="AUTO" data-i18n="tado.option.auto-fan"></option>
-                    <option value="LOW" data-i18n="tado.option.low"></option>
-                    <option value="MIDDLE" data-i18n="tado.option.middle"></option>
-                    <option value="HIGH" data-i18n="tado.option.high"></option>
-                    <option value="LEVEL1" data-i18n="tado.option.level1"></option>
-                    <option value="LEVEL2" data-i18n="tado.option.level2"></option>
-                    <option value="LEVEL3" data-i18n="tado.option.level3"></option>
-                    <option value="LEVEL4" data-i18n="tado.option.level4"></option>
-                    <option value="SILENT" data-i18n="tado.option.silent"></option>
-                </select>
-            </div>
-            <div class="form-row" id="tadoAcMode">
-                <label for="node-input-acMode"><i class="fa fa-random"></i> <span data-i18n="tado.label.ac-mode"></span></label>
-                <select id="node-input-acMode" style="width:60%; margin-right:5px;">
-                    <option value="AUTO" data-i18n="tado.option.auto-fan"></option>
-                    <option value="COOL" data-i18n="tado.option.cool"></option>
-                    <option value="DRY" data-i18n="tado.option.dry"></option>
-                    <option value="FAN" data-i18n="tado.option.fan"></option>
-                    <option value="HEAT" data-i18n="tado.option.heat"></option>
-                </select>
-            </div>
-            <div class="form-row" id="tadoHorizontalSwing">
-                <label for="node-input-horizontalSwing"><i class="fa fa-arrows-h"></i> <span data-i18n="tado.label.horizontal-swing"></span></label>
-                <select id="node-input-horizontalSwing" style="width:60%; margin-right:5px;">
-                    <option value="OFF" data-i18n="tado.option.off"></option>
-                    <option value="ON" data-i18n="tado.option.on"></option>
-                    <option value="RIGHT" data-i18n="tado.option.right"></option>
-                    <option value="MID_RIGHT" data-i18n="tado.option.mid-right"></option>
-                    <option value="MID" data-i18n="tado.option.mid"></option>
-                    <option value="MID_LEFT" data-i18n="tado.option.mid-left"></option>
-                    <option value="LEFT" data-i18n="tado.option.left"></option>
-                </select>
-            </div>
-            <div class="form-row" id="tadoVerticalSwing">
-                <label for="node-input-verticalSwing"><i class="fa fa-arrows-v"></i> <span data-i18n="tado.label.vertical-swing"></span></label>
-                <select id="node-input-verticalSwing" style="width:60%; margin-right:5px;">
-                    <option value="OFF" data-i18n="tado.option.off"></option>
-                    <option value="ON" data-i18n="tado.option.on"></option>
-                    <option value="DOWN" data-i18n="tado.option.down"></option>
-                    <option value="MID_DOWN" data-i18n="tado.option.mid-down"></option>
-                    <option value="MID" data-i18n="tado.option.mid"></option>
-                    <option value="MID_UP" data-i18n="tado.option.mid-up"></option>
-                    <option value="UP" data-i18n="tado.option.up"></option>
-                </select>
             </div>
         </div>
     </div>
@@ -243,37 +195,6 @@
             <option value="true" data-i18n="tado.option.enabled"></option>
             <option value="false" data-i18n="tado.option.disabled"></option>
         </select>
-    </div>
-    <div id="tadoWindowDetectionForm">
-        <div class="form-row">
-            <label for="node-input-windowDetection"><i class="fa fa-windows"></i> <span data-i18n="tado.label.window-detection"></span></label>
-            <select id="node-input-windowDetection" style="width:60%; margin-right:5px;">
-                <option value="true" data-i18n="tado.option.enabled"></option>
-                <option value="false" data-i18n="tado.option.disabled"></option>
-            </select>
-        </div>
-        <div class="form-row">
-            <label for="node-input-windowDetectionTimeout"><i class="fa fa-windows"></i> <span data-i18n="tado.label.window-detection-timeout"></span></label>
-            <input type="text" id="node-input-windowDetectionTimeout" data-i18n="[placeholder]tado.label.window-detection-timeout">
-        </div>
-    </div>
-    <div id="tadoOpenWindowMode">
-        <div class="form-row">
-            <label for="node-input-openWindowMode"><i class="fa fa-windows"></i> <span data-i18n="tado.label.open-window-mode"></span></label>
-            <select id="node-input-openWindowMode" style="width:60%; margin-right:5px;">
-                <option value="true" data-i18n="tado.option.activate"></option>
-                <option value="false" data-i18n="tado.option.cancel"></option>
-            </select>
-        </div>
-    </div>
-    <div id="tadoChildlock">
-        <div class="form-row">
-            <label for="node-input-childlock"><i class="fa fa-lock"></i> <span data-i18n="tado.label.child-lock"></span></label>
-            <select id="node-input-childlock" style="width:60%; margin-right:5px;">
-                <option value="false" data-i18n="tado.option.unlocked"></option>
-                <option value="true" data-i18n="tado.option.locked"></option>
-            </select>
-        </div>
     </div>
     <div id="tadoQuickAction">
         <div class="form-row">
@@ -337,9 +258,6 @@
 
         <dt class="optional">geoTracking <span class="property-type">boolean</span></dt>
         <dd> Enabled or disable Geo Tracking on a device</dd>
-
-        <dt class="optional">windowDetectionTimeout <span class="property-type">number</span></dt>
-        <dd> How long should window detection shut-off the heating for</dd>
     </dl>
 
     <h3>Outputs</h3>
@@ -368,7 +286,6 @@
         defaults: {
             acMode: { value: "AUTO" },
             apiCall: { value: "getMe" },
-            childlock: { value: false },
             configName: { type: "tadox-config", required: true },
             defaultTerminationTimeout: { value: 900 },
             defaultTerminationType: { value: "manual" },
@@ -398,8 +315,6 @@
             timetableId: { value: "" },
             unit: { value: "m3" },
             verticalSwing: { value: "off" },
-            windowDetection: { value: true },
-            windowDetectionTimeout: { value: 900 },
         },
         inputs: 1,
         outputs: 1,
@@ -415,7 +330,6 @@
                 const apiCall = $('#node-input-apiCall').val();
 
                 const action = $('#tadoQuickAction');
-                const childlock = $('#tadoChildlock');
                 const defaultTerminaion = $('#tadoDefaultOverlayForm');
                 const device = $('#tadoDeviceId');
                 const endDate = $('#tadoEndDate');
@@ -433,13 +347,10 @@
                 const temperatureOffset = $('#tadoTemperatureOffset');
                 const timetable = $('#tadoTimetableId');
                 const unit = $('#tadoUnit');
-                const windowDetection = $('#tadoWindowDetectionForm');
-                const windowMode = $('#tadoOpenWindowMode');
                 const room = $('#tadoRoomId');
 
                 [
                     action,
-                    childlock,
                     defaultTerminaion,
                     device,
                     endDate,
@@ -457,8 +368,6 @@
                     temperatureOffset,
                     timetable,
                     unit,
-                    windowDetection,
-                    windowMode,
                     room,
                 ].forEach(e => e.hide());
 

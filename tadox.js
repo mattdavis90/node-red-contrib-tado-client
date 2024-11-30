@@ -35,20 +35,13 @@ module.exports = function(RED) {
         const node = this;
 
         [
-            "acMode",
             "apiCall",
-            "childlock",
             "configName",
-            "defaultTerminationTimeout",
-            "defaultTerminationType",
             "deviceId",
             "endDate",
-            "fanSpeed",
             "geoTracking",
             "homeId",
-            "horizontalSwing",
             "name",
-            "openWindowMode",
             "power",
             "presence",
             "quickAction",
@@ -66,9 +59,6 @@ module.exports = function(RED) {
             "terminationType",
             "timetableId",
             "unit",
-            "verticalSwing",
-            "windowDetection",
-            "windowDetectionTimeout",
         ].forEach((k) => {
             node[k] = config[k];
         });
@@ -157,7 +147,7 @@ module.exports = function(RED) {
                 case "manualControl": {
                     const type = arg("terminationType");
                     const termination = type === "timer" ? arg("terminationTimeout") : type;
-                    call(arg("homeId"), arg("roomId"), arg("power"), arg("temperature"), termination, arg("fanSpeed"), arg("acMode"), arg("verticalSwing"), arg("horizontalSwing"));
+                    call(arg("homeId"), arg("roomId"), arg("power"), termination, arg("temperature"));
                     break;
                 }
 
