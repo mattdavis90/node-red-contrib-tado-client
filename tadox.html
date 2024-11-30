@@ -1,4 +1,4 @@
-<script type="text/x-red" data-template-name="tado-config">
+<script type="text/x-red" data-template-name="tadox-config">
     <div class="form-row">
         <label for="node-config-input-username"><i class="fa fa-user"></i> <span data-i18n="node-red:common.label.username"></span></label>
         <input type="text" id="node-config-input-username">
@@ -14,7 +14,7 @@
 </script>
 
 <script type="text/javascript">
-    RED.nodes.registerType('tado-config', {
+    RED.nodes.registerType('tadox-config', {
         category: 'config',
         color: "rgb(218, 196, 180)",
         defaults: {
@@ -25,12 +25,12 @@
             password: { type: "password" }
         },
         label: function () {
-            return this.name || "Tado Config";
+            return this.name || "TadoX Config";
         }
     });
 </script>
 
-<script type="text/x-red" data-template-name="tado">
+<script type="text/x-red" data-template-name="tadox">
     <div class="form-row">
         <label for="node-input-configName"><i class="fa fa-server"></i> <span data-i18n="tado.label.config-name"></span></label>
         <input type="text" id="node-input-configName">
@@ -291,7 +291,7 @@
     </div>
 </script>
 
-<script type="text/x-red" data-help-name="tado">
+<script type="text/x-red" data-help-name="tadox">
     <p>A Tado Web API node.</p>
 
     <h3>Inputs</h3>
@@ -362,14 +362,14 @@
 </script>
 
 <script type="text/javascript">
-    RED.nodes.registerType('tado', {
+    RED.nodes.registerType('tadox', {
         category: 'heating',
         color: "rgb(255, 255, 255)",
         defaults: {
             acMode: { value: "AUTO" },
             apiCall: { value: "getMe" },
             childlock: { value: false },
-            configName: { type: "tado-config", required: true },
+            configName: { type: "tadox-config", required: true },
             defaultTerminationTimeout: { value: 900 },
             defaultTerminationType: { value: "manual" },
             deviceId: { value: "" },
@@ -402,9 +402,9 @@
         },
         inputs: 1,
         outputs: 1,
-        icon: "tado.png",
+        icon: "tadox.png",
         label: function () {
-            return this.name || `Tado [${this.apiCall}]`;
+            return this.name || `TadoX [${this.apiCall}]`;
         },
         labelStyle: function () {
             return this.name ? "node_label_italic" : "";

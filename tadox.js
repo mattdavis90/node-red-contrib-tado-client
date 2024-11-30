@@ -8,7 +8,7 @@ module.exports = function(RED) {
     /**
      * Config node
      */
-    function TadoConfigNode(config) {
+    function TadoXConfigNode(config) {
         RED.nodes.createNode(this, config);
         const node = this;
 
@@ -20,7 +20,7 @@ module.exports = function(RED) {
         }
     }
 
-    RED.nodes.registerType("tado-config", TadoConfigNode, {
+    RED.nodes.registerType("tadox-config", TadoXConfigNode, {
         credentials: {
             username: { type: "text" },
             password: { type: "password" },
@@ -30,7 +30,7 @@ module.exports = function(RED) {
     /**
      * Tado node
      */
-    function TadoNode(config) {
+    function TadoXNode(config) {
         RED.nodes.createNode(this, config);
         const node = this;
 
@@ -206,5 +206,5 @@ module.exports = function(RED) {
         });
     }
 
-    RED.nodes.registerType("tado", TadoNode);
+    RED.nodes.registerType("tadoX", TadoXNode);
 }
