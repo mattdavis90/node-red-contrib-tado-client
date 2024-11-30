@@ -206,5 +206,5 @@ module.exports = function(RED) {
         });
     }
 
-    RED.nodes.registerType("tadoX", TadoXNode);
+    RED.nodes.registerType("tadox", TadoXNode);
 }
