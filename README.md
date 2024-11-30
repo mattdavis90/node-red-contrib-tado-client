@@ -28,6 +28,9 @@ home directory (usually ~/.node-red) and will also install needed libraries.
 
 ## Getting Started
 
+> [!TIP]
+> From v0.12.0 onwards TadoX support is available as a separate node
+
 ### Install the Example Flow
 
 There is an example flow available in the repo. I'd recommend giving it a go to
