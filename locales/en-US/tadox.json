@@ -42,6 +42,7 @@
             "auto-fan": "Auto",
             "auto-presence": "Auto",
             "away": "Away",
+            "boost": "Boost",
             "cancel": "Cancel",
             "cool": "Cool",
             "delete-energy-iq-meter-readings": "Delete Energy Meter Reading",
