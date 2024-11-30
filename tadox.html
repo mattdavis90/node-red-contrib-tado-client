@@ -117,26 +117,12 @@
         <label for="node-input-endDate"><i class="fa fa-th"></i> <span data-i18n="tado.label.end-date"></span></label>
         <input type="text" id="node-input-endDate" data-i18n="[placeholder]tado.label.end-date">
     </div>
-    <div id="tadoDefaultOverlayForm">
-        <div class="form-row" id="tadoDefaultTerminationType">
-            <label for="node-input-defaultTerminationType"><i class="fa fa-ban"></i> <span data-i18n="tado.label.termination-type"></span></label>
-            <select id="node-input-defaultTerminationType" style="width:60%; margin-right:5px;">
-                <option value="MANUAL" data-i18n="tado.option.manual"></option>
-                <option value="TADO_MODE" data-i18n="tado.option.auto"></option>
-                <option value="TIMER" data-i18n="tado.option.timer"></option>
-            </select>
-        </div>
-        <div class="form-row" id="tadoDefaultTerminationTimeout">
-            <label for="node-input-defaultTerminationTimeout"><i class="fa fa-history"></i> <span data-i18n="tado.label.termination-timeout"></span></label>
-            <input type="text" id="node-input-defaultTerminationTimeout" data-i18n="[placeholder]tado.label.termination-timeout">
-        </div>
-    </div>
     <div id="tadoOverlayForm">
         <div class="form-row" id="tadoPower">
             <label for="node-input-power"><i class="fa fa-power-off"></i> <span data-i18n="tado.label.heating-power"></span></label>
             <select id="node-input-power" style="width:60%; margin-right:5px;">
-                <option value="on" data-i18n="tado.option.on"></option>
-                <option value="off" data-i18n="tado.option.off"></option>
+                <option value="ON" data-i18n="tado.option.on"></option>
+                <option value="OFF" data-i18n="tado.option.off"></option>
             </select>
         </div>
         <div id="tadoPowerForm">
@@ -147,9 +133,9 @@
             <div class="form-row" id="tadoTerminationType">
                 <label for="node-input-terminationType"><i class="fa fa-ban"></i> <span data-i18n="tado.label.termination-type"></span></label>
                 <select id="node-input-terminationType" style="width:60%; margin-right:5px;">
-                    <option value="manual" data-i18n="tado.option.manual"></option>
-                    <option value="next_time_block" data-i18n="tado.option.next-block"></option>
-                    <option value="timer" data-i18n="tado.option.timer"></option>
+                    <option value="MANUAL" data-i18n="tado.option.manual"></option>
+                    <option value="NEXT_TIME_BLOCK" data-i18n="tado.option.next-block"></option>
+                    <option value="TIMER" data-i18n="tado.option.timer"></option>
                 </select>
             </div>
             <div class="form-row" id="tadoTerminationTimeout">
@@ -247,12 +233,6 @@
         <dt class="optional">terminationTimeout <span class="property-type">string</span></dt>
         <dd> the timeout in seconds to clear the overlay</dd>
 
-        <dt class="optional">fanSpeed <span class="property-type">string</span></dt>
-        <dd> the speed of the fan in an AC system (AUTO, LOW, MIDDLE, HIGH)</dd>
-
-        <dt class="optional">acMode <span class="property-type">string</span></dt>
-        <dd> the mode of the AC system (AUTO, COOL, DRY, FAN, HEAT)</dd>
-
         <dt class="optional">presence <span class="property-type">string</span></dt>
         <dd> <code>"home"</code>, <code>"away"</code> or <code>"auto"</code></dd>
 
@@ -284,20 +264,14 @@
         category: 'heating',
         color: "rgb(255, 255, 255)",
         defaults: {
-            acMode: { value: "AUTO" },
             apiCall: { value: "getMe" },
             configName: { type: "tadox-config", required: true },
-            defaultTerminationTimeout: { value: 900 },
-            defaultTerminationType: { value: "manual" },
             deviceId: { value: "" },
             endDate: { value: "" },
-            fanSpeed: { value: "AUTO" },
             geoTracking: { value: true },
             homeId: { value: "" },
-            horizontalSwing: { value: "off" },
             name: { value: "" },
-            openWindowMode: { value: true },
-            power: { value: "on" },
+            power: { value: "ON" },
             presence: { value: "HOME" },
             quickAction: { value: "allOf" },
             reading: { value: 0 },
@@ -314,7 +288,6 @@
             terminationType: { value: "manual" },
             timetableId: { value: "" },
             unit: { value: "m3" },
-            verticalSwing: { value: "off" },
         },
         inputs: 1,
         outputs: 1,
@@ -330,7 +303,6 @@
                 const apiCall = $('#node-input-apiCall').val();
 
                 const action = $('#tadoQuickAction');
-                const defaultTerminaion = $('#tadoDefaultOverlayForm');
                 const device = $('#tadoDeviceId');
                 const endDate = $('#tadoEndDate');
                 const geoTracking = $('#tadoGeoTracking');
@@ -351,7 +323,6 @@
 
                 [
                     action,
-                    defaultTerminaion,
                     device,
                     endDate,
                     geoTracking,
