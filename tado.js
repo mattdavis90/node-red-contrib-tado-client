@@ -128,7 +128,6 @@ module.exports = function(RED) {
                 case "getAirComfort":
                 case "getAirComfortDetailed":
                 case "getDevices":
-                case "getEnergyIQ":
                 case "getEnergyIQMeterReadings":
                 case "getEnergyIQTariff":
                 case "getHeatingCircuits":

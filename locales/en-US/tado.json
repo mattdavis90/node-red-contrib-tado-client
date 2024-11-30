@@ -53,7 +53,6 @@
             "get-air-comfort-detailed": "Get Detailed Air Comfort",
             "get-away-configuration": "Get Away Configuration",
             "get-device-temperature-offset": "Get a Device's Temperature Offset",
-            "get-energy-iq": "Get Energy IQ",
             "get-energy-iq-meter-readings": "Get Energy Meter Readings",
             "get-energy-iq-tariff": "Get Energy Tariff",
             "get-heating-circuits": "Get all Heating Circuits",
