@@ -36,7 +36,6 @@ module.exports = function(RED) {
 
         [
             "acMode",
-            "action",
             "apiCall",
             "childlock",
             "configName",
@@ -52,6 +51,7 @@ module.exports = function(RED) {
             "openWindowMode",
             "power",
             "presence",
+            "quickAction",
             "reading",
             "readingDate",
             "readingId",
@@ -146,7 +146,7 @@ module.exports = function(RED) {
                     break;
 
                 case "performQuickAction":
-                    call(arg("homeId"), arg("action"));
+                    call(arg("homeId"), arg("quickAction"));
                     break;
 
                 case "getRoomState":
