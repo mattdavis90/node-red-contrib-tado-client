@@ -36,6 +36,7 @@ module.exports = function(RED) {
 
         [
             "apiCall",
+            "childlock",
             "configName",
             "deviceId",
             "endDate",
@@ -116,6 +117,7 @@ module.exports = function(RED) {
                     call();
                     break;
 
+                case "getActionableDevices":
                 case "getAirComfort":
                 case "getAirComfortDetailed":
                 case "getEnergyIQMeterReadings":
@@ -123,6 +125,7 @@ module.exports = function(RED) {
                 case "getFeatures":
                 case "getHeatingCircuits":
                 case "getHome":
+                case "getHomeSummary":
                 case "getInstallations":
                 case "getMobileDevices":
                 case "getRooms":
@@ -150,6 +153,14 @@ module.exports = function(RED) {
                     call(arg("homeId"), arg("roomId"), arg("power"), termination, arg("temperature"));
                     break;
                 }
+
+                case "setChildlock":
+                    call(arg("homeId"), arg("deviceId"), bool(arg("childlock")));
+                    break;
+
+                case "setDeviceTemperatureOffset":
+                    call(arg("homeId"), arg("deviceId"), arg("temperatureOffset"));
+                    break;
 
                 case "getMobileDevice":
                 case "getMobileDeviceSettings":

@@ -42,10 +42,12 @@
                 <option value="getMe" data-i18n="tado.option.get-me"></option>
             </optgroup>
             <optgroup data-i18n="[label]tado.optgroup.home">
+                <option value="getActionableDevices" data-i18n="tado.option.get-actionable-devices"></option>
                 <option value="getAirComfort" data-i18n="tado.option.get-air-comfort"></option>
                 <option value="getAirComfortDetailed" data-i18n="tado.option.get-air-comfort-detailed"></option>
                 <option value="getHeatingCircuits" data-i18n="tado.option.get-heating-circuits"></option>
                 <option value="getHome" data-i18n="tado.option.get-home"></option>
+                <option value="getHomeSummary" data-i18n="tado.option.get-home-summary"></option>
                 <option value="getInstallations" data-i18n="tado.option.get-installations"></option>
                 <option value="getState" data-i18n="tado.option.get-state"></option>
                 <option value="getUsers" data-i18n="tado.option.get-users"></option>
@@ -59,6 +61,8 @@
                 <option value="getRoomState" data-i18n="tado.option.get-room-state"></option>
                 <option value="manualControl" data-i18n="tado.option.manual-control"></option>
                 <option value="resumeSchedule" data-i18n="tado.option.resume-schedule"></option>
+                <option value="setChildlock" data-i18n="tado.option.set-child-lock"></option>
+                <option value="setDeviceTemperatureOffset" data-i18n="tado.option.set-device-temperature-offset"></option>
             </optgroup>
             <optgroup data-i18n="[label]tado.optgroup.mobiledevice">
                 <option value="getMobileDevices" data-i18n="tado.option.get-mobile-devices"></option>
@@ -192,6 +196,15 @@
             </select>
         </div>
     </div>
+    <div id="tadoChildlock">
+        <div class="form-row">
+            <label for="node-input-childlock"><i class="fa fa-windows"></i> <span data-i18n="tado.label.child-lock"></span></label>
+            <select id="node-input-childlock" style="width:60%; margin-right:5px;">
+                <option value="false" data-i18n="tado.option.unlocked"></option>
+                <option value="true" data-i18n="tado.option.locked"></option>
+            </select>
+        </div>
+    </div>
     <div class="form-row">
         <label for="node-input-name"><i class="fa fa-tag"></i> <span data-i18n="node-red:common.label.name"></span></label>
         <input type="text" id="node-input-name" data-i18n="[placeholder]node-red:common.label.name">
@@ -265,6 +278,7 @@
         color: "rgb(255, 255, 255)",
         defaults: {
             apiCall: { value: "getMe" },
+            childlock: { value: false },
             configName: { type: "tadox-config", required: true },
             deviceId: { value: "" },
             endDate: { value: "" },
@@ -303,6 +317,7 @@
                 const apiCall = $('#node-input-apiCall').val();
 
                 const action = $('#tadoQuickAction');
+                const childlock = $('#tadoChildlock');
                 const device = $('#tadoDeviceId');
                 const endDate = $('#tadoEndDate');
                 const geoTracking = $('#tadoGeoTracking');
@@ -323,6 +338,7 @@
 
                 [
                     action,
+                    childlock,
                     device,
                     endDate,
                     geoTracking,
@@ -346,6 +362,7 @@
                     case "getMe":
                         break;
 
+                    case "getActionableDevices":
                     case "getAirComfort":
                     case "getAirComfortDetailed":
                     case "getEnergyIQMeterReadings":
@@ -353,6 +370,7 @@
                     case "getFeatures":
                     case "getHeatingCircuits":
                     case "getHome":
+                    case "getHomeSummary":
                     case "getInstallations":
                     case "getMobileDevices":
                     case "getRooms":
@@ -380,6 +398,18 @@
                         home.show();
                         room.show();
                         overlay.show();
+                        break;
+
+                    case "setChildlock":
+                        home.show();
+                        device.show();
+                        childlock.show();
+                        break;
+
+                    case "setDeviceTemperatureOffset":
+                        home.show();
+                        device.show();
+                        temperatureOffset.show();
                         break;
 
                     case "getMobileDevice":
