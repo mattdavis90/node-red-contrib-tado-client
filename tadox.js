@@ -3,16 +3,16 @@
  */
 module.exports = function(RED) {
     "use strict";
-    const { Tado } = require('node-tado-client');
+    const { TadoX } = require('node-tado-client');
 
     /**
      * Config node
      */
-    function TadoConfigNode(config) {
+    function TadoXConfigNode(config) {
         RED.nodes.createNode(this, config);
         const node = this;
 
-        node.tado = new Tado(node.credentials.username, node.credentials.password);
+        node.tado = new TadoX(node.credentials.username, node.credentials.password);
 
         node.call = async function(method) {
             const args = [...arguments].slice(1);
@@ -20,7 +20,7 @@ module.exports = function(RED) {
         }
     }
 
-    RED.nodes.registerType("tado-config", TadoConfigNode, {
+    RED.nodes.registerType("tadox-config", TadoXConfigNode, {
         credentials: {
             username: { type: "text" },
             password: { type: "password" },
@@ -30,31 +30,27 @@ module.exports = function(RED) {
     /**
      * Tado node
      */
-    function TadoNode(config) {
+    function TadoXNode(config) {
         RED.nodes.createNode(this, config);
         const node = this;
 
         [
-            "acMode",
             "apiCall",
             "childlock",
             "configName",
-            "defaultTerminationTimeout",
-            "defaultTerminationType",
             "deviceId",
             "endDate",
-            "fanSpeed",
             "geoTracking",
             "homeId",
-            "horizontalSwing",
             "name",
-            "openWindowMode",
             "power",
             "presence",
+            "quickAction",
             "reading",
             "readingDate",
             "readingId",
             "reportDate",
+            "roomId",
             "startDate",
             "tariffId",
             "tariffInCents",
@@ -64,10 +60,6 @@ module.exports = function(RED) {
             "terminationType",
             "timetableId",
             "unit",
-            "verticalSwing",
-            "windowDetection",
-            "windowDetectionTimeout",
-            "zoneId",
         ].forEach((k) => {
             node[k] = config[k];
         });
@@ -125,39 +117,49 @@ module.exports = function(RED) {
                     call();
                     break;
 
+                case "getActionableDevices":
                 case "getAirComfort":
                 case "getAirComfortDetailed":
-                case "getDevices":
                 case "getEnergyIQMeterReadings":
                 case "getEnergyIQTariff":
+                case "getFeatures":
                 case "getHeatingCircuits":
                 case "getHome":
+                case "getHomeSummary":
                 case "getInstallations":
                 case "getMobileDevices":
+                case "getRooms":
+                case "getRoomsAndDevices":
                 case "getState":
                 case "getUsers":
                 case "getWeather":
-                case "getZones":
-                case "getZoneStates":
                 case "isAnyoneAtHome":
                 case "updatePresence":
                     call(arg("homeId"));
                     break;
 
-                case "clearZoneOverlay":
-                case "getAwayConfiguration":
-                case "getTimeTables":
-                case "getZoneCapabilities":
-                case "getZoneControl":
-                case "getZoneDefaultOverlay":
-                case "getZoneOverlay":
-                case "getZoneState":
-                    call(arg("homeId"), arg("zoneId"));
+                case "performQuickAction":
+                    call(arg("homeId"), arg("quickAction"));
                     break;
 
-                case "getDeviceTemperatureOffset":
-                case "identifyDevice":
-                    call(arg("deviceId"));
+                case "getRoomState":
+                case "resumeSchedule":
+                    call(arg("homeId"), arg("roomId"));
+                    break;
+
+                case "manualControl": {
+                    const type = arg("terminationType");
+                    const termination = type === "timer" ? arg("terminationTimeout") : type;
+                    call(arg("homeId"), arg("roomId"), arg("power"), termination, arg("temperature"));
+                    break;
+                }
+
+                case "setChildlock":
+                    call(arg("homeId"), arg("deviceId"), bool(arg("childlock")));
+                    break;
+
+                case "setDeviceTemperatureOffset":
+                    call(arg("homeId"), arg("deviceId"), arg("temperatureOffset"));
                     break;
 
                 case "getMobileDevice":
@@ -169,51 +171,8 @@ module.exports = function(RED) {
                     call(arg("homeId"), arg("deviceId"), bool(arg("geoTracking")));
                     break;
 
-                case "getZoneDayReport":
-                    call(arg("homeId"), arg("zoneId"), arg("reportDate"));
-                    break;
-
-                case "getTimeTable":
-                    call(arg("homeId"), arg("zoneId"), arg("timetableId"));
-                    break;
-
-                case "setZoneDefaultOverlay": {
-                    const type = arg("defaultTerminationType");
-                    const termination = {
-                        terminationCondition: {
-                            type,
-                            durationInSeconds: type == "TIMER" ? arg("defaultTerminationTimeout") : undefined,
-                        },
-                    };
-                    call(arg("homeId"), arg("zoneId"), termination);
-                    break;
-                }
-
-                case "setZoneOverlay": {
-                    const type = arg("terminationType");
-                    const termination = type === "timer" ? arg("terminationTimeout") : type;
-                    call(arg("homeId"), arg("zoneId"), arg("power"), arg("temperature"), termination, arg("fanSpeed"), arg("acMode"), arg("verticalSwing"), arg("horizontalSwing"));
-                    break;
-                }
-
-                case "setDeviceTemperatureOffset":
-                    call(arg("deviceId"), arg("temperatureOffset"));
-                    break;
-
-                case "setChildlock":
-                    call(arg("deviceId"), arg("childlock"));
-                    break;
-
                 case "setPresence":
                     call(arg("homeId"), arg("presence"));
-                    break;
-
-                case "setWindowDetection":
-                    call(arg("homeId"), arg("zoneId"), bool(arg("windowDetection")), arg("windowDetectionTimeout"));
-                    break;
-
-                case "setOpenWindowMode":
-                    call(arg("homeId"), arg("zoneId"), bool(arg("openWindowMode")));
                     break;
 
                 case "addEnergyIQTariff":
@@ -247,5 +206,5 @@ module.exports = function(RED) {
         });
     }
 
-    RED.nodes.registerType("tado", TadoNode);
+    RED.nodes.registerType("tadox", TadoXNode);
 }

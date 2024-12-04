@@ -1,11 +1,10 @@
 {
   "name": "node-red-contrib-tado-client",
-  "version": "0.11.1",
+  "version": "0.12.0",
   "description": "Tado web API client node for Node Red",
   "dependencies": {
-    "node-tado-client": "^0.20.1"
+    "node-tado-client": "^0.21.0"
   },
-  "devDependencies": {},
   "scripts": {},
   "repository": {
     "type": "git",
@@ -17,7 +16,8 @@
   ],
   "node-red": {
     "nodes": {
-      "tado": "tado.js"
+      "tado": "tado.js",
+      "tadox": "tadox.js"
     },
     "version": ">=1.3.0"
   },

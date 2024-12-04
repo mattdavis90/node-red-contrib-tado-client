@@ -1,4 +1,4 @@
-<script type="text/x-red" data-template-name="tado-config">
+<script type="text/x-red" data-template-name="tadox-config">
     <div class="form-row">
         <label for="node-config-input-username"><i class="fa fa-user"></i> <span data-i18n="node-red:common.label.username"></span></label>
         <input type="text" id="node-config-input-username">
@@ -14,7 +14,7 @@
 </script>
 
 <script type="text/javascript">
-    RED.nodes.registerType('tado-config', {
+    RED.nodes.registerType('tadox-config', {
         category: 'config',
         color: "rgb(218, 196, 180)",
         defaults: {
@@ -25,12 +25,12 @@
             password: { type: "password" }
         },
         label: function () {
-            return this.name || "Tado Config";
+            return this.name || "TadoX Config";
         }
     });
 </script>
 
-<script type="text/x-red" data-template-name="tado">
+<script type="text/x-red" data-template-name="tadox">
     <div class="form-row">
         <label for="node-input-configName"><i class="fa fa-server"></i> <span data-i18n="tado.label.config-name"></span></label>
         <input type="text" id="node-input-configName">
@@ -42,39 +42,27 @@
                 <option value="getMe" data-i18n="tado.option.get-me"></option>
             </optgroup>
             <optgroup data-i18n="[label]tado.optgroup.home">
+                <option value="getActionableDevices" data-i18n="tado.option.get-actionable-devices"></option>
                 <option value="getAirComfort" data-i18n="tado.option.get-air-comfort"></option>
                 <option value="getAirComfortDetailed" data-i18n="tado.option.get-air-comfort-detailed"></option>
                 <option value="getHeatingCircuits" data-i18n="tado.option.get-heating-circuits"></option>
                 <option value="getHome" data-i18n="tado.option.get-home"></option>
+                <option value="getHomeSummary" data-i18n="tado.option.get-home-summary"></option>
                 <option value="getInstallations" data-i18n="tado.option.get-installations"></option>
                 <option value="getState" data-i18n="tado.option.get-state"></option>
                 <option value="getUsers" data-i18n="tado.option.get-users"></option>
                 <option value="getWeather" data-i18n="tado.option.get-weather"></option>
+                <option value="getFeatures" data-i18n="tado.option.get-features"></option>
+                <option value="performQuickAction" data-i18n="tado.option.quick-action"></option>
             </optgroup>
-            <optgroup data-i18n="[label]tado.optgroup.zone">
-                <option value="getZones" data-i18n="tado.option.get-zones"></option>
-                <option value="clearZoneOverlay" data-i18n="tado.option.clear-zone-overlay"></option>
-                <option value="getAwayConfiguration" data-i18n="tado.option.get-away-configuration"></option>
-                <option value="getZoneDefaultOverlay" data-i18n="tado.option.get-zone-default-overlay"></option>
-                <option value="getTimeTable" data-i18n="tado.option.get-timetable"></option>
-                <option value="getTimeTables" data-i18n="tado.option.get-timetables"></option>
-                <option value="getZoneCapabilities" data-i18n="tado.option.get-zone-capabilities"></option>
-                <option value="getZoneControl" data-i18n="tado.option.get-zone-control"></option>
-                <option value="getZoneDayReport" data-i18n="tado.option.get-zone-day-report"></option>
-                <option value="getZoneOverlay" data-i18n="tado.option.get-zone-overlay"></option>
-                <option value="getZoneState" data-i18n="tado.option.get-zone-state"></option>
-                <option value="getZoneStates" data-i18n="tado.option.get-zone-states"></option>
-                <option value="setOpenWindowMode" data-i18n="tado.option.set-open-window"></option>
-                <option value="setZoneOverlay" data-i18n="tado.option.set-zone-overlay"></option>
-                <option value="setZoneDefaultOverlay" data-i18n="tado.option.set-zone-default-overlay"></option>
-            </optgroup>
-            <optgroup data-i18n="[label]tado.optgroup.device">
-                <option value="getDevices" data-i18n="tado.option.get-devices"></option>
-                <option value="getDeviceTemperatureOffset" data-i18n="tado.option.get-device-temperature-offset"></option>
-                <option value="identifyDevice" data-i18n="tado.option.identify-device"></option>
+            <optgroup data-i18n="[label]tado.optgroup.rooms">
+                <option value="getRoomsAndDevices" data-i18n="tado.option.get-rooms-and-devices"></option>
+                <option value="getRooms" data-i18n="tado.option.get-rooms"></option>
+                <option value="getRoomState" data-i18n="tado.option.get-room-state"></option>
+                <option value="manualControl" data-i18n="tado.option.manual-control"></option>
+                <option value="resumeSchedule" data-i18n="tado.option.resume-schedule"></option>
                 <option value="setChildlock" data-i18n="tado.option.set-child-lock"></option>
                 <option value="setDeviceTemperatureOffset" data-i18n="tado.option.set-device-temperature-offset"></option>
-                <option value="setWindowDetection" data-i18n="tado.option.set-window-detection"></option>
             </optgroup>
             <optgroup data-i18n="[label]tado.optgroup.mobiledevice">
                 <option value="getMobileDevices" data-i18n="tado.option.get-mobile-devices"></option>
@@ -105,9 +93,9 @@
         <label for="node-input-deviceId"><i class="fa fa-mobile"></i> <span data-i18n="tado.label.device-id"></span></label>
         <input type="text" id="node-input-deviceId" data-i18n="[placeholder]tado.label.device-id">
     </div>
-    <div class="form-row" id="tadoZoneId">
-        <label for="node-input-zoneId"><i class="fa fa-th"></i> <span data-i18n="tado.label.zone-id"></span></label>
-        <input type="text" id="node-input-zoneId" data-i18n="[placeholder]tado.label.zone-id">
+    <div class="form-row" id="tadoRoomId">
+        <label for="node-input-roomId"><i class="fa fa-th"></i> <span data-i18n="tado.label.room-id"></span></label>
+        <input type="text" id="node-input-roomId" data-i18n="[placeholder]tado.label.room-id">
     </div>
     <div class="form-row" id="tadoTimetableId">
         <label for="node-input-timetableId"><i class="fa fa-home"></i> <span data-i18n="tado.label.timetable-id"></span></label>
@@ -133,26 +121,12 @@
         <label for="node-input-endDate"><i class="fa fa-th"></i> <span data-i18n="tado.label.end-date"></span></label>
         <input type="text" id="node-input-endDate" data-i18n="[placeholder]tado.label.end-date">
     </div>
-    <div id="tadoDefaultOverlayForm">
-        <div class="form-row" id="tadoDefaultTerminationType">
-            <label for="node-input-defaultTerminationType"><i class="fa fa-ban"></i> <span data-i18n="tado.label.termination-type"></span></label>
-            <select id="node-input-defaultTerminationType" style="width:60%; margin-right:5px;">
-                <option value="MANUAL" data-i18n="tado.option.manual"></option>
-                <option value="TADO_MODE" data-i18n="tado.option.auto"></option>
-                <option value="TIMER" data-i18n="tado.option.timer"></option>
-            </select>
-        </div>
-        <div class="form-row" id="tadoDefaultTerminationTimeout">
-            <label for="node-input-defaultTerminationTimeout"><i class="fa fa-history"></i> <span data-i18n="tado.label.termination-timeout"></span></label>
-            <input type="text" id="node-input-defaultTerminationTimeout" data-i18n="[placeholder]tado.label.termination-timeout">
-        </div>
-    </div>
     <div id="tadoOverlayForm">
         <div class="form-row" id="tadoPower">
             <label for="node-input-power"><i class="fa fa-power-off"></i> <span data-i18n="tado.label.heating-power"></span></label>
             <select id="node-input-power" style="width:60%; margin-right:5px;">
-                <option value="on" data-i18n="tado.option.on"></option>
-                <option value="off" data-i18n="tado.option.off"></option>
+                <option value="ON" data-i18n="tado.option.on"></option>
+                <option value="OFF" data-i18n="tado.option.off"></option>
             </select>
         </div>
         <div id="tadoPowerForm">
@@ -163,62 +137,14 @@
             <div class="form-row" id="tadoTerminationType">
                 <label for="node-input-terminationType"><i class="fa fa-ban"></i> <span data-i18n="tado.label.termination-type"></span></label>
                 <select id="node-input-terminationType" style="width:60%; margin-right:5px;">
-                    <option value="manual" data-i18n="tado.option.manual"></option>
-                    <option value="auto" data-i18n="tado.option.auto"></option>
-                    <option value="timer" data-i18n="tado.option.timer"></option>
+                    <option value="MANUAL" data-i18n="tado.option.manual"></option>
+                    <option value="NEXT_TIME_BLOCK" data-i18n="tado.option.next-block"></option>
+                    <option value="TIMER" data-i18n="tado.option.timer"></option>
                 </select>
             </div>
             <div class="form-row" id="tadoTerminationTimeout">
                 <label for="node-input-terminationTimeout"><i class="fa fa-history"></i> <span data-i18n="tado.label.termination-timeout"></span></label>
                 <input type="text" id="node-input-terminationTimeout" data-i18n="[placeholder]tado.label.termination-timeout">
-            </div>
-            <div class="form-row" id="tadoFanSpeed">
-                <label for="node-input-fanSpeed"><i class="fa fa-tachometer"></i> <span data-i18n="tado.label.fan-speed"></span></label>
-                <select id="node-input-fanSpeed" style="width:60%; margin-right:5px;">
-                    <option value="AUTO" data-i18n="tado.option.auto-fan"></option>
-                    <option value="LOW" data-i18n="tado.option.low"></option>
-                    <option value="MIDDLE" data-i18n="tado.option.middle"></option>
-                    <option value="HIGH" data-i18n="tado.option.high"></option>
-                    <option value="LEVEL1" data-i18n="tado.option.level1"></option>
-                    <option value="LEVEL2" data-i18n="tado.option.level2"></option>
-                    <option value="LEVEL3" data-i18n="tado.option.level3"></option>
-                    <option value="LEVEL4" data-i18n="tado.option.level4"></option>
-                    <option value="SILENT" data-i18n="tado.option.silent"></option>
-                </select>
-            </div>
-            <div class="form-row" id="tadoAcMode">
-                <label for="node-input-acMode"><i class="fa fa-random"></i> <span data-i18n="tado.label.ac-mode"></span></label>
-                <select id="node-input-acMode" style="width:60%; margin-right:5px;">
-                    <option value="AUTO" data-i18n="tado.option.auto-fan"></option>
-                    <option value="COOL" data-i18n="tado.option.cool"></option>
-                    <option value="DRY" data-i18n="tado.option.dry"></option>
-                    <option value="FAN" data-i18n="tado.option.fan"></option>
-                    <option value="HEAT" data-i18n="tado.option.heat"></option>
-                </select>
-            </div>
-            <div class="form-row" id="tadoHorizontalSwing">
-                <label for="node-input-horizontalSwing"><i class="fa fa-arrows-h"></i> <span data-i18n="tado.label.horizontal-swing"></span></label>
-                <select id="node-input-horizontalSwing" style="width:60%; margin-right:5px;">
-                    <option value="OFF" data-i18n="tado.option.off"></option>
-                    <option value="ON" data-i18n="tado.option.on"></option>
-                    <option value="RIGHT" data-i18n="tado.option.right"></option>
-                    <option value="MID_RIGHT" data-i18n="tado.option.mid-right"></option>
-                    <option value="MID" data-i18n="tado.option.mid"></option>
-                    <option value="MID_LEFT" data-i18n="tado.option.mid-left"></option>
-                    <option value="LEFT" data-i18n="tado.option.left"></option>
-                </select>
-            </div>
-            <div class="form-row" id="tadoVerticalSwing">
-                <label for="node-input-verticalSwing"><i class="fa fa-arrows-v"></i> <span data-i18n="tado.label.vertical-swing"></span></label>
-                <select id="node-input-verticalSwing" style="width:60%; margin-right:5px;">
-                    <option value="OFF" data-i18n="tado.option.off"></option>
-                    <option value="ON" data-i18n="tado.option.on"></option>
-                    <option value="DOWN" data-i18n="tado.option.down"></option>
-                    <option value="MID_DOWN" data-i18n="tado.option.mid-down"></option>
-                    <option value="MID" data-i18n="tado.option.mid"></option>
-                    <option value="MID_UP" data-i18n="tado.option.mid-up"></option>
-                    <option value="UP" data-i18n="tado.option.up"></option>
-                </select>
             </div>
         </div>
     </div>
@@ -260,25 +186,13 @@
             <option value="false" data-i18n="tado.option.disabled"></option>
         </select>
     </div>
-    <div id="tadoWindowDetectionForm">
+    <div id="tadoQuickAction">
         <div class="form-row">
-            <label for="node-input-windowDetection"><i class="fa fa-windows"></i> <span data-i18n="tado.label.window-detection"></span></label>
-            <select id="node-input-windowDetection" style="width:60%; margin-right:5px;">
-                <option value="true" data-i18n="tado.option.enabled"></option>
-                <option value="false" data-i18n="tado.option.disabled"></option>
-            </select>
-        </div>
-        <div class="form-row">
-            <label for="node-input-windowDetectionTimeout"><i class="fa fa-windows"></i> <span data-i18n="tado.label.window-detection-timeout"></span></label>
-            <input type="text" id="node-input-windowDetectionTimeout" data-i18n="[placeholder]tado.label.window-detection-timeout">
-        </div>
-    </div>
-    <div id="tadoOpenWindowMode">
-        <div class="form-row">
-            <label for="node-input-openWindowMode"><i class="fa fa-windows"></i> <span data-i18n="tado.label.open-window-mode"></span></label>
-            <select id="node-input-openWindowMode" style="width:60%; margin-right:5px;">
-                <option value="true" data-i18n="tado.option.activate"></option>
-                <option value="false" data-i18n="tado.option.cancel"></option>
+            <label for="node-input-quickAction"><i class="fa fa-bolt"></i> <span data-i18n="tado.label.quick-action"></span></label>
+            <select id="node-input-quickAction" style="width:60%; margin-right:5px;">
+                <option value="allOff" data-i18n="tado.option.all-off"></option>
+                <option value="resumeSchedule" data-i18n="tado.option.resume-schedule"></option>
+                <option value="boost" data-i18n="tado.option.boost"></option>
             </select>
         </div>
     </div>
@@ -297,7 +211,7 @@
     </div>
 </script>
 
-<script type="text/x-red" data-help-name="tado">
+<script type="text/x-red" data-help-name="tadox">
     <p>A Tado Web API node.</p>
 
     <h3>Inputs</h3>
@@ -311,8 +225,8 @@
         <dt class="optional">deviceId <span class="property-type">string</span></dt>
         <dd> the device ID to target</dd>
 
-        <dt class="optional">zoneId <span class="property-type">string</span></dt>
-        <dd> the zone ID to target</dd>
+        <dt class="optional">roomId <span class="property-type">string</span></dt>
+        <dd> the room ID to target</dd>
 
         <dt class="optional">timetableId <span class="property-type">string</span></dt>
         <dd> the timetable ID to target</dd>
@@ -332,26 +246,11 @@
         <dt class="optional">terminationTimeout <span class="property-type">string</span></dt>
         <dd> the timeout in seconds to clear the overlay</dd>
 
-        <dt class="optional">fanSpeed <span class="property-type">string</span></dt>
-        <dd> the speed of the fan in an AC system (AUTO, LOW, MIDDLE, HIGH)</dd>
-
-        <dt class="optional">acMode <span class="property-type">string</span></dt>
-        <dd> the mode of the AC system (AUTO, COOL, DRY, FAN, HEAT)</dd>
-
         <dt class="optional">presence <span class="property-type">string</span></dt>
         <dd> <code>"home"</code>, <code>"away"</code> or <code>"auto"</code></dd>
 
         <dt class="optional">geoTracking <span class="property-type">boolean</span></dt>
         <dd> Enabled or disable Geo Tracking on a device</dd>
-
-        <dt class="optional">windowDetection <span class="property-type">boolean</span></dt>
-        <dd> Enable or disable window detection for a zone</dd>
-
-        <dt class="optional">windowDetectionTimeout <span class="property-type">number</span></dt>
-        <dd> How long should window detection shut-off the heating for</dd>
-
-        <dt class="optional">openWindowMode <span class="property-type">boolean</span></dt>
-        <dd> Activate or cancel open window mode for a zone</dd>
     </dl>
 
     <h3>Outputs</h3>
@@ -374,30 +273,26 @@
 </script>
 
 <script type="text/javascript">
-    RED.nodes.registerType('tado', {
+    RED.nodes.registerType('tadox', {
         category: 'heating',
         color: "rgb(255, 255, 255)",
         defaults: {
-            acMode: { value: "AUTO" },
             apiCall: { value: "getMe" },
             childlock: { value: false },
-            configName: { type: "tado-config", required: true },
-            defaultTerminationTimeout: { value: 900 },
-            defaultTerminationType: { value: "manual" },
+            configName: { type: "tadox-config", required: true },
             deviceId: { value: "" },
             endDate: { value: "" },
-            fanSpeed: { value: "AUTO" },
             geoTracking: { value: true },
             homeId: { value: "" },
-            horizontalSwing: { value: "off" },
             name: { value: "" },
-            openWindowMode: { value: true },
-            power: { value: "on" },
+            power: { value: "ON" },
             presence: { value: "HOME" },
+            quickAction: { value: "allOf" },
             reading: { value: 0 },
             readingDate: { value: "" },
             readingId: { value: "" },
             reportDate: { value: "" },
+            roomId: { value: "" },
             startDate: { value: "" },
             tariffId: { value: "" },
             tariffInCents: { value: 0, validate: function(v) { return v === undefined || RED.validators.number()(v); } },
@@ -407,16 +302,12 @@
             terminationType: { value: "manual" },
             timetableId: { value: "" },
             unit: { value: "m3" },
-            verticalSwing: { value: "off" },
-            windowDetection: { value: true },
-            windowDetectionTimeout: { value: 900 },
-            zoneId: { value: "" },
         },
         inputs: 1,
         outputs: 1,
-        icon: "tado.png",
+        icon: "tadox.png",
         label: function () {
-            return this.name || `Tado [${this.apiCall}]`;
+            return this.name || `TadoX [${this.apiCall}]`;
         },
         labelStyle: function () {
             return this.name ? "node_label_italic" : "";
@@ -425,8 +316,8 @@
             $('#node-input-apiCall').change(function () {
                 const apiCall = $('#node-input-apiCall').val();
 
+                const action = $('#tadoQuickAction');
                 const childlock = $('#tadoChildlock');
-                const defaultTerminaion = $('#tadoDefaultOverlayForm');
                 const device = $('#tadoDeviceId');
                 const endDate = $('#tadoEndDate');
                 const geoTracking = $('#tadoGeoTracking');
@@ -443,13 +334,11 @@
                 const temperatureOffset = $('#tadoTemperatureOffset');
                 const timetable = $('#tadoTimetableId');
                 const unit = $('#tadoUnit');
-                const windowDetection = $('#tadoWindowDetectionForm');
-                const windowMode = $('#tadoOpenWindowMode');
-                const zone = $('#tadoZoneId');
+                const room = $('#tadoRoomId');
 
                 [
+                    action,
                     childlock,
-                    defaultTerminaion,
                     device,
                     endDate,
                     geoTracking,
@@ -466,55 +355,61 @@
                     temperatureOffset,
                     timetable,
                     unit,
-                    windowDetection,
-                    windowMode,
-                    zone,
+                    room,
                 ].forEach(e => e.hide());
 
                 switch (apiCall) {
                     case "getMe":
                         break;
 
+                    case "getActionableDevices":
                     case "getAirComfort":
                     case "getAirComfortDetailed":
-                    case "getDevices":
                     case "getEnergyIQMeterReadings":
                     case "getEnergyIQTariff":
+                    case "getFeatures":
                     case "getHeatingCircuits":
                     case "getHome":
+                    case "getHomeSummary":
                     case "getInstallations":
                     case "getMobileDevices":
+                    case "getRooms":
+                    case "getRoomsAndDevices":
                     case "getState":
                     case "getUsers":
                     case "getWeather":
-                    case "getZones":
-                    case "getZoneStates":
                     case "isAnyoneAtHome":
                     case "updatePresence":
                         home.show();
                         break;
 
-                    case "clearZoneOverlay":
-                    case "getAwayConfiguration":
-                    case "getTimeTables":
-                    case "getZoneCapabilities":
-                    case "getZoneControl":
-                    case "getZoneDefaultOverlay":
-                    case "getZoneOverlay":
-                    case "getZoneState":
+                    case "performQuickAction":
                         home.show();
-                        zone.show();
+                        action.show();
                         break;
 
-                    case "setZoneDefaultOverlay":
+                    case "getRoomState":
+                    case "resumeSchedule":
                         home.show();
-                        zone.show();
-                        defaultTerminaion.show();
+                        room.show();
                         break;
 
-                    case "getDeviceTemperatureOffset":
-                    case "identifyDevice":
+                    case "manualControl":
+                        home.show();
+                        room.show();
+                        overlay.show();
+                        break;
+
+                    case "setChildlock":
+                        home.show();
                         device.show();
+                        childlock.show();
+                        break;
+
+                    case "setDeviceTemperatureOffset":
+                        home.show();
+                        device.show();
+                        temperatureOffset.show();
                         break;
 
                     case "getMobileDevice":
@@ -529,51 +424,11 @@
                         geoTracking.show();
                         break;
 
-                    case "getZoneDayReport":
-                        home.show();
-                        zone.show();
-                        reportDate.show();
-                        break;
-
-                    case "getTimeTable":
-                        home.show();
-                        zone.show();
-                        timetable.show();
-                        break;
-
-                    case "setZoneOverlay":
-                        home.show();
-                        zone.show();
-                        overlay.show();
-                        break;
-
-                    case "setDeviceTemperatureOffset":
-                        device.show();
-                        temperatureOffset.show();
-                        break;
-
-                    case "setChildlock":
-                        device.show();
-                        childlock.show();
-                        break;
-
                     case "setPresence":
                         home.show();
                         presence.show();
                         break;
 
-                    case "setWindowDetection":
-                        home.show();
-                        zone.show();
-                        windowDetection.show();
-                        break;
-
-                    case "setOpenWindowMode":
-                        home.show();
-                        zone.show();
-                        windowMode.show();
-                        break;
-                        
                     case "addEnergyIQTariff":
                         home.show();
                         unit.show();
