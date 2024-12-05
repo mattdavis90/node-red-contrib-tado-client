@@ -42,6 +42,7 @@
             "get-energy-iq-meter-readings": "Get Energy Meter Readings",
             "get-energy-iq-tariff": "Get Energy Tariff",
             "get-features": "Get Home's Features",
+            "get-flow-temperature-optimization": "Get Flow Temperature Optimization Settings",
             "get-heating-circuits": "Get all Heating Circuits",
             "get-home": "Get the Home's Info",
             "get-home-summary": "Get the Home's Summary",

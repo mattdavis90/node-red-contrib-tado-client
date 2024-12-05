@@ -123,6 +123,7 @@ module.exports = function(RED) {
                 case "getEnergyIQMeterReadings":
                 case "getEnergyIQTariff":
                 case "getFeatures":
+                case "getFlowTemperatureOptimization":
                 case "getHeatingCircuits":
                 case "getHome":
                 case "getHomeSummary":
