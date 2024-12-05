@@ -42,6 +42,7 @@ module.exports = function(RED) {
             "endDate",
             "geoTracking",
             "homeId",
+            "maxTemperature",
             "name",
             "power",
             "presence",
@@ -117,6 +118,8 @@ module.exports = function(RED) {
                     call();
                     break;
 
+                case "disableFlowTemperatureOptimization":
+                case "enableFlowTemperatureOptimization":
                 case "getActionableDevices":
                 case "getAirComfort":
                 case "getAirComfortDetailed":
@@ -141,6 +144,10 @@ module.exports = function(RED) {
 
                 case "performQuickAction":
                     call(arg("homeId"), arg("quickAction"));
+                    break;
+
+                case "setFlowTemperatureOptimization":
+                    call(arg("homeId"), arg("maxTemperature"));
                     break;
 
                 case "getRoomState":

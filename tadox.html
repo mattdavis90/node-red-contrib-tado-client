@@ -53,7 +53,6 @@
                 <option value="getUsers" data-i18n="tado.option.get-users"></option>
                 <option value="getWeather" data-i18n="tado.option.get-weather"></option>
                 <option value="getFeatures" data-i18n="tado.option.get-features"></option>
-                <option value="getFlowTemperatureOptimization" data-i18n="tado.option.get-flow-temperature-optimization"></option>
                 <option value="performQuickAction" data-i18n="tado.option.quick-action"></option>
             </optgroup>
             <optgroup data-i18n="[label]tado.optgroup.rooms">
@@ -64,6 +63,12 @@
                 <option value="resumeSchedule" data-i18n="tado.option.resume-schedule"></option>
                 <option value="setChildlock" data-i18n="tado.option.set-child-lock"></option>
                 <option value="setDeviceTemperatureOffset" data-i18n="tado.option.set-device-temperature-offset"></option>
+            </optgroup>
+            <optgroup data-i18n="[label]tado.optgroup.flow-temperature-optimization">
+                <option value="getFlowTemperatureOptimization" data-i18n="tado.option.get-flow-temperature-optimization"></option>
+                <option value="enableFlowTemperatureOptimization" data-i18n="tado.option.enable-flow-temperature-optimization"></option>
+                <option value="disableFlowTemperatureOptimization" data-i18n="tado.option.disable-flow-temperature-optimization"></option>
+                <option value="gsetFlowTemperatureOptimization" data-i18n="tado.option.set-flow-temperature-optimization"></option>
             </optgroup>
             <optgroup data-i18n="[label]tado.optgroup.mobiledevice">
                 <option value="getMobileDevices" data-i18n="tado.option.get-mobile-devices"></option>
@@ -155,6 +160,10 @@
             <option value="m3" data-i18n="tado.option.unit-m3"></option>
             <option value="kWh" data-i18n="tado.option.unit-kwh"></option>
         </select>
+    </div>
+    <div class="form-row" id="tadoMaxTemperature">
+        <label for="node-input-maxTemperature"><i class="fa fa-thermometer-half"></i> <span data-i18n="tado.label.max-temperature"></span></label>
+        <input type="text" id="node-input-maxTemperature" data-i18n="[placeholder]tado.label.max-temperature">
     </div>
     <div class="form-row" id="tadoTariffInCents">
         <label for="node-input-tariffInCents"><i class="fa fa-money"></i> <span data-i18n="tado.label.tariff-in-cents"></span></label>
@@ -323,6 +332,7 @@
                 const endDate = $('#tadoEndDate');
                 const geoTracking = $('#tadoGeoTracking');
                 const home = $('#tadoHomeId');
+                const maxTemperature = $('#tadoMaxTemperature');
                 const overlay = $('#tadoOverlayForm');
                 const presence = $('#tadoPresence');
                 const reading = $('#tadoReading');
@@ -344,6 +354,7 @@
                     endDate,
                     geoTracking,
                     home,
+                    maxTemperature,
                     overlay,
                     presence,
                     reading,
@@ -363,6 +374,8 @@
                     case "getMe":
                         break;
 
+                    case "disableFlowTemperatureOptimization":
+                    case "enableFlowTemperatureOptimization":
                     case "getActionableDevices":
                     case "getAirComfort":
                     case "getAirComfortDetailed":
@@ -388,6 +401,11 @@
                     case "performQuickAction":
                         home.show();
                         action.show();
+                        break;
+
+                    case "setFlowTemperatureOptimization":
+                        home.show();
+                        maxTemperature.show();
                         break;
 
                     case "getRoomState":
