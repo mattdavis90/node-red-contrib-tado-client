@@ -157,7 +157,7 @@ module.exports = function(RED) {
 
                 case "manualControl": {
                     const type = arg("terminationType");
-                    const termination = type === "timer" ? arg("terminationTimeout") : type;
+                    const termination = type === "TIMER" ? arg("terminationTimeout") : type;
                     call(arg("homeId"), arg("roomId"), arg("power"), termination, arg("temperature"));
                     break;
                 }
