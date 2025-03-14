@@ -6,13 +6,37 @@ module.exports = function(RED) {
     const { Tado } = require('node-tado-client');
 
     /**
+     * Tado Token Node
+     */
+    function TadoTokenNode(config) {
+        RED.nodes.createNode(this, config);
+        const node = this;
+
+        const tadoConfig = RED.nodes.getNode(config.configName);
+        tadoConfig.tado.setTokenCallback((token) => {
+            const msg = {
+                topic: "refresh_token",
+                payload: token.refresh_token,
+            };
+
+            node.send(msg);
+        });
+
+        node.on('close', function() {
+            tadoConfig.tado.setTokenCallback(undefined);
+        });
+    }
+
+    RED.nodes.registerType("tado-token", TadoTokenNode);
+
+    /**
      * Config node
      */
     function TadoConfigNode(config) {
         RED.nodes.createNode(this, config);
         const node = this;
 
-        node.tado = new Tado(node.credentials.username, node.credentials.password);
+        node.tado = new Tado();
 
         node.call = async function(method) {
             const args = [...arguments].slice(1);
@@ -20,12 +44,7 @@ module.exports = function(RED) {
         }
     }
 
-    RED.nodes.registerType("tado-config", TadoConfigNode, {
-        credentials: {
-            username: { type: "text" },
-            password: { type: "password" },
-        }
-    });
+    RED.nodes.registerType("tado-config", TadoConfigNode);
 
     /**
      * Tado node
@@ -118,9 +137,52 @@ module.exports = function(RED) {
                 });
             }
 
+            const authenticate = function() {
+                const refreshToken = msg["refreshToken"];
+
+                node.tadoConfig.tado.authenticate(refreshToken).then(([verify, token]) => {
+                    if (verify) {
+                        const msg = {
+                            topic: "authenticating",
+                            payload: {
+                                uri: verify.verification_uri_complete,
+                                interval: verify.interval,
+                                expires_in: verify.expires_in,
+                            },
+                        };
+
+                        if (send) {
+                            send(msg);
+                        } else {
+                            node.send(msg);
+                        }
+                    }
+
+                    token.then(() => {
+                        node.status({ fill: "green", shape: "dot", text: "Authenticated" });
+
+                        if (done) {
+                            done();
+                        }
+                    }).catch((err) => {
+                        node.status({ fill: "red", shape: "ring", text: "Errored" });
+
+                        if (done) {
+                            done(err);
+                        } else {
+                            node.error(err, msg);
+                        }
+                    });
+                });
+            }
+
             msg.topic = apiCall;
 
             switch (apiCall) {
+                case "authenticate":
+                    authenticate();
+                    break;
+
                 case "getMe":
                     call();
                     break;
