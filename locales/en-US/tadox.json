@@ -15,6 +15,7 @@
             "reading": "Reading",
             "reading-date": "Reading Date (yyyy-mm-dd)",
             "reading-id": "Reading ID",
+            "refreshToken": "Refresh Token",
             "report-date": "Report Date (yyyy-mm-dd)",
             "room-id": "Room ID",
             "start-date": "Start Date (yyyy-mm-dd)",
@@ -30,6 +31,7 @@
         "option": {
             "add-energy-iq-meter-readings": "Add Energy Meter Reading",
             "add-energy-iq-tariff": "Add Energy Tariff",
+            "authenticate": "Authenticate Account",
             "all-off": "All Off",
             "auto-presence": "Auto",
             "away": "Away",

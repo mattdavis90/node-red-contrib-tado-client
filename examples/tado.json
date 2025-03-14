@@ -8,11 +8,86 @@
         "env": []
     },
     {
+        "id": "e45737bf2dfc09ca",
+        "type": "group",
+        "z": "9e3fc1e5920df13e",
+        "name": "Authentication Flow",
+        "style": {
+            "label": true
+        },
+        "nodes": [
+            "ac28a690f024d23b",
+            "c2a59ce3cbc1a6db",
+            "a6e8a1010c4da995",
+            "f8d92b408ed05fea"
+        ],
+        "x": 34,
+        "y": 99,
+        "w": 392,
+        "h": 142
+    },
+    {
+        "id": "6b8abc4c1228c6b1",
+        "type": "group",
+        "z": "9e3fc1e5920df13e",
+        "name": "Testing",
+        "style": {
+            "label": true
+        },
+        "nodes": [
+            "22155bd86d78bdbb",
+            "22a8030994dd2352",
+            "cc5ec8679560fe5d",
+            "b9333245c088d30d",
+            "69a719df61ed5c2b",
+            "a6c7fcaffaf366c9",
+            "250fbd76a8f2bc52",
+            "867b9b31e4408af3",
+            "c048f0c2d8d4ac2b",
+            "edfdfa964d51a6b9",
+            "b1c64913297d3cba",
+            "3c94fb0147b033cd",
+            "71e105ef23f7004f",
+            "6072cfcea80bfb5b",
+            "c64c14055e902de8",
+            "01f64c419a68b720",
+            "2440192c493c6d55",
+            "366e43fa3a4771b0"
+        ],
+        "x": 34,
+        "y": 259,
+        "w": 712,
+        "h": 642
+    },
+    {
+        "id": "13aab1b257852074",
+        "type": "group",
+        "z": "9e3fc1e5920df13e",
+        "name": "Persistent Auth",
+        "style": {
+            "label": true
+        },
+        "nodes": [
+            "1ad51521d15509ca",
+            "07ed2e7510438276",
+            "30610116b3394ad1",
+            "4abc9bdf38f121a7",
+            "80d38fa2cd075522",
+            "abb86d2a9c554ffe",
+            "d21f1766922dd03e"
+        ],
+        "x": 474,
+        "y": 99,
+        "w": 772,
+        "h": 142
+    },
+    {
         "id": "366e43fa3a4771b0",
         "type": "junction",
         "z": "9e3fc1e5920df13e",
+        "g": "6b8abc4c1228c6b1",
         "x": 520,
-        "y": 400,
+        "y": 580,
         "wires": [
             [
                 "867b9b31e4408af3"
@@ -23,6 +98,7 @@
         "id": "22155bd86d78bdbb",
         "type": "inject",
         "z": "9e3fc1e5920df13e",
+        "g": "6b8abc4c1228c6b1",
         "name": "",
         "props": [
             {
@@ -41,7 +117,7 @@
         "payload": "",
         "payloadType": "date",
         "x": 140,
-        "y": 360,
+        "y": 540,
         "wires": [
             [
                 "22a8030994dd2352"
@@ -52,28 +128,29 @@
         "id": "22a8030994dd2352",
         "type": "tado",
         "z": "9e3fc1e5920df13e",
-        "configName": "d1cf260f.0bb368",
-        "apiCall": "getZoneOverlay",
-        "homeId": "12345",
-        "deviceId": "",
-        "zoneId": "1",
-        "power": "on",
-        "temperature": "18",
-        "terminationType": "manual",
-        "terminationTimeout": 900,
-        "fanSpeed": "AUTO",
+        "g": "6b8abc4c1228c6b1",
         "acMode": "AUTO",
-        "name": "Get Overlay",
-        "reportDate": "",
-        "presence": "HOME",
+        "apiCall": "getZoneOverlay",
+        "configName": "d1cf260f.0bb368",
+        "deviceId": "",
+        "fanSpeed": "AUTO",
         "geoTracking": true,
+        "homeId": "12345",
+        "name": "Get Overlay",
+        "openWindowMode": true,
+        "power": "on",
+        "presence": "HOME",
+        "reportDate": "",
+        "temperature": "18",
         "temperatureOffset": 0,
+        "terminationTimeout": 900,
+        "terminationType": "manual",
+        "timetableId": "",
         "windowDetection": true,
         "windowDetectionTimeout": 900,
-        "openWindowMode": true,
-        "timetableId": "",
+        "zoneId": "1",
         "x": 330,
-        "y": 360,
+        "y": 540,
         "wires": [
             [
                 "366e43fa3a4771b0"
@@ -84,6 +161,7 @@
         "id": "cc5ec8679560fe5d",
         "type": "inject",
         "z": "9e3fc1e5920df13e",
+        "g": "6b8abc4c1228c6b1",
         "name": "",
         "props": [
             {
@@ -102,7 +180,7 @@
         "payload": "",
         "payloadType": "date",
         "x": 140,
-        "y": 440,
+        "y": 620,
         "wires": [
             [
                 "b9333245c088d30d"
@@ -113,28 +191,29 @@
         "id": "b9333245c088d30d",
         "type": "tado",
         "z": "9e3fc1e5920df13e",
-        "configName": "d1cf260f.0bb368",
-        "apiCall": "setZoneOverlay",
-        "homeId": "12345",
-        "deviceId": "",
-        "zoneId": "1",
-        "power": "on",
-        "temperature": "5",
-        "terminationType": "manual",
-        "terminationTimeout": 900,
-        "fanSpeed": "AUTO",
+        "g": "6b8abc4c1228c6b1",
         "acMode": "AUTO",
-        "name": "Heating On",
-        "reportDate": "",
-        "presence": "HOME",
+        "apiCall": "setZoneOverlay",
+        "configName": "d1cf260f.0bb368",
+        "deviceId": "",
+        "fanSpeed": "AUTO",
         "geoTracking": true,
+        "homeId": "12345",
+        "name": "Heating On",
+        "openWindowMode": true,
+        "power": "on",
+        "presence": "HOME",
+        "reportDate": "",
+        "temperature": "5",
         "temperatureOffset": 0,
+        "terminationTimeout": 900,
+        "terminationType": "manual",
+        "timetableId": "",
         "windowDetection": true,
         "windowDetectionTimeout": 900,
-        "openWindowMode": true,
-        "timetableId": "",
+        "zoneId": "1",
         "x": 330,
-        "y": 440,
+        "y": 620,
         "wires": [
             [
                 "366e43fa3a4771b0"
@@ -145,6 +224,7 @@
         "id": "69a719df61ed5c2b",
         "type": "inject",
         "z": "9e3fc1e5920df13e",
+        "g": "6b8abc4c1228c6b1",
         "name": "",
         "props": [
             {
@@ -163,7 +243,7 @@
         "payload": "",
         "payloadType": "date",
         "x": 140,
-        "y": 520,
+        "y": 700,
         "wires": [
             [
                 "a6c7fcaffaf366c9"
@@ -174,28 +254,29 @@
         "id": "a6c7fcaffaf366c9",
         "type": "tado",
         "z": "9e3fc1e5920df13e",
-        "configName": "d1cf260f.0bb368",
-        "apiCall": "clearZoneOverlay",
-        "homeId": "12345",
-        "deviceId": "",
-        "zoneId": "1",
-        "power": "on",
-        "temperature": "18",
-        "terminationType": "manual",
-        "terminationTimeout": 900,
-        "fanSpeed": "AUTO",
+        "g": "6b8abc4c1228c6b1",
         "acMode": "AUTO",
-        "name": "Clear Overlay",
-        "reportDate": "",
-        "presence": "HOME",
+        "apiCall": "clearZoneOverlay",
+        "configName": "d1cf260f.0bb368",
+        "deviceId": "",
+        "fanSpeed": "AUTO",
         "geoTracking": true,
+        "homeId": "12345",
+        "name": "Clear Overlay",
+        "openWindowMode": true,
+        "power": "on",
+        "presence": "HOME",
+        "reportDate": "",
+        "temperature": "18",
         "temperatureOffset": 0,
+        "terminationTimeout": 900,
+        "terminationType": "manual",
+        "timetableId": "",
         "windowDetection": true,
         "windowDetectionTimeout": 900,
-        "openWindowMode": true,
-        "timetableId": "",
+        "zoneId": "1",
         "x": 330,
-        "y": 520,
+        "y": 700,
         "wires": [
             [
                 "366e43fa3a4771b0"
@@ -206,6 +287,7 @@
         "id": "250fbd76a8f2bc52",
         "type": "inject",
         "z": "9e3fc1e5920df13e",
+        "g": "6b8abc4c1228c6b1",
         "name": "",
         "props": [
             {
@@ -224,7 +306,7 @@
         "payload": "",
         "payloadType": "date",
         "x": 140,
-        "y": 280,
+        "y": 460,
         "wires": [
             [
                 "c048f0c2d8d4ac2b"
@@ -235,6 +317,7 @@
         "id": "867b9b31e4408af3",
         "type": "debug",
         "z": "9e3fc1e5920df13e",
+        "g": "6b8abc4c1228c6b1",
         "name": "",
         "active": true,
         "tosidebar": true,
@@ -245,35 +328,36 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 630,
-        "y": 400,
+        "y": 580,
         "wires": []
     },
     {
         "id": "c048f0c2d8d4ac2b",
         "type": "tado",
         "z": "9e3fc1e5920df13e",
-        "configName": "d1cf260f.0bb368",
-        "apiCall": "setDeviceTemperatureOffset",
-        "homeId": "12345",
-        "deviceId": "VA12345",
-        "zoneId": "3",
-        "power": "on",
-        "temperature": "18",
-        "terminationType": "manual",
-        "terminationTimeout": 900,
-        "fanSpeed": "AUTO",
+        "g": "6b8abc4c1228c6b1",
         "acMode": "AUTO",
-        "name": "Set Device Offset",
-        "reportDate": "",
-        "presence": "HOME",
+        "apiCall": "setDeviceTemperatureOffset",
+        "configName": "d1cf260f.0bb368",
+        "deviceId": "VA12345",
+        "fanSpeed": "AUTO",
         "geoTracking": true,
+        "homeId": "12345",
+        "name": "Set Device Offset",
+        "openWindowMode": true,
+        "power": "on",
+        "presence": "HOME",
+        "reportDate": "",
+        "temperature": "18",
         "temperatureOffset": "0.3",
+        "terminationTimeout": 900,
+        "terminationType": "manual",
+        "timetableId": "",
         "windowDetection": true,
         "windowDetectionTimeout": 900,
-        "openWindowMode": true,
-        "timetableId": "",
+        "zoneId": "3",
         "x": 350,
-        "y": 280,
+        "y": 460,
         "wires": [
             [
                 "366e43fa3a4771b0"
@@ -284,6 +368,7 @@
         "id": "edfdfa964d51a6b9",
         "type": "inject",
         "z": "9e3fc1e5920df13e",
+        "g": "6b8abc4c1228c6b1",
         "name": "",
         "props": [
             {
@@ -302,7 +387,7 @@
         "payload": "",
         "payloadType": "date",
         "x": 140,
-        "y": 600,
+        "y": 780,
         "wires": [
             [
                 "b1c64913297d3cba"
@@ -313,28 +398,29 @@
         "id": "b1c64913297d3cba",
         "type": "tado",
         "z": "9e3fc1e5920df13e",
-        "configName": "d1cf260f.0bb368",
-        "apiCall": "getZoneState",
-        "homeId": "12345",
-        "deviceId": "",
-        "zoneId": "1",
-        "power": "on",
-        "temperature": "18",
-        "terminationType": "manual",
-        "terminationTimeout": 900,
-        "fanSpeed": "AUTO",
+        "g": "6b8abc4c1228c6b1",
         "acMode": "AUTO",
-        "name": "Get all zones",
-        "reportDate": "",
-        "presence": "HOME",
+        "apiCall": "getZoneState",
+        "configName": "d1cf260f.0bb368",
+        "deviceId": "",
+        "fanSpeed": "AUTO",
         "geoTracking": true,
+        "homeId": "12345",
+        "name": "Get all zones",
+        "openWindowMode": true,
+        "power": "on",
+        "presence": "HOME",
+        "reportDate": "",
+        "temperature": "18",
         "temperatureOffset": 0,
+        "terminationTimeout": 900,
+        "terminationType": "manual",
+        "timetableId": "",
         "windowDetection": true,
         "windowDetectionTimeout": 900,
-        "openWindowMode": true,
-        "timetableId": "",
+        "zoneId": "1",
         "x": 330,
-        "y": 600,
+        "y": 780,
         "wires": [
             [
                 "366e43fa3a4771b0"
@@ -345,6 +431,7 @@
         "id": "3c94fb0147b033cd",
         "type": "inject",
         "z": "9e3fc1e5920df13e",
+        "g": "6b8abc4c1228c6b1",
         "name": "",
         "props": [
             {
@@ -363,7 +450,7 @@
         "payload": "",
         "payloadType": "date",
         "x": 140,
-        "y": 680,
+        "y": 860,
         "wires": [
             [
                 "71e105ef23f7004f"
@@ -374,28 +461,29 @@
         "id": "71e105ef23f7004f",
         "type": "tado",
         "z": "9e3fc1e5920df13e",
-        "configName": "d1cf260f.0bb368",
-        "apiCall": "getZoneState",
-        "homeId": "12345",
-        "deviceId": "",
-        "zoneId": "1",
-        "power": "on",
-        "temperature": "18",
-        "terminationType": "manual",
-        "terminationTimeout": 900,
-        "fanSpeed": "AUTO",
+        "g": "6b8abc4c1228c6b1",
         "acMode": "AUTO",
-        "name": "Get Zone 3 State",
-        "reportDate": "",
-        "presence": "HOME",
+        "apiCall": "getZoneState",
+        "configName": "d1cf260f.0bb368",
+        "deviceId": "",
+        "fanSpeed": "AUTO",
         "geoTracking": true,
+        "homeId": "12345",
+        "name": "Get Zone 3 State",
+        "openWindowMode": true,
+        "power": "on",
+        "presence": "HOME",
+        "reportDate": "",
+        "temperature": "18",
         "temperatureOffset": 0,
+        "terminationTimeout": 900,
+        "terminationType": "manual",
+        "timetableId": "",
         "windowDetection": true,
         "windowDetectionTimeout": 900,
-        "openWindowMode": true,
-        "timetableId": "",
+        "zoneId": "1",
         "x": 350,
-        "y": 680,
+        "y": 860,
         "wires": [
             [
                 "366e43fa3a4771b0"
@@ -406,28 +494,29 @@
         "id": "6072cfcea80bfb5b",
         "type": "tado",
         "z": "9e3fc1e5920df13e",
-        "configName": "d1cf260f.0bb368",
-        "apiCall": "getDevices",
-        "homeId": "12345",
-        "deviceId": "",
-        "zoneId": "3",
-        "power": "on",
-        "temperature": "18",
-        "terminationType": "manual",
-        "terminationTimeout": 900,
-        "fanSpeed": "AUTO",
+        "g": "6b8abc4c1228c6b1",
         "acMode": "AUTO",
-        "name": "",
-        "reportDate": "",
-        "presence": "HOME",
+        "apiCall": "getDevices",
+        "configName": "d1cf260f.0bb368",
+        "deviceId": "",
+        "fanSpeed": "AUTO",
         "geoTracking": true,
+        "homeId": "12345",
+        "name": "",
+        "openWindowMode": true,
+        "power": "on",
+        "presence": "HOME",
+        "reportDate": "",
+        "temperature": "18",
         "temperatureOffset": "0.3",
+        "terminationTimeout": 900,
+        "terminationType": "manual",
+        "timetableId": "",
         "windowDetection": true,
         "windowDetectionTimeout": 900,
-        "openWindowMode": true,
-        "timetableId": "",
+        "zoneId": "3",
         "x": 350,
-        "y": 200,
+        "y": 380,
         "wires": [
             [
                 "366e43fa3a4771b0"
@@ -438,6 +527,7 @@
         "id": "c64c14055e902de8",
         "type": "inject",
         "z": "9e3fc1e5920df13e",
+        "g": "6b8abc4c1228c6b1",
         "name": "",
         "props": [
             {
@@ -456,7 +546,7 @@
         "payload": "",
         "payloadType": "date",
         "x": 140,
-        "y": 200,
+        "y": 380,
         "wires": [
             [
                 "6072cfcea80bfb5b"
@@ -467,9 +557,9 @@
         "id": "37c84193acb2e93e",
         "type": "comment",
         "z": "9e3fc1e5920df13e",
-        "name": "",
-        "info": "Various examples of how to use the *Tado* node\n\nYou will need to configure a `tado_config` node with your Tado Username and Password before using the examples\n\nYou should also replace the `home_id` in the calls with your `home_id` which can be found using the first example of `getMe` API call.",
-        "x": 260,
+        "name": "README First",
+        "info": "Various examples of how to use the *Tado* node\n\nTado no longer uses username/password auth.\n\nInstead you should `inject` into the \"Authentication Flow\"\nand monitor the debug output. This will trigger a device\nauth flow, that will require you to visit a URL to login.\n\nOnce you've logged in a token will be printed to the\nconsole. You can use this token to bypass the auth process\nnext time. An example of this is shown in the \"Persistent\nAuthentication\" group - you'll need to enable this.\n\nYou should also replace the `home_id` in the calls\nwith your `home_id` which can be found using the first\nexample of `getMe` API call.",
+        "x": 120,
         "y": 60,
         "wires": []
     },
@@ -477,28 +567,29 @@
         "id": "01f64c419a68b720",
         "type": "tado",
         "z": "9e3fc1e5920df13e",
-        "configName": "d1cf260f.0bb368",
-        "apiCall": "getMe",
-        "homeId": "12345",
-        "deviceId": "",
-        "zoneId": "3",
-        "power": "on",
-        "temperature": "18",
-        "terminationType": "manual",
-        "terminationTimeout": 900,
-        "fanSpeed": "AUTO",
+        "g": "6b8abc4c1228c6b1",
         "acMode": "AUTO",
-        "name": "",
-        "reportDate": "",
-        "presence": "HOME",
+        "apiCall": "getMe",
+        "configName": "d1cf260f.0bb368",
+        "deviceId": "",
+        "fanSpeed": "AUTO",
         "geoTracking": true,
+        "homeId": "12345",
+        "name": "",
+        "openWindowMode": true,
+        "power": "on",
+        "presence": "HOME",
+        "reportDate": "",
+        "temperature": "18",
         "temperatureOffset": "0.3",
+        "terminationTimeout": 900,
+        "terminationType": "manual",
+        "timetableId": "",
         "windowDetection": true,
         "windowDetectionTimeout": 900,
-        "openWindowMode": true,
-        "timetableId": "",
+        "zoneId": "3",
         "x": 330,
-        "y": 120,
+        "y": 300,
         "wires": [
             [
                 "366e43fa3a4771b0"
@@ -509,6 +600,7 @@
         "id": "2440192c493c6d55",
         "type": "inject",
         "z": "9e3fc1e5920df13e",
+        "g": "6b8abc4c1228c6b1",
         "name": "",
         "props": [
             {
@@ -527,12 +619,282 @@
         "payload": "",
         "payloadType": "date",
         "x": 140,
-        "y": 120,
+        "y": 300,
         "wires": [
             [
                 "01f64c419a68b720"
             ]
         ]
+    },
+    {
+        "id": "ac28a690f024d23b",
+        "type": "tado",
+        "z": "9e3fc1e5920df13e",
+        "g": "e45737bf2dfc09ca",
+        "acMode": "AUTO",
+        "apiCall": "authenticate",
+        "childlock": false,
+        "configName": "d1cf260f.0bb368",
+        "defaultTerminationTimeout": 900,
+        "defaultTerminationType": "manual",
+        "deviceId": "",
+        "endDate": "",
+        "fanSpeed": "AUTO",
+        "geoTracking": true,
+        "homeId": "",
+        "horizontalSwing": "off",
+        "name": "",
+        "openWindowMode": true,
+        "power": "on",
+        "presence": "HOME",
+        "reading": 0,
+        "readingDate": "",
+        "readingId": "",
+        "reportDate": "",
+        "startDate": "",
+        "tariffId": "",
+        "tariffInCents": 0,
+        "temperature": "18",
+        "temperatureOffset": 0,
+        "terminationTimeout": 900,
+        "terminationType": "manual",
+        "timetableId": "",
+        "unit": "m3",
+        "verticalSwing": "off",
+        "windowDetection": true,
+        "windowDetectionTimeout": 900,
+        "zoneId": "",
+        "x": 310,
+        "y": 140,
+        "wires": [
+            [
+                "f8d92b408ed05fea"
+            ]
+        ]
+    },
+    {
+        "id": "c2a59ce3cbc1a6db",
+        "type": "inject",
+        "z": "9e3fc1e5920df13e",
+        "g": "e45737bf2dfc09ca",
+        "name": "",
+        "props": [],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 130,
+        "y": 140,
+        "wires": [
+            [
+                "ac28a690f024d23b"
+            ]
+        ]
+    },
+    {
+        "id": "a6e8a1010c4da995",
+        "type": "tado-token",
+        "z": "9e3fc1e5920df13e",
+        "g": "e45737bf2dfc09ca",
+        "configName": "d1cf260f.0bb368",
+        "x": 120,
+        "y": 200,
+        "wires": [
+            [
+                "f8d92b408ed05fea"
+            ]
+        ]
+    },
+    {
+        "id": "f8d92b408ed05fea",
+        "type": "debug",
+        "z": "9e3fc1e5920df13e",
+        "g": "e45737bf2dfc09ca",
+        "name": "Token",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 330,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "1ad51521d15509ca",
+        "type": "tado",
+        "z": "9e3fc1e5920df13e",
+        "d": true,
+        "g": "13aab1b257852074",
+        "acMode": "AUTO",
+        "apiCall": "authenticate",
+        "childlock": false,
+        "configName": "d1cf260f.0bb368",
+        "defaultTerminationTimeout": 900,
+        "defaultTerminationType": "manual",
+        "deviceId": "",
+        "endDate": "",
+        "fanSpeed": "AUTO",
+        "geoTracking": true,
+        "homeId": "",
+        "horizontalSwing": "off",
+        "name": "",
+        "openWindowMode": true,
+        "power": "on",
+        "presence": "HOME",
+        "reading": 0,
+        "readingDate": "",
+        "readingId": "",
+        "reportDate": "",
+        "startDate": "",
+        "tariffId": "",
+        "tariffInCents": 0,
+        "temperature": "18",
+        "temperatureOffset": 0,
+        "terminationTimeout": 900,
+        "terminationType": "manual",
+        "timetableId": "",
+        "unit": "m3",
+        "verticalSwing": "off",
+        "windowDetection": true,
+        "windowDetectionTimeout": 900,
+        "zoneId": "",
+        "x": 970,
+        "y": 200,
+        "wires": [
+            [
+                "d21f1766922dd03e"
+            ]
+        ]
+    },
+    {
+        "id": "07ed2e7510438276",
+        "type": "tado-token",
+        "z": "9e3fc1e5920df13e",
+        "d": true,
+        "g": "13aab1b257852074",
+        "configName": "d1cf260f.0bb368",
+        "x": 560,
+        "y": 200,
+        "wires": [
+            [
+                "30610116b3394ad1"
+            ]
+        ]
+    },
+    {
+        "id": "30610116b3394ad1",
+        "type": "file",
+        "z": "9e3fc1e5920df13e",
+        "d": true,
+        "g": "13aab1b257852074",
+        "name": "",
+        "filename": "/data/tado.json",
+        "filenameType": "str",
+        "appendNewline": false,
+        "createDir": false,
+        "overwriteFile": "true",
+        "encoding": "none",
+        "x": 740,
+        "y": 200,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "4abc9bdf38f121a7",
+        "type": "file in",
+        "z": "9e3fc1e5920df13e",
+        "d": true,
+        "g": "13aab1b257852074",
+        "name": "",
+        "filename": "/data/tado.json",
+        "filenameType": "str",
+        "format": "utf8",
+        "chunk": false,
+        "sendError": false,
+        "encoding": "none",
+        "allProps": false,
+        "x": 740,
+        "y": 140,
+        "wires": [
+            [
+                "abb86d2a9c554ffe"
+            ]
+        ]
+    },
+    {
+        "id": "80d38fa2cd075522",
+        "type": "inject",
+        "z": "9e3fc1e5920df13e",
+        "d": true,
+        "g": "13aab1b257852074",
+        "name": "",
+        "props": [],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 570,
+        "y": 140,
+        "wires": [
+            [
+                "4abc9bdf38f121a7"
+            ]
+        ]
+    },
+    {
+        "id": "abb86d2a9c554ffe",
+        "type": "change",
+        "z": "9e3fc1e5920df13e",
+        "d": true,
+        "g": "13aab1b257852074",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "refreshToken",
+                "pt": "msg",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 960,
+        "y": 140,
+        "wires": [
+            [
+                "1ad51521d15509ca"
+            ]
+        ]
+    },
+    {
+        "id": "d21f1766922dd03e",
+        "type": "debug",
+        "z": "9e3fc1e5920df13e",
+        "d": true,
+        "g": "13aab1b257852074",
+        "name": "Auth",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1150,
+        "y": 200,
+        "wires": []
     },
     {
         "id": "d1cf260f.0bb368",

@@ -17,6 +17,7 @@
             "reading": "Reading",
             "reading-date": "Reading Date (yyyy-mm-dd)",
             "reading-id": "Reading ID",
+            "refreshToken": "Refresh Token",
             "report-date": "Report Date (yyyy-mm-dd)",
             "start-date": "Start Date (yyyy-mm-dd)",
             "tariff-id": "Tariff ID",

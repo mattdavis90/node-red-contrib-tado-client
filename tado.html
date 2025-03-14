@@ -1,6 +1,26 @@
+<script type="text/x-red" data-template-name="tado-token">
+    <div class="form-row">
+        <label for="node-input-configName"><i class="fa fa-server"></i> <span data-i18n="tado.label.config-name"></span></label>
+        <input type="text" id="node-input-configName">
+    </div>
+</script>
+
+<script type="text/javascript">
+    RED.nodes.registerType('tado-token', {
+        category: 'heating',
+        color: "rgb(255, 255, 255)",
+        defaults: {
+            configName: { type: "tado-config", required: true },
+        },
+        inputs: 0,
+        outputs: 1,
+        icon: "tado.png",
+    });
+</script>
+
 <script type="text/x-red" data-template-name="tado-config">
     <div class="form-row">
-        <label for="node-config-input-refreshToken"><i class="fa fa-lock"></i> <span data-i18n="node-red:common.label.refreshToken"></span></label>
+        <label for="node-config-input-refreshToken"><i class="fa fa-lock"></i> <span data-i18n="tado.label.refreshToken"></span></label>
         <input type="password" id="node-config-input-refreshToken">
     </div>
     <div class="form-row">

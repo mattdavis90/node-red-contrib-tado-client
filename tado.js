@@ -6,6 +6,30 @@ module.exports = function(RED) {
     const { Tado } = require('node-tado-client');
 
     /**
+     * Tado Token Node
+     */
+    function TadoTokenNode(config) {
+        RED.nodes.createNode(this, config);
+        const node = this;
+
+        const tadoConfig = RED.nodes.getNode(config.configName);
+        tadoConfig.tado.setTokenCallback((token) => {
+            const msg = {
+                topic: "refresh_token",
+                payload: token.refresh_token,
+            };
+
+            node.send(msg);
+        });
+
+        node.on('close', function() {
+            tadoConfig.tado.setTokenCallback(undefined);
+        });
+    }
+
+    RED.nodes.registerType("tado-token", TadoTokenNode);
+
+    /**
      * Config node
      */
     function TadoConfigNode(config) {
@@ -112,16 +136,19 @@ module.exports = function(RED) {
                     }
                 });
             }
+
             const authenticate = function() {
-                node.tadoConfig.tado.authenticate(
-                    node.tadoConfig.credentials.refreshToken
-                ).then((verify, token) => {
+                const refreshToken = msg["refreshToken"];
+
+                node.tadoConfig.tado.authenticate(refreshToken).then(([verify, token]) => {
                     if (verify) {
                         const msg = {
                             topic: "authenticating",
-                            uri: verify.verification_uri_complete,
-                            interval: verify.interval,
-                            expires_in: verify.expires_in,
+                            payload: {
+                                uri: verify.verification_uri_complete,
+                                interval: verify.interval,
+                                expires_in: verify.expires_in,
+                            },
                         };
 
                         if (send) {
@@ -133,14 +160,6 @@ module.exports = function(RED) {
 
                     token.then(() => {
                         node.status({ fill: "green", shape: "dot", text: "Authenticated" });
-
-                        const msg = {topic: "authenticated", "error": undefined};
-
-                        if (send) {
-                            send(msg);
-                        } else {
-                            node.send(msg);
-                        }
 
                         if (done) {
                             done();
