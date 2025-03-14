@@ -12,7 +12,7 @@ module.exports = function(RED) {
         RED.nodes.createNode(this, config);
         const node = this;
 
-        node.tado = new Tado(node.credentials.username, node.credentials.password);
+        node.tado = new Tado();
 
         node.call = async function(method) {
             const args = [...arguments].slice(1);
@@ -20,12 +20,7 @@ module.exports = function(RED) {
         }
     }
 
-    RED.nodes.registerType("tado-config", TadoConfigNode, {
-        credentials: {
-            username: { type: "text" },
-            password: { type: "password" },
-        }
-    });
+    RED.nodes.registerType("tado-config", TadoConfigNode);
 
     /**
      * Tado node
@@ -117,10 +112,58 @@ module.exports = function(RED) {
                     }
                 });
             }
+            const authenticate = function() {
+                node.tadoConfig.tado.authenticate(
+                    node.tadoConfig.credentials.refreshToken
+                ).then((verify, token) => {
+                    if (verify) {
+                        const msg = {
+                            topic: "authenticating",
+                            uri: verify.verification_uri_complete,
+                            interval: verify.interval,
+                            expires_in: verify.expires_in,
+                        };
+
+                        if (send) {
+                            send(msg);
+                        } else {
+                            node.send(msg);
+                        }
+                    }
+
+                    token.then(() => {
+                        node.status({ fill: "green", shape: "dot", text: "Authenticated" });
+
+                        const msg = {topic: "authenticated", "error": undefined};
+
+                        if (send) {
+                            send(msg);
+                        } else {
+                            node.send(msg);
+                        }
+
+                        if (done) {
+                            done();
+                        }
+                    }).catch((err) => {
+                        node.status({ fill: "red", shape: "ring", text: "Errored" });
+
+                        if (done) {
+                            done(err);
+                        } else {
+                            node.error(err, msg);
+                        }
+                    });
+                });
+            }
 
             msg.topic = apiCall;
 
             switch (apiCall) {
+                case "authenticate":
+                    authenticate();
+                    break;
+
                 case "getMe":
                     call();
                     break;

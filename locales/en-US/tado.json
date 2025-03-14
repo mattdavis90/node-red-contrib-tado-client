@@ -36,6 +36,7 @@
             "activate": "Activate",
             "add-energy-iq-meter-readings": "Add Energy Meter Reading",
             "add-energy-iq-tariff": "Add Energy Tariff",
+            "authenticate": "Authenticate Account",
             "auto": "Tado Schedule Termination",
             "auto-fan": "Auto",
             "auto-presence": "Auto",
