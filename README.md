@@ -10,7 +10,7 @@ the Tado Web API and hence may be unstable.*
 > Tado has changed how authentication works! They no longer accept
 > username/password based authentication. As such, this library has switched to
 > the Oauth device flow. This is effective as of v1.0.0. Please upgrade ASAP to
-> avoid broken integrations
+> avoid broken integrations. See the `examples/tado.json` for more info.
 
 > [!IMPORTANT]
 > From v0.9.0 onward this node requires at least nodejs v12 due to using async
@@ -33,6 +33,10 @@ home directory (usually ~/.node-red) and will also install needed libraries.
 ``` npm install node-red-contrib-tado-client ```
 
 ## Getting Started
+
+> [!TIP] The example in `examples/tado.json` shows you how to complete device
+> authentication and how to persist the refresh token between restarts of
+> NoedRed
 
 > [!TIP]
 > From v0.12.0 onwards TadoX support is available as a separate node
