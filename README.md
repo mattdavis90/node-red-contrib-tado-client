@@ -6,6 +6,12 @@ configuration that lets you connect to the Tado Web API.
 *Please note: The library used by this node is derived from reverse engineering
 the Tado Web API and hence may be unstable.*
 
+> [!IMPORTANT]  
+> Tado has changed how authentication works! They no longer accept
+> username/password based authentication. As such, this library has switched to
+> the Oauth device flow. This is effective as of v1.0.0. Please upgrade ASAP to
+> avoid broken integrations
+
 > [!IMPORTANT]
 > From v0.9.0 onward this node requires at least nodejs v12 due to using async
 > functions.
@@ -45,14 +51,6 @@ choose "Import", and paste the JSON from the example into the box. It is a good
 idea to change the target to "New Flow" so you don't override any of your
 existing nodes. Once imported make sure to deploy the changes.
 
-### Configure the Node
-
-Open the Tado configuration node by selecting the Node-RED menu and choosing
-"Configuration Nodes" then double clicking the "Tado Config" node in the
-righthand sidebar. This will open the configuration window, here you can enter
-your Tado username and password, click update to save. You can then press
-deploy to update your Node-RED.
-
 
 ### Find your home_id
 
@@ -74,6 +72,7 @@ the input contains any of the following fields then they will ovewrite the
 properties on the node.
 
 * Account:
+  - authenticate (msg.refreshToken)
   - getMe (msg.homeId)
 
 * Home:
