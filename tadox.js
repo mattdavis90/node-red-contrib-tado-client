@@ -36,7 +36,7 @@ module.exports = function(RED) {
         RED.nodes.createNode(this, config);
         const node = this;
 
-        node.tado = new TadoX(node.credentials.username, node.credentials.password);
+        node.tado = new TadoX();
 
         node.call = async function(method) {
             const args = [...arguments].slice(1);
@@ -44,12 +44,7 @@ module.exports = function(RED) {
         }
     }
 
-    RED.nodes.registerType("tadox-config", TadoXConfigNode, {
-        credentials: {
-            username: { type: "text" },
-            password: { type: "password" },
-        }
-    });
+    RED.nodes.registerType("tadox-config", TadoXConfigNode);
 
     /**
      * Tado node
