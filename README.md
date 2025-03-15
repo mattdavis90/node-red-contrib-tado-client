@@ -34,7 +34,8 @@ home directory (usually ~/.node-red) and will also install needed libraries.
 
 ## Getting Started
 
-> [!TIP] The example in `examples/tado.json` shows you how to complete device
+> [!TIP]
+> The example in `examples/tado.json` shows you how to complete device
 > authentication and how to persist the refresh token between restarts of
 > NoedRed
 

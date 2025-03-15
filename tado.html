@@ -20,8 +20,8 @@
 
 <script type="text/x-red" data-template-name="tado-config">
     <div class="form-row">
-        <label for="node-config-input-refreshToken"><i class="fa fa-lock"></i> <span data-i18n="tado.label.refreshToken"></span></label>
-        <input type="password" id="node-config-input-refreshToken">
+        <p>Please note that Tado no longer use the username/password authentication mechanism.</p>
+        <p>You must now use the device Oauth flow. Details of this can be found in the <a href="https://github.com/mattdavis90/node-red-contrib-tado-client?tab=readme-ov-file#getting-started">README</a></p>
     </div>
     <div class="form-row">
         <label for="node-config-input-name"><i class="fa fa-tag"></i> <span data-i18n="node-red:common.label.name"></span></label>
@@ -35,9 +35,6 @@
         color: "rgb(218, 196, 180)",
         defaults: {
             name: { value: "" }
-        },
-        credentials: {
-            refreshToken: { type: "password" }
         },
         label: function () {
             return this.name || "Tado Config";

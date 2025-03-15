@@ -20,12 +20,8 @@
 
 <script type="text/x-red" data-template-name="tadox-config">
     <div class="form-row">
-        <label for="node-config-input-username"><i class="fa fa-user"></i> <span data-i18n="node-red:common.label.username"></span></label>
-        <input type="text" id="node-config-input-username">
-    </div>
-    <div class="form-row">
-        <label for="node-config-input-password"><i class="fa fa-lock"></i> <span data-i18n="node-red:common.label.password"></span></label>
-        <input type="password" id="node-config-input-password">
+        <p>Please note that Tado no longer use the username/password authentication mechanism.</p>
+        <p>You must now use the device Oauth flow. Details of this can be found in the <a href="https://github.com/mattdavis90/node-red-contrib-tado-client?tab=readme-ov-file#getting-started">README</a></p>
     </div>
     <div class="form-row">
         <label for="node-config-input-name"><i class="fa fa-tag"></i> <span data-i18n="node-red:common.label.name"></span></label>
@@ -39,10 +35,6 @@
         color: "rgb(218, 196, 180)",
         defaults: {
             name: { value: "" }
-        },
-        credentials: {
-            username: { type: "text" },
-            password: { type: "password" }
         },
         label: function () {
             return this.name || "TadoX Config";
@@ -59,6 +51,7 @@
         <label for="node-input-apiCall"><i class="fa fa-bolt"></i> <span data-i18n="tado.label.api-call"></span></label>
         <select id="node-input-apiCall" style="width:60%; margin-right:5px;">
             <optgroup data-i18n="[label]tado.optgroup.account">
+                <option value="authenticate" data-i18n="tado.option.authenticate"></option>
                 <option value="getMe" data-i18n="tado.option.get-me"></option>
             </optgroup>
             <optgroup data-i18n="[label]tado.optgroup.home">
