@@ -173,18 +173,6 @@
                 <label for="node-input-temperature"><i class="fa fa-thermometer-half"></i> <span data-i18n="tado.label.temperature"></span></label>
                 <input type="text" id="node-input-temperature" data-i18n="[placeholder]tado.label.temperature">
             </div>
-            <div class="form-row" id="tadoTerminationType">
-                <label for="node-input-terminationType"><i class="fa fa-ban"></i> <span data-i18n="tado.label.termination-type"></span></label>
-                <select id="node-input-terminationType" style="width:60%; margin-right:5px;">
-                    <option value="manual" data-i18n="tado.option.manual"></option>
-                    <option value="auto" data-i18n="tado.option.auto"></option>
-                    <option value="timer" data-i18n="tado.option.timer"></option>
-                </select>
-            </div>
-            <div class="form-row" id="tadoTerminationTimeout">
-                <label for="node-input-terminationTimeout"><i class="fa fa-history"></i> <span data-i18n="tado.label.termination-timeout"></span></label>
-                <input type="text" id="node-input-terminationTimeout" data-i18n="[placeholder]tado.label.termination-timeout">
-            </div>
             <div class="form-row" id="tadoFanSpeed">
                 <label for="node-input-fanSpeed"><i class="fa fa-tachometer"></i> <span data-i18n="tado.label.fan-speed"></span></label>
                 <select id="node-input-fanSpeed" style="width:60%; margin-right:5px;">
@@ -233,6 +221,18 @@
                     <option value="UP" data-i18n="tado.option.up"></option>
                 </select>
             </div>
+        </div>
+        <div class="form-row" id="tadoTerminationType">
+            <label for="node-input-terminationType"><i class="fa fa-ban"></i> <span data-i18n="tado.label.termination-type"></span></label>
+            <select id="node-input-terminationType" style="width:60%; margin-right:5px;">
+                <option value="manual" data-i18n="tado.option.manual"></option>
+                <option value="auto" data-i18n="tado.option.auto"></option>
+                <option value="timer" data-i18n="tado.option.timer"></option>
+            </select>
+        </div>
+        <div class="form-row" id="tadoTerminationTimeout">
+            <label for="node-input-terminationTimeout"><i class="fa fa-history"></i> <span data-i18n="tado.label.termination-timeout"></span></label>
+            <input type="text" id="node-input-terminationTimeout" data-i18n="[placeholder]tado.label.termination-timeout">
         </div>
     </div>
     <div class="form-row" id="tadoUnit">
