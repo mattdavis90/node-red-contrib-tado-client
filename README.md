@@ -48,6 +48,11 @@ There is an example flow available in the repo. I'd recommend giving it a go to
 trial the functionality available. [Link to
 example](https://github.com/mattdavis90/node-red-contrib-tado-client/blob/master/examples/tado.json)
 
+> [!NOTE]
+> You can currently only use a single instance of the "Tado Token" node within
+> a flow. If you add more than one then only the latest node you added will
+> work. This is a known issue.
+
 [Link to Node-RED documenation on
 import/export](https://nodered.org/docs/user-guide/editor/workspace/import-export)
 
