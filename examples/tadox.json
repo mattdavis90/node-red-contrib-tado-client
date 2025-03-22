@@ -1,0 +1,796 @@
+[
+    {
+        "id": "9e3fc1e5920df13e",
+        "type": "tab",
+        "label": "Tado Example",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "e45737bf2dfc09ca",
+        "type": "group",
+        "z": "9e3fc1e5920df13e",
+        "name": "Authentication Flow",
+        "style": {
+            "label": true
+        },
+        "nodes": [
+            "c2a59ce3cbc1a6db",
+            "f8d92b408ed05fea",
+            "9a3df48d60760ae8",
+            "d0cb4b711f17ceb5"
+        ],
+        "x": 34,
+        "y": 99,
+        "w": 392,
+        "h": 142
+    },
+    {
+        "id": "6b8abc4c1228c6b1",
+        "type": "group",
+        "z": "9e3fc1e5920df13e",
+        "name": "Testing",
+        "style": {
+            "label": true
+        },
+        "nodes": [
+            "22155bd86d78bdbb",
+            "cc5ec8679560fe5d",
+            "69a719df61ed5c2b",
+            "250fbd76a8f2bc52",
+            "867b9b31e4408af3",
+            "c64c14055e902de8",
+            "2440192c493c6d55",
+            "366e43fa3a4771b0",
+            "eea64763dc439955",
+            "6773d11c63e5945a",
+            "2134a0f81af1a301",
+            "b923814343043572",
+            "c6f6d557bb5b0cc6",
+            "b04b2ac4269dc6d6"
+        ],
+        "x": 34,
+        "y": 259,
+        "w": 752,
+        "h": 482
+    },
+    {
+        "id": "13aab1b257852074",
+        "type": "group",
+        "z": "9e3fc1e5920df13e",
+        "name": "Persistent Auth",
+        "style": {
+            "label": true
+        },
+        "nodes": [
+            "30610116b3394ad1",
+            "4abc9bdf38f121a7",
+            "80d38fa2cd075522",
+            "abb86d2a9c554ffe",
+            "d21f1766922dd03e",
+            "ad74a70fdd516c17",
+            "c004a0badbf1a92f"
+        ],
+        "x": 474,
+        "y": 99,
+        "w": 772,
+        "h": 142
+    },
+    {
+        "id": "366e43fa3a4771b0",
+        "type": "junction",
+        "z": "9e3fc1e5920df13e",
+        "g": "6b8abc4c1228c6b1",
+        "x": 560,
+        "y": 460,
+        "wires": [
+            [
+                "867b9b31e4408af3"
+            ]
+        ]
+    },
+    {
+        "id": "22155bd86d78bdbb",
+        "type": "inject",
+        "z": "9e3fc1e5920df13e",
+        "g": "6b8abc4c1228c6b1",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 140,
+        "y": 540,
+        "wires": [
+            [
+                "b923814343043572"
+            ]
+        ]
+    },
+    {
+        "id": "cc5ec8679560fe5d",
+        "type": "inject",
+        "z": "9e3fc1e5920df13e",
+        "g": "6b8abc4c1228c6b1",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 140,
+        "y": 620,
+        "wires": [
+            [
+                "c6f6d557bb5b0cc6"
+            ]
+        ]
+    },
+    {
+        "id": "69a719df61ed5c2b",
+        "type": "inject",
+        "z": "9e3fc1e5920df13e",
+        "g": "6b8abc4c1228c6b1",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 140,
+        "y": 700,
+        "wires": [
+            [
+                "b04b2ac4269dc6d6"
+            ]
+        ]
+    },
+    {
+        "id": "250fbd76a8f2bc52",
+        "type": "inject",
+        "z": "9e3fc1e5920df13e",
+        "g": "6b8abc4c1228c6b1",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 140,
+        "y": 460,
+        "wires": [
+            [
+                "2134a0f81af1a301"
+            ]
+        ]
+    },
+    {
+        "id": "867b9b31e4408af3",
+        "type": "debug",
+        "z": "9e3fc1e5920df13e",
+        "g": "6b8abc4c1228c6b1",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 670,
+        "y": 460,
+        "wires": []
+    },
+    {
+        "id": "c64c14055e902de8",
+        "type": "inject",
+        "z": "9e3fc1e5920df13e",
+        "g": "6b8abc4c1228c6b1",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 140,
+        "y": 380,
+        "wires": [
+            [
+                "6773d11c63e5945a"
+            ]
+        ]
+    },
+    {
+        "id": "37c84193acb2e93e",
+        "type": "comment",
+        "z": "9e3fc1e5920df13e",
+        "name": "README First",
+        "info": "Various examples of how to use the *Tado* node\n\nTado no longer uses username/password auth.\n\nInstead you should `inject` into the \"Authentication Flow\"\nand monitor the debug output. This will trigger a device\nauth flow, that will require you to visit a URL to login.\n\nOnce you've logged in a token will be printed to the\ndebug window. You can use this token to bypass the auth process\nnext time. An example of this is shown in the \"Persistent\nAuthentication\" group - you'll need to enable this.\n\nYou should also replace the `home_id` in the calls\nwith your `home_id` which can be found using the first\nexample of `getMe` API call.",
+        "x": 120,
+        "y": 60,
+        "wires": []
+    },
+    {
+        "id": "2440192c493c6d55",
+        "type": "inject",
+        "z": "9e3fc1e5920df13e",
+        "g": "6b8abc4c1228c6b1",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 140,
+        "y": 300,
+        "wires": [
+            [
+                "eea64763dc439955"
+            ]
+        ]
+    },
+    {
+        "id": "c2a59ce3cbc1a6db",
+        "type": "inject",
+        "z": "9e3fc1e5920df13e",
+        "g": "e45737bf2dfc09ca",
+        "name": "",
+        "props": [],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 130,
+        "y": 140,
+        "wires": [
+            [
+                "d0cb4b711f17ceb5"
+            ]
+        ]
+    },
+    {
+        "id": "f8d92b408ed05fea",
+        "type": "debug",
+        "z": "9e3fc1e5920df13e",
+        "g": "e45737bf2dfc09ca",
+        "name": "Token",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 330,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "30610116b3394ad1",
+        "type": "file",
+        "z": "9e3fc1e5920df13e",
+        "d": true,
+        "g": "13aab1b257852074",
+        "name": "",
+        "filename": "/data/tado.json",
+        "filenameType": "str",
+        "appendNewline": false,
+        "createDir": false,
+        "overwriteFile": "true",
+        "encoding": "none",
+        "x": 740,
+        "y": 200,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "4abc9bdf38f121a7",
+        "type": "file in",
+        "z": "9e3fc1e5920df13e",
+        "d": true,
+        "g": "13aab1b257852074",
+        "name": "",
+        "filename": "/data/tado.json",
+        "filenameType": "str",
+        "format": "utf8",
+        "chunk": false,
+        "sendError": false,
+        "encoding": "none",
+        "allProps": false,
+        "x": 740,
+        "y": 140,
+        "wires": [
+            [
+                "abb86d2a9c554ffe"
+            ]
+        ]
+    },
+    {
+        "id": "80d38fa2cd075522",
+        "type": "inject",
+        "z": "9e3fc1e5920df13e",
+        "d": true,
+        "g": "13aab1b257852074",
+        "name": "",
+        "props": [],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 570,
+        "y": 140,
+        "wires": [
+            [
+                "4abc9bdf38f121a7"
+            ]
+        ]
+    },
+    {
+        "id": "abb86d2a9c554ffe",
+        "type": "change",
+        "z": "9e3fc1e5920df13e",
+        "d": true,
+        "g": "13aab1b257852074",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "refreshToken",
+                "pt": "msg",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 960,
+        "y": 140,
+        "wires": [
+            [
+                "c004a0badbf1a92f"
+            ]
+        ]
+    },
+    {
+        "id": "d21f1766922dd03e",
+        "type": "debug",
+        "z": "9e3fc1e5920df13e",
+        "d": true,
+        "g": "13aab1b257852074",
+        "name": "Auth",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1150,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "d0cb4b711f17ceb5",
+        "type": "tadox",
+        "z": "9e3fc1e5920df13e",
+        "g": "e45737bf2dfc09ca",
+        "apiCall": "authenticate",
+        "childlock": false,
+        "configName": "78a2fa8f8bb1978e",
+        "deviceId": "",
+        "endDate": "",
+        "geoTracking": true,
+        "homeId": "",
+        "maxTemperature": 0,
+        "name": "",
+        "power": "ON",
+        "presence": "HOME",
+        "quickAction": "allOf",
+        "reading": 0,
+        "readingDate": "",
+        "readingId": "",
+        "reportDate": "",
+        "roomId": "",
+        "startDate": "",
+        "tariffId": "",
+        "tariffInCents": 0,
+        "temperature": "18",
+        "temperatureOffset": 0,
+        "terminationTimeout": 900,
+        "terminationType": "manual",
+        "timetableId": "",
+        "unit": "m3",
+        "x": 300,
+        "y": 140,
+        "wires": [
+            [
+                "f8d92b408ed05fea"
+            ]
+        ]
+    },
+    {
+        "id": "9a3df48d60760ae8",
+        "type": "tadox-token",
+        "z": "9e3fc1e5920df13e",
+        "g": "e45737bf2dfc09ca",
+        "configName": "78a2fa8f8bb1978e",
+        "x": 130,
+        "y": 200,
+        "wires": [
+            [
+                "f8d92b408ed05fea"
+            ]
+        ]
+    },
+    {
+        "id": "eea64763dc439955",
+        "type": "tadox",
+        "z": "9e3fc1e5920df13e",
+        "g": "6b8abc4c1228c6b1",
+        "apiCall": "getMe",
+        "childlock": false,
+        "configName": "78a2fa8f8bb1978e",
+        "deviceId": "",
+        "endDate": "",
+        "geoTracking": true,
+        "homeId": "",
+        "maxTemperature": 0,
+        "name": "",
+        "power": "ON",
+        "presence": "HOME",
+        "quickAction": "allOf",
+        "reading": 0,
+        "readingDate": "",
+        "readingId": "",
+        "reportDate": "",
+        "roomId": "",
+        "startDate": "",
+        "tariffId": "",
+        "tariffInCents": 0,
+        "temperature": "18",
+        "temperatureOffset": 0,
+        "terminationTimeout": 900,
+        "terminationType": "manual",
+        "timetableId": "",
+        "unit": "m3",
+        "x": 320,
+        "y": 300,
+        "wires": [
+            [
+                "366e43fa3a4771b0"
+            ]
+        ]
+    },
+    {
+        "id": "6773d11c63e5945a",
+        "type": "tadox",
+        "z": "9e3fc1e5920df13e",
+        "g": "6b8abc4c1228c6b1",
+        "apiCall": "getActionableDevices",
+        "childlock": false,
+        "configName": "78a2fa8f8bb1978e",
+        "deviceId": "",
+        "endDate": "",
+        "geoTracking": true,
+        "homeId": "",
+        "maxTemperature": 0,
+        "name": "Get Device",
+        "power": "ON",
+        "presence": "HOME",
+        "quickAction": "allOf",
+        "reading": 0,
+        "readingDate": "",
+        "readingId": "",
+        "reportDate": "",
+        "roomId": "",
+        "startDate": "",
+        "tariffId": "",
+        "tariffInCents": 0,
+        "temperature": "18",
+        "temperatureOffset": 0,
+        "terminationTimeout": 900,
+        "terminationType": "manual",
+        "timetableId": "",
+        "unit": "m3",
+        "x": 310,
+        "y": 380,
+        "wires": [
+            [
+                "366e43fa3a4771b0"
+            ]
+        ]
+    },
+    {
+        "id": "2134a0f81af1a301",
+        "type": "tadox",
+        "z": "9e3fc1e5920df13e",
+        "g": "6b8abc4c1228c6b1",
+        "apiCall": "setDeviceTemperatureOffset",
+        "childlock": false,
+        "configName": "78a2fa8f8bb1978e",
+        "deviceId": "",
+        "endDate": "",
+        "geoTracking": true,
+        "homeId": "",
+        "maxTemperature": 0,
+        "name": "Set Device Offset",
+        "power": "ON",
+        "presence": "HOME",
+        "quickAction": "allOf",
+        "reading": 0,
+        "readingDate": "",
+        "readingId": "",
+        "reportDate": "",
+        "roomId": "",
+        "startDate": "",
+        "tariffId": "",
+        "tariffInCents": 0,
+        "temperature": "18",
+        "temperatureOffset": 0,
+        "terminationTimeout": 900,
+        "terminationType": "manual",
+        "timetableId": "",
+        "unit": "m3",
+        "x": 330,
+        "y": 460,
+        "wires": [
+            [
+                "366e43fa3a4771b0"
+            ]
+        ]
+    },
+    {
+        "id": "b923814343043572",
+        "type": "tadox",
+        "z": "9e3fc1e5920df13e",
+        "g": "6b8abc4c1228c6b1",
+        "apiCall": "getRoomState",
+        "childlock": false,
+        "configName": "78a2fa8f8bb1978e",
+        "deviceId": "",
+        "endDate": "",
+        "geoTracking": true,
+        "homeId": "",
+        "maxTemperature": 0,
+        "name": "Get Room State",
+        "power": "ON",
+        "presence": "HOME",
+        "quickAction": "allOf",
+        "reading": 0,
+        "readingDate": "",
+        "readingId": "",
+        "reportDate": "",
+        "roomId": "",
+        "startDate": "",
+        "tariffId": "",
+        "tariffInCents": 0,
+        "temperature": "18",
+        "temperatureOffset": 0,
+        "terminationTimeout": 900,
+        "terminationType": "manual",
+        "timetableId": "",
+        "unit": "m3",
+        "x": 320,
+        "y": 540,
+        "wires": [
+            [
+                "366e43fa3a4771b0"
+            ]
+        ]
+    },
+    {
+        "id": "c6f6d557bb5b0cc6",
+        "type": "tadox",
+        "z": "9e3fc1e5920df13e",
+        "g": "6b8abc4c1228c6b1",
+        "apiCall": "manualControl",
+        "childlock": false,
+        "configName": "78a2fa8f8bb1978e",
+        "deviceId": "",
+        "endDate": "",
+        "geoTracking": true,
+        "homeId": "",
+        "maxTemperature": 0,
+        "name": "Heating On",
+        "power": "ON",
+        "presence": "HOME",
+        "quickAction": "allOf",
+        "reading": 0,
+        "readingDate": "",
+        "readingId": "",
+        "reportDate": "",
+        "roomId": "",
+        "startDate": "",
+        "tariffId": "",
+        "tariffInCents": 0,
+        "temperature": "18",
+        "temperatureOffset": 0,
+        "terminationTimeout": 900,
+        "terminationType": "manual",
+        "timetableId": "",
+        "unit": "m3",
+        "x": 310,
+        "y": 620,
+        "wires": [
+            [
+                "366e43fa3a4771b0"
+            ]
+        ]
+    },
+    {
+        "id": "b04b2ac4269dc6d6",
+        "type": "tadox",
+        "z": "9e3fc1e5920df13e",
+        "g": "6b8abc4c1228c6b1",
+        "apiCall": "resumeSchedule",
+        "childlock": false,
+        "configName": "78a2fa8f8bb1978e",
+        "deviceId": "",
+        "endDate": "",
+        "geoTracking": true,
+        "homeId": "",
+        "maxTemperature": 0,
+        "name": "Resume Schedule",
+        "power": "ON",
+        "presence": "HOME",
+        "quickAction": "allOf",
+        "reading": 0,
+        "readingDate": "",
+        "readingId": "",
+        "reportDate": "",
+        "roomId": "",
+        "startDate": "",
+        "tariffId": "",
+        "tariffInCents": 0,
+        "temperature": "18",
+        "temperatureOffset": 0,
+        "terminationTimeout": 900,
+        "terminationType": "manual",
+        "timetableId": "",
+        "unit": "m3",
+        "x": 330,
+        "y": 700,
+        "wires": [
+            [
+                "366e43fa3a4771b0"
+            ]
+        ]
+    },
+    {
+        "id": "ad74a70fdd516c17",
+        "type": "tadox-token",
+        "z": "9e3fc1e5920df13e",
+        "d": true,
+        "g": "13aab1b257852074",
+        "configName": "78a2fa8f8bb1978e",
+        "x": 570,
+        "y": 200,
+        "wires": [
+            [
+                "30610116b3394ad1"
+            ]
+        ]
+    },
+    {
+        "id": "c004a0badbf1a92f",
+        "type": "tadox",
+        "z": "9e3fc1e5920df13e",
+        "d": true,
+        "g": "13aab1b257852074",
+        "apiCall": "authenticate",
+        "childlock": false,
+        "configName": "78a2fa8f8bb1978e",
+        "deviceId": "",
+        "endDate": "",
+        "geoTracking": true,
+        "homeId": "",
+        "maxTemperature": 0,
+        "name": "",
+        "power": "ON",
+        "presence": "HOME",
+        "quickAction": "allOf",
+        "reading": 0,
+        "readingDate": "",
+        "readingId": "",
+        "reportDate": "",
+        "roomId": "",
+        "startDate": "",
+        "tariffId": "",
+        "tariffInCents": 0,
+        "temperature": "18",
+        "temperatureOffset": 0,
+        "terminationTimeout": 900,
+        "terminationType": "manual",
+        "timetableId": "",
+        "unit": "m3",
+        "x": 960,
+        "y": 200,
+        "wires": [
+            [
+                "d21f1766922dd03e"
+            ]
+        ]
+    },
+    {
+        "id": "78a2fa8f8bb1978e",
+        "type": "tadox-config",
+        "name": ""
+    }
+]
