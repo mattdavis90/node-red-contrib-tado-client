@@ -66,6 +66,7 @@ module.exports = function(RED) {
             "geoTracking",
             "homeId",
             "horizontalSwing",
+            "month",
             "name",
             "openWindowMode",
             "power",
@@ -86,6 +87,7 @@ module.exports = function(RED) {
             "verticalSwing",
             "windowDetection",
             "windowDetectionTimeout",
+            "year",
             "zoneId",
         ].forEach((k) => {
             node[k] = config[k];
@@ -280,6 +282,10 @@ module.exports = function(RED) {
 
                 case "addEnergyIQTariff":
                     call(arg("homeId"), arg("unit"), arg("startDate"), arg("endDate"), parseFloat(arg("tariffInCents").toFixed(2)));
+                    break;
+
+                case "getEnergyIQOverview":
+                    call(arg("homeId"), arg("month"), arg("year"));
                     break;
 
                 case "updateEnergyIQTariff":

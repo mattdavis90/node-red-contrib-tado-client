@@ -98,6 +98,7 @@
                 <option value="getEnergyIQTariff" data-i18n="tado.option.get-energy-iq-tariff"></option>
                 <option value="addEnergyIQTariff" data-i18n="tado.option.add-energy-iq-tariff"></option>
                 <option value="updateEnergyIQTariff" data-i18n="tado.option.update-energy-iq-tariff"></option>
+                <option value="getEnergyIQOverview" data-i18n="tado.option.get-energy-iq-overview"></option>
                 <option value="getEnergyIQMeterReadings" data-i18n="tado.option.get-energy-iq-meter-readings"></option>
                 <option value="addEnergyIQMeterReading" data-i18n="tado.option.add-energy-iq-meter-readings"></option>
                 <option value="deleteEnergyIQMeterReading" data-i18n="tado.option.delete-energy-iq-meter-readings"></option>
@@ -228,6 +229,30 @@
             </select>
         </div>
     </div>
+    <div id="tadoDate">
+        <div class="form-row">
+            <label for="node-input-month"><span data-i18n="tado.label.month"></span></label>
+            <select id="node-input-month" style="width:60%; margin-right:5px;">
+                <option value="1" data-i18n="tado.option.january"></option>
+                <option value="2" data-i18n="tado.option.february"></option>
+                <option value="3" data-i18n="tado.option.march"></option>
+                <option value="4" data-i18n="tado.option.april"></option>
+                <option value="5" data-i18n="tado.option.may"></option>
+                <option value="6" data-i18n="tado.option.june"></option>
+                <option value="7" data-i18n="tado.option.july"></option>
+                <option value="8" data-i18n="tado.option.august"></option>
+                <option value="9" data-i18n="tado.option.september"></option>
+                <option value="10" data-i18n="tado.option.october"></option>
+                <option value="11" data-i18n="tado.option.november"></option>
+                <option value="12" data-i18n="tado.option.december"></option>
+            </select>
+        </div>
+
+        <div class="form-row">
+            <label for="node-input-year"><span data-i18n="tado.label.year"></span></label>
+            <input type="number" id="node-input-year" />
+        </div>
+    </div>
     <div class="form-row">
         <label for="node-input-name"><i class="fa fa-tag"></i> <span data-i18n="node-red:common.label.name"></span></label>
         <input type="text" id="node-input-name" data-i18n="[placeholder]node-red:common.label.name">
@@ -308,6 +333,7 @@
             geoTracking: { value: true },
             homeId: { value: "" },
             maxTemperature: { value: 0 },
+            month: { value: 1 },
             name: { value: "" },
             power: { value: "ON" },
             presence: { value: "HOME" },
@@ -326,6 +352,7 @@
             terminationType: { value: "manual" },
             timetableId: { value: "" },
             unit: { value: "m3" },
+            year: { value: 2025 },
         },
         inputs: 1,
         outputs: 1,
@@ -342,6 +369,7 @@
 
                 const action = $('#tadoQuickAction');
                 const childlock = $('#tadoChildlock');
+                const dateDiv = $('#tadoDate');
                 const device = $('#tadoDeviceId');
                 const endDate = $('#tadoEndDate');
                 const geoTracking = $('#tadoGeoTracking');
@@ -364,6 +392,7 @@
                 [
                     action,
                     childlock,
+                    dateDiv,
                     device,
                     endDate,
                     geoTracking,
@@ -469,6 +498,11 @@
                         startDate.show();
                         endDate.show();
                         tariffInCents.show();
+                        break;
+
+                    case "getEnergyIQOverview":
+                        home.show();
+                        dateDiv.show();
                         break;
                         
                     case "updateEnergyIQTariff":

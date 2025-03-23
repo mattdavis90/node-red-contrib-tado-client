@@ -62,6 +62,7 @@ module.exports = function(RED) {
             "geoTracking",
             "homeId",
             "maxTemperature",
+            "month",
             "name",
             "power",
             "presence",
@@ -80,6 +81,7 @@ module.exports = function(RED) {
             "terminationType",
             "timetableId",
             "unit",
+            "year",
         ].forEach((k) => {
             node[k] = config[k];
         });
@@ -248,6 +250,10 @@ module.exports = function(RED) {
 
                 case "addEnergyIQTariff":
                     call(arg("homeId"), arg("unit"), arg("startDate"), arg("endDate"), parseFloat(arg("tariffInCents").toFixed(2)));
+                    break;
+
+                case "getEnergyIQOverview":
+                    call(arg("homeId"), arg("month"), arg("year"));
                     break;
 
                 case "updateEnergyIQTariff":
