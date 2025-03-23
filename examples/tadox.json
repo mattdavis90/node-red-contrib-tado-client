@@ -263,7 +263,7 @@
         "type": "comment",
         "z": "9e3fc1e5920df13e",
         "name": "README First",
-        "info": "Various examples of how to use the *Tado* node\n\nTado no longer uses username/password auth.\n\nInstead you should `inject` into the \"Authentication Flow\"\nand monitor the debug output. This will trigger a device\nauth flow, that will require you to visit a URL to login.\n\nOnce you've logged in a token will be printed to the\ndebug window. You can use this token to bypass the auth process\nnext time. An example of this is shown in the \"Persistent\nAuthentication\" group - you'll need to enable this.\n\nYou should also replace the `home_id` in the calls\nwith your `home_id` which can be found using the first\nexample of `getMe` API call.",
+        "info": "Various examples of how to use the *Tado* node\n\n**Tado no longer uses username/password auth.**\n\nInstead you should `inject` into the \"Authentication Flow\"\nand monitor the debug output. This will trigger a device\nauth flow, that will require you to visit a URL to login.\n\nOnce you've logged in a token will be printed to the\ndebug window. You can use this token to bypass the auth process\nnext time.\n\nAn example of storing your refresh token is shown in the\n\"Persistent Authentication\" group - you'll need to enable this.\nYou should disable the \"Authentication Flow\" group as only a single\n\"tado-token\" node can exist within a flow at any time (this is a\nknown bug). You will likely also want to change the location of\nthe tado token from the default \"/data/tado.json\".\n\nYou should also replace the `home_id` in the calls\nwith your `home_id` which can be found using the first\nexample of `getMe` API call.",
         "x": 120,
         "y": 60,
         "wires": []
