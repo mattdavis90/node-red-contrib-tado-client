@@ -168,6 +168,14 @@ module.exports = function(RED) {
                             node.error(err, msg);
                         }
                     });
+                }).catch((err) => {
+                    node.status({ fill: "red", shape: "ring", text: "Errored" });
+
+                    if (done) {
+                        done(err);
+                    } else {
+                        node.error(err, msg);
+                    }
                 });
             }
 
