@@ -63,6 +63,7 @@
             "get-mobile-device": "Get a Mobile Device",
             "get-mobile-device-settings": "Get a Mobile Device's Settings",
             "get-mobile-devices": "Get all Mobile Devices",
+            "get-ratelimit": "Get rate limit",
             "get-room-state": "Get Room State",
             "get-rooms": "Get Rooms",
             "get-rooms-and-devices": "Get Rooms and Devices",

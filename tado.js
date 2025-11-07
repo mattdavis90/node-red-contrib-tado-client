@@ -194,6 +194,7 @@ module.exports = function(RED) {
                     break;
 
                 case "getMe":
+                case "getRatelimit":
                     call();
                     break;
 

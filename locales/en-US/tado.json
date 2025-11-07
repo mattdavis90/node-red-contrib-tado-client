@@ -71,6 +71,7 @@
             "get-mobile-device": "Get a Mobile Device",
             "get-mobile-device-settings": "Get a Mobile Device's Settings",
             "get-mobile-devices": "Get all Mobile Devices",
+            "get-ratelimit": "Get rate limit",
             "get-state": "Get the Home's State",
             "get-timetable": "Get a Timetable",
             "get-timetables": "Get all Timetables",
